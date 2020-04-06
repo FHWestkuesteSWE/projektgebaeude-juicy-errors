@@ -85,21 +85,21 @@ User Story C
 ================================================================================
 
 Kurzbeschreibung:
-Der User kann die Tür für einen bestimmten Raum öffnen.
+Der User kann die Tür für einen bestimmten Raum öffnen und abschließen.
 
 Priorität: (X) must | ( ) should | ( ) could | ( ) won't
 
 Abschätzung:
-Auf der Konsole des Clients besteht die Möglichkeit, die Raumtür
-zu öffnen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
-Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
-entsprechende Tür öffnet. Die Tür antwortet dem Server, worauf dieser dem Client 
-eine Bestätigung über die Änderung des Tür-Zustandes zurückschickt.
+3 Tage
 
 --------------------------------------------------------------------------------
 Details
 --------------------------------------------------------------------------------
-TBD
+Auf der Konsole des Clients besteht die Möglichkeit, die Raumtür
+zu öffnen bzw. zu schließen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
+entsprechende Tür öffnet bzw. schließt. Die Tür antwortet dem Server, worauf dieser dem Client 
+eine Bestätigung über die Änderung des Tür-Zustandes zurückschickt.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
@@ -123,25 +123,32 @@ User Story D
 ================================================================================
 
 Kurzbeschreibung:
-TBD
+Der User kann den Zustand einer Tür abfragen.
 
-Priorität: ( ) must | ( ) should | ( ) could | ( ) won't
+Priorität: ( ) must | (X) should | ( ) could | ( ) won't
 
 Abschätzung:
-TBD
+2 Tage
 
 --------------------------------------------------------------------------------
 Details
 --------------------------------------------------------------------------------
-TBD
+Auf der Konsole des Clients besteht die Möglichkeit, den Status einer Raumtür
+abzufragen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
+entsprechende Tür abfragt. Die Tür antwortet dem Server, worauf dieser dem Client 
+den Zustand der Tür zurückschickt.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
-2 Kein Sensor für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
-3 keine Antwort vom Sensor → Fehlermeldung des Servers
-4 Temperaturwert unplausibel  → Abfrage an Sensor wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
+2 Keine Tür für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+3 keine Antwort von der Tür → Fehlermeldung des Servers
+4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
-TBD
+vom Client an Server gesendeter String: „get Door <Raumbezeichner>“
+von Server an Client gesendeter String: „get Door <Raumbezeichner> 0 <boolean>“ (kein Fehler) 
+bzw. „Door <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
+bzw. „Door <Raumbezeichner> 4 <boolean>“
 --------------------------------------------------------------------------------
