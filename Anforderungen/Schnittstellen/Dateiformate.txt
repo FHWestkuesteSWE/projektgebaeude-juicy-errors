@@ -1,0 +1,35 @@
+
+Dateiformate
+
+Türschließungen
+===============
+
+Name der Datei:  Zugang.dat
+
+Speicherort:     <Applikationsdaten>/logs/
+
+Lebenszyklus:    wöchentliche Archivierung unter
+logs/archive/Zugang<Jahr><Woche>.dat,       danach löschen und
+neu anlegen
+
+Backup vor dem Schreibzugriff: Zugang.bac
+
+Format:    ASCII-Datei, pro Schließvorgang eine Zeile, beendet
+mit Zeilenumbruch
+
+yyyymmtt hhmmss transponderID tuerID auf/zu
+
+transponderID: 12-stellige unsigned Integer
+
+tuerID: 6-stellige unsigned Integer
+
+auf/zu: 1-stellige unsigned Integer (bit), 1 auf, 0 zu
+
+Systemfehler
+============
+
+...
+
+….
+==
+
