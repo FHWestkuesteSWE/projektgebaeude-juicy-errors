@@ -180,7 +180,7 @@ werden.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
-2 Keine Toilette in denm Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+2 Keine Toilette in dem Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
 3 keine Antwort von der Toilette → Fehlermeldung des Servers
 4 Toiletten-Zustand unplausibel  → Abfrage an Toilette wiederholen, wenn
 mehrfach unplausibler Wert: Fehlerhinweis des Servers
