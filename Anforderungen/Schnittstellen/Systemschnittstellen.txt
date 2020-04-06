@@ -51,3 +51,75 @@ Zeichenkette in einfachen char, maximale Länge 1024 Zeichen
 ….
 --
 
+
+
+
+Systemschnittstellen
+
+Dateisystem
+===========
+
+Nutzerbezogene Einstellungen
+----------------------------
+
+User ID: Zeichenkette in einfachen char, Länge von 4 Zeichen,
+beginnt immer mit „u“
+
+User Password: Zeichenkette in einfachen char, minimale Länge 4,
+maximale Länge 20 Zeichen
+
+Gebäudekonfiguration
+--------------------
+
+Gesamtanzahl Räume: <NUM_ROOMS>, unsignedchar (maximal 256
+Räume)
+
+Hinweis: Die Definition der Anzahl von Sensoren und Aktuatoren
+pro Raum erfolgt separat und universell für alle Räume.
+
+Client-Server-Kommunikation
+===========================
+
+Format für
+----------
+
+Anfragen
+
+Zeichenkette in einfachen char, maximale Länge 1024 Zeichen
+
+Bestandteile: <Befehl> <Argumente>
+
+Argumente werden durch Leerzeichen getrennt
+
+Mögliche Befehle:
+
+get: Abfrage eines Sensor- bzw. Aktuatorwertes
+
+Argumente:[<Timestamp>] <Query><SensorType> <RoomID>[<SensorID>]
+
+set: Setzen eines Aktuatorwertes
+
+Argumente:[<Timestamp>] <Query> <SensorType> <RoomID>
+[<SensorID>] <SensorValue>
+
+Format für Antworten
+--------------------
+
+Zeichenkette in einfachen char, maximale Länge 1024 Zeichen
+
+Bestandteile: <Befehl> <Argumente>
+
+Argumente werden durch Leerzeichen getrennt
+
+Mögliche Antworten:
+
+get:Antwort beiAbfrage eines Sensor- bzw. Aktuatorwertes
+
+<Timestamp> <Query> <SensorType> <RoomID> [<SensorID>]
+<ReturnVal> [<ErrorMessage>] <SensorValue>
+
+set:Antwort bei Setzeneines Sensor- bzw. Aktuatorwertes
+
+<Timestamp> <Query> <SensorType> <RoomID> [<SensorID>]
+<ReturnVal> [<ErrorMessage>]
+
