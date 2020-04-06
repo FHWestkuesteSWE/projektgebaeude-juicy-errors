@@ -188,7 +188,7 @@ Timeouts setzen !
 
 Protokoll:
 vom Client an Server gesendeter String: „get Toilet <Raumbezeichner> [Toilettennummer]“
-von Server an Client gesendeter String: „get Toilet <Raumbezeichner> 0
+von Server an Client gesendeter String: „get Toilet <Raumbezeichner> [Toilettennummer] 0
 <boolean>“ (kein Fehler) 
 bzw. „Toilet <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
 bzw. „Toilet <Raumbezeichner> 4 <boolean>“
