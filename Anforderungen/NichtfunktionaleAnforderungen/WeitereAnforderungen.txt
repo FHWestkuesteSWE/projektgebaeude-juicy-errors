@@ -1,0 +1,61 @@
+================================================================================
+Nichtfunktionale / Sicherheitsanforderungen
+================================================================================
+
+--------------------------------------------------------------------------------
+Anforderungen
+--------------------------------------------------------------------------------
+
+Alle Fehler sollen geloggt werden.
+----------------------------------
+
+Details:
+Die Fehler werden in der Logdatei errors.dat im gleichen
+Verzeichnis wie die anderen Logdateien abgelegt.
+Die Datei wird wöchentlich archiviert und neu angelegt. Die
+Archivierung erfolgt in einem Unterverzeichnis.
+
+Betroffene User Stories: Alle
+
+Alle Sensorwerte werden auf Plausibilität überprüft
+---------------------------------------------------
+
+Details: Für alle Sensorwerte müssen Plausibilitätsintervalle
+festgelegt und überprüft.
+
+Betroffene User Stories: … (zu ergänzende Stories bzw. neue
+Stories)
+
+...
+---
+
+--------------------------------------------------------------------------------
+Risiken und Sicherheitsanforderungen
+--------------------------------------------------------------------------------
+
+Fehlerursache
+
+Risiko
+
+Wahrschein-lichkeit
+
+Auswirkungen
+
+Gegenmaßnahmen
+
+Temperatursensor gibt falsche Werte
+
+Raum wird überhitzt.
+
+Hoch
+
+Büroräume: Komfort / geringe Kosten
+
+Technikräume: hohe Kosten / Gesundheit und Leben (Brandgefahr)
+
+Plausibilitätsüber-prüfung von Sensorwerten (Anforderung 1.2)
+
+Redundante Sensoren
+
+...
+
