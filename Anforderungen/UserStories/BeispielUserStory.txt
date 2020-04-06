@@ -85,12 +85,16 @@ User Story C
 ================================================================================
 
 Kurzbeschreibung:
-TBD
+Der User kann die Tür für einen bestimmten Raum öffnen.
 
-Priorität: ( ) must | ( ) should | ( ) could | ( ) won't
+Priorität: (X) must | ( ) should | ( ) could | ( ) won't
 
 Abschätzung:
-TBD
+Auf der Konsole des Clients besteht die Möglichkeit, die Raumtür
+zu öffnen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
+entsprechende Tür öffnet. Die Tür antwortet dem Server, worauf dieser dem Client 
+eine Bestätigung über die Änderung des Tür-Zustandes zurückschickt.
 
 --------------------------------------------------------------------------------
 Details
@@ -99,13 +103,16 @@ TBD
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
-2 Kein Sensor für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
-3 keine Antwort vom Sensor → Fehlermeldung des Servers
-4 Temperaturwert unplausibel  → Abfrage an Sensor wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
+2 Keine Tür für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+3 keine Antwort von der Tür → Fehlermeldung des Servers
+4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
-TBD
+vom Client an Server gesendeter String: „set Door <Raumbezeichner> <boolean>“
+von Server an Client gesendeter String: „set Door <Raumbezeichner> 0 <boolean>“ (kein Fehler) 
+bzw. „Door <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
+bzw. „Door <Raumbezeichner> 4 <boolean>“
 --------------------------------------------------------------------------------
 
 
