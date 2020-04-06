@@ -10,7 +10,7 @@ Alle Fehler sollen geloggt werden.
 ----------------------------------
 
 Details:
-Die Fehler werden in der Logdatei errors.dat im gleichen
+Die Fehler werden in der Logdatei errors.log im gleichen
 Verzeichnis wie die anderen Logdateien abgelegt.
 Die Datei wird wöchentlich archiviert und neu angelegt. Die
 Archivierung erfolgt in einem Unterverzeichnis.
@@ -21,13 +21,18 @@ Alle Sensorwerte werden auf Plausibilität überprüft
 ---------------------------------------------------
 
 Details: Für alle Sensorwerte müssen Plausibilitätsintervalle
-festgelegt und überprüft.
+festgelegt und überprüft werden.
 
-Betroffene User Stories: … (zu ergänzende Stories bzw. neue
-Stories)
+Betroffene User Stories: Alle
 
-...
----
+Erweiterbarkeit
+---------------
+
+Details:
+Das Gebäude soll mit überschaubarem Aufwand durch weitere Sensoren/Aktoren
+erweitert werden können. 
+
+Betroffene User Stories: Alle
 
 --------------------------------------------------------------------------------
 Risiken und Sicherheitsanforderungen
@@ -37,7 +42,7 @@ Fehlerursache
 
 Risiko
 
-Wahrschein-lichkeit
+Wahrscheinlichkeit
 
 Auswirkungen
 
@@ -53,7 +58,7 @@ Büroräume: Komfort / geringe Kosten
 
 Technikräume: hohe Kosten / Gesundheit und Leben (Brandgefahr)
 
-Plausibilitätsüber-prüfung von Sensorwerten (Anforderung 1.2)
+Plausibilitätsüberprüfung von Sensorwerten (Anforderung 1.2)
 
 Redundante Sensoren
 
