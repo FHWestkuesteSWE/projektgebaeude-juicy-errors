@@ -54,7 +54,7 @@ Abschätzung:
 --------------------------------------------------------------------------------
 Details
 --------------------------------------------------------------------------------
- Auf der Konsole des Clients besteht die Möglichkeit, die Raumtemperatur
+Auf der Konsole des Clients besteht die Möglichkeit, die Raumtemperatur
 zu setzen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
 Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
 gewünschte Temperatur in dem entsprechenden Thermostat einstellt. Das Thermostat 
