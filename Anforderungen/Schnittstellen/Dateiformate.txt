@@ -1,35 +1,57 @@
 
 Dateiformate
 
-Türschließungen
-===============
+Log-Datei
+=========
 
-Name der Datei:  Zugang.dat
+Enthält einen Mitschnitt aller Messages, die zwischen Client und Server
+ausgetauscht werden.
+
+Name der Datei:  building.log
 
 Speicherort:     <Applikationsdaten>/logs/
 
 Lebenszyklus:    wöchentliche Archivierung unter
-logs/archive/Zugang<Jahr><Woche>.dat,       danach löschen und
-neu anlegen
+                 logs/archive/Zugang<Jahr><Woche>.log, 
+                 danach löschen und neu anlegen
 
-Backup vor dem Schreibzugriff: Zugang.bac
+Backup vor dem Schreibzugriff: building.bac
 
-Format:    ASCII-Datei, pro Schließvorgang eine Zeile, beendet
-mit Zeilenumbruch
+Format:    ASCII-Datei, pro Eintrag eine Zeile, beendet mit Zeilenumbruch
 
-yyyymmtt hhmmss transponderID tuerID auf/zu
+Client-Message:
+yyyymmtt hhmmss Client: roomID targetID set/get [value]
 
-transponderID: 12-stellige unsigned Integer
+Server-Message:
+yyyymmtt hhmmss Server: roomID targetID set/get [value]
 
-tuerID: 6-stellige unsigned Integer
+roomID: 6-stellige unsigned Integer
 
-auf/zu: 1-stellige unsigned Integer (bit), 1 auf, 0 zu
+targetID: 3-stellige unsigned Integer, repräsentiert das Target (Toilette, Tür, Heizung)
+
+set/get: 1-stellige unsigned Integer (bit), 1 auf, 0 zu
+
+value:   3-stellige unsigned Integer, repsäsentiert bspw. Temperatur
 
 Systemfehler
 ============
 
-...
+Enthält nur die Fehlermeldungen, die vom Server an den Client übermittelt
+werden.
 
-….
-==
+Name der Datei:  error.log
+
+Speicherort:     <Applikationsdaten>/logs/
+
+Lebenszyklus:    wöchentliche Archivierung unter
+                 logs/archive/Zugang<Jahr><Woche>.log, 
+                 danach löschen und neu anlegen
+
+Backup vor dem Schreibzugriff: error.bac
+
+Format:    ASCII-Datei, pro Eintrag eine Zeile, beendet mit Zeilenumbruch
+
+yyyymmtt hhmmss Error: roomID targetID set/get [value] errorID
+
+errorID: 1-stellige unsigned Integer repräsentiert Fehlercode zu zugehörigem Target
 
