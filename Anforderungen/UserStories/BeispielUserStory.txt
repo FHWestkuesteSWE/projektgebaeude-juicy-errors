@@ -44,27 +44,35 @@ User Story B
 ================================================================================
 
 Kurzbeschreibung:
-TBD
+Der Nutzer kann die Raumtemperatur für einen bestimmten Raum setzen
 
-Priorität: ( ) must | ( ) should | ( ) could | ( ) won't
+Priorität: (X) must | ( ) should | ( ) could | ( ) won't
 
 Abschätzung:
-TBD
+1 Tag
 
 --------------------------------------------------------------------------------
 Details
 --------------------------------------------------------------------------------
-TBD
+Auf der Konsole des Clients besteht die Möglichkeit, die Raumtemperatur
+zu setzen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
+gewünschte Temperatur in dem entsprechenden Thermostat einstellt. Das Thermostat 
+antwortet dem Server, worauf dieser dem Client eine Bestätigung über die Änderung
+des Soll-Wertes zurückschickt.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
-2 Kein Sensor für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+2 Kein Thermostat für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
 3 keine Antwort vom Sensor → Fehlermeldung des Servers
-4 Temperaturwert unplausibel  → Abfrage an Sensor wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
+4 Thermostat liefert Fehler → Anfrage an Thermostat wiederholen, wenn mehrfach Fehler auftreten: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
-TBD
+vom Client an Server gesendeter String: „set Temp <Raumbezeichner>“
+von Server an Client gesendeter String: „set Temp <Raumbezeichner> 0 <float-zahl>“ (kein Fehler) 
+bzw. „Temp <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
+bzw. „Temp <Raumbezeichner> 4 <float-zahl>“
 --------------------------------------------------------------------------------
 
 
