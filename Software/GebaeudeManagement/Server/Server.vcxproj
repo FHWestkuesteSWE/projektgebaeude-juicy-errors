@@ -147,11 +147,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actuator.cpp" />
+    <ClCompile Include="BasicServer.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="DoorActuator.cpp" />
+    <ClCompile Include="DoorLockingSensor.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="TemperatureSensor.cpp" />
+    <ClCompile Include="Thermostat.cpp" />
+    <ClCompile Include="ToiletSensor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actuator.h" />
+    <ClInclude Include="BasicServer.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="DoorActuator.h" />
+    <ClInclude Include="DoorLockingSensor.h" />
+    <ClInclude Include="Sensor.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="TemperatureSensor.h" />
+    <ClInclude Include="Thermostat.h" />
+    <ClInclude Include="ToiletSensor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

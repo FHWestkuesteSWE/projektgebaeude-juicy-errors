@@ -1,0 +1,10 @@
+﻿  Actuator.cpp
+  Building.cpp
+  DoorActuator.cpp
+  DoorLockingSensor.cpp
+  Sensor.cpp
+  TemperatureSensor.cpp
+  Thermostat.cpp
+  ToiletSensor.cpp
+  Generating Code...
+  Server.vcxproj -> C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\x64\Debug\Server.exe
