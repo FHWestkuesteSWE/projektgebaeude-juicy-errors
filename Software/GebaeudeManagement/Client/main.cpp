@@ -33,3 +33,47 @@ int main(int argc, char* argv[])
     } while (wahl != 'e');
 }
 
+
+void getTempMenu(void)
+{
+
+    std::cout << "\nPlease choose room descriptor of the following: \n";
+    std::cout << "\tlivingRoom \t\t(1)\n";
+    std::cout << "\tkitchen \t\t(2)\n";
+    std::cout << "\ttoiletRoom1 \t\t(3)\n\n";
+    std::cout << "Exit \t\t\t\t(0)\n";
+    std::cout << "------------------------------------\n";
+
+    std::cout << "Please enter an integer value (0-3): \n";
+
+}
+void mainMenu(void)
+{
+    int userInput = -1;
+    while (userInput < 0 || userInput > 5) {
+        std::cout << "Building management system FHW 3000\n";
+        std::cout << "------------------------------------\n";
+        std::cout << "What do you want to do?\n";
+        std::cout << "------------------------------------\n";
+        std::cout << "Get current room temperature \t(1)\n";
+        std::cout << "Set current room temperature \t(2)\n\n";
+
+        std::cout << "Get current door status \t(3)\n";
+        std::cout << "Set current door status \t(4)\n\n";
+
+        std::cout << "Get current toilet status \t(5)\n\n";
+        std::cout << "Exit \t\t\t\t(0)\n\n";
+
+        std::cout << "------------------------------------\n";
+
+        std::cout << "Please enter an integer value (0-5): ";
+        std::cin >> userInput;
+    }
+    switch (userInput)
+    {
+    case 1:
+        getTempMenu();
+    default:
+        break;
+    }
+}
