@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalUsingDirectories>C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,24 +151,26 @@
     <ClCompile Include="Actuator.cpp" />
     <ClCompile Include="BasicServer.cpp" />
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="DoorActuator.cpp" />
+    <ClCompile Include="DoorLockingSensor.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RoomClasses\DoorActuator.cpp" />
-    <ClCompile Include="RoomClasses\DoorLockingSensor.cpp" />
-    <ClCompile Include="RoomClasses\TemperatureSensor.cpp" />
-    <ClCompile Include="RoomClasses\ToiletSensor.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="TemperatureSensor.cpp" />
+    <ClCompile Include="Thermostat.cpp" />
+    <ClCompile Include="ToiletSensor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actuator.h" />
     <ClInclude Include="BasicServer.h" />
     <ClInclude Include="Building.h" />
-    <ClInclude Include="RoomClasses\DoorActuator.h" />
-    <ClInclude Include="RoomClasses\DoorLockingSensor.h" />
-    <ClInclude Include="RoomClasses\TemperatureSensor.h" />
-    <ClInclude Include="RoomClasses\ToiletSensor.h" />
+    <ClInclude Include="DoorActuator.h" />
+    <ClInclude Include="DoorLockingSensor.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="TemperatureSensor.h" />
+    <ClInclude Include="Thermostat.h" />
+    <ClInclude Include="ToiletSensor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

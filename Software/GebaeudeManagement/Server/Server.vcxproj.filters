@@ -7,16 +7,19 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="BasicServer.cpp" />
-    <ClCompile Include="RoomClasses\DoorActuator.cpp">
+    <ClCompile Include="DoorActuator.cpp">
       <Filter>RoomClasses</Filter>
     </ClCompile>
-    <ClCompile Include="RoomClasses\DoorLockingSensor.cpp">
+    <ClCompile Include="DoorLockingSensor.cpp">
       <Filter>RoomClasses</Filter>
     </ClCompile>
-    <ClCompile Include="RoomClasses\TemperatureSensor.cpp">
+    <ClCompile Include="TemperatureSensor.cpp">
       <Filter>RoomClasses</Filter>
     </ClCompile>
-    <ClCompile Include="RoomClasses\ToiletSensor.cpp">
+    <ClCompile Include="Thermostat.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="ToiletSensor.cpp">
       <Filter>RoomClasses</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,22 +29,25 @@
     <ClInclude Include="Building.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="BasicServer.h" />
-    <ClInclude Include="RoomClasses\DoorActuator.h">
+    <ClInclude Include="DoorActuator.h">
       <Filter>RoomClasses</Filter>
     </ClInclude>
-    <ClInclude Include="RoomClasses\DoorLockingSensor.h">
+    <ClInclude Include="DoorLockingSensor.h">
       <Filter>RoomClasses</Filter>
     </ClInclude>
-    <ClInclude Include="RoomClasses\TemperatureSensor.h">
+    <ClInclude Include="TemperatureSensor.h">
       <Filter>RoomClasses</Filter>
     </ClInclude>
-    <ClInclude Include="RoomClasses\ToiletSensor.h">
+    <ClInclude Include="Thermostat.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="ToiletSensor.h">
       <Filter>RoomClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RoomClasses">
-      <UniqueIdentifier>{3ef9a69f-151d-495b-8090-bec2a9795839}</UniqueIdentifier>
+      <UniqueIdentifier>{fb166bd4-6f8b-43e6-a5a1-e49ba93bff16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

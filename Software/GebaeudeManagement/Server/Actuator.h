@@ -1,5 +1,6 @@
 #pragma once
-class Actuator
-{
-};
 
+	class Actuator
+	{
+	public:
+	};
