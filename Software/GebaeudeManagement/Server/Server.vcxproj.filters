@@ -3,47 +3,41 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Server.cpp" />
-    <ClCompile Include="DoorActuator.cpp">
-      <Filter>RoomClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="DoorLockingSensor.cpp">
-      <Filter>RoomClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="TemperatureSensor.cpp">
-      <Filter>RoomClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="ToiletSensor.cpp">
-      <Filter>RoomClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="Thermostat.cpp">
-      <Filter>RoomClasses</Filter>
-    </ClCompile>
     <ClCompile Include="Actuator.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="BasicServer.cpp" />
+    <ClCompile Include="RoomClasses\DoorActuator.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomClasses\DoorLockingSensor.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomClasses\TemperatureSensor.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomClasses\ToiletSensor.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h" />
-    <ClInclude Include="DoorActuator.h">
-      <Filter>RoomClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="DoorLockingSensor.h">
-      <Filter>RoomClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="TemperatureSensor.h">
-      <Filter>RoomClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="ToiletSensor.h">
-      <Filter>RoomClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="Thermostat.h">
-      <Filter>RoomClasses</Filter>
-    </ClInclude>
     <ClInclude Include="Actuator.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="BasicServer.h" />
+    <ClInclude Include="RoomClasses\DoorActuator.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomClasses\DoorLockingSensor.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomClasses\TemperatureSensor.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomClasses\ToiletSensor.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RoomClasses">
