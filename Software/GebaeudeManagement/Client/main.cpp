@@ -2,13 +2,13 @@
 //
 
 #include <iostream>
-#include "Client.h"
+#include "BasicClient.h"
 
 using namespace std;
 int main(int argc, char* argv[])
 {
-    Client c(argv[1], argv[2]);
-    char req[1024];
+    BasicClient c(argv[1], argv[2]);
+    char req[1024] = "GET TEMP 1";
     char ans[1024];
     char wahl;
     do {
@@ -28,9 +28,12 @@ int main(int argc, char* argv[])
             cout << ans;
             break;
         default:;
-
+            cout << "No valid entry" << endl;
         }
     } while (wahl != 'e');
+
+    cout << "Closing program" << endl;
+    return 0;
 }
 
 
