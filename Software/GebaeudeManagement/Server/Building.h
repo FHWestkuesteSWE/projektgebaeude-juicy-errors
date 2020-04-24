@@ -5,5 +5,6 @@ public:
 		Building();
 private:
 	int getRandInteger(int min, int max);
+	void createRooms(Room* rooms);
 };
 
