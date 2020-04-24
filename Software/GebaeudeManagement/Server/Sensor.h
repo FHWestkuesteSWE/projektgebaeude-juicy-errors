@@ -3,8 +3,8 @@ class Sensor
 {
 private:
 	// private attributes
-	bool bVal;
-	double fVal;
+	bool _bVal;
+	double _fVal;
 
 public:
 	bool getBooleanValue();

@@ -7,11 +7,11 @@ bool Sensor::getBooleanValue()
 	srand(time(0));
 	int r = rand() % 100;
 	if (r > 80)
-		bVal = true;
+		_bVal = true;
 	else
-		bVal = false;
+		_bVal = false;
 
-	return bVal;
+	return _bVal;
 }
 
 double Sensor::getDoubleValue(double fMin, double fMax, double lastValue)
@@ -26,13 +26,13 @@ double Sensor::getDoubleValue(double fMin, double fMax, double lastValue)
 		dev = 0.1 * lastValue * f; // deviation between 0..10%
 
 		if (r > 50) 
-			fVal = lastValue + dev;
+			_fVal = lastValue + dev;
 		else
-			fVal = lastValue - dev;
+			_fVal = lastValue - dev;
 	}
 	else // no value predefined
 	{
-		fVal = fMin + f * (fMax - fMin);
+		_fVal = fMin + f * (fMax - fMin);
 	}
-	return fVal;
+	return _fVal;
 }
