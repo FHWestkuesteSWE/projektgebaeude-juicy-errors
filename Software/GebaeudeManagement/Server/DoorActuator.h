@@ -3,5 +3,7 @@
 class DoorActuator :
 	public Actuator
 {
+public:
+	DoorActuator();
 };
 

@@ -154,6 +154,7 @@
     <ClCompile Include="DoorActuator.cpp" />
     <ClCompile Include="DoorLockingSensor.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="TemperatureSensor.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Building.h" />
     <ClInclude Include="DoorActuator.h" />
     <ClInclude Include="DoorLockingSensor.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TemperatureSensor.h" />

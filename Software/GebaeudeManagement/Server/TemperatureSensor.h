@@ -3,5 +3,7 @@
 class TemperatureSensor :
 	public Sensor
 {
+public:
+	TemperatureSensor();
 };
 

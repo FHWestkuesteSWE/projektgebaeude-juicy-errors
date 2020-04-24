@@ -3,5 +3,7 @@
 class ToiletSensor :
 	public Sensor
 {
+public:
+	ToiletSensor();
 };
 

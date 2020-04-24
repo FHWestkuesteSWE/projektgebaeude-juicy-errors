@@ -3,5 +3,7 @@
 class Thermostat :
 	public Actuator
 {
+public:
+	Thermostat();
 };
 

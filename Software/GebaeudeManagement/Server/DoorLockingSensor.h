@@ -3,5 +3,7 @@
 class DoorLockingSensor :
 	public Sensor
 {
+public:
+	DoorLockingSensor();
 };
 
