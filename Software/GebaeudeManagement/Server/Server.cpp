@@ -12,7 +12,6 @@
 using namespace std;
 
 
-
 string getNthWord(string s, size_t n) {
 	istringstream iss(s);
 	while (n-- > 0 && (iss >> s));
@@ -24,56 +23,75 @@ Server::Server() {
 
 void Server::start(char port[]) {
 	Building building;
+	time_t mytime = time(nullptr);
+	string timestamp(ctime(&mytime));
+	timestamp = timestamp.substr(0, timestamp.length() - 1);
 
+	//TO DO --- CREATE ROOMS
 	//for (int i = 0; i < NUM_ROOMS; i++) {
 	//	cout << building._rooms[i]->getDescriptor << endl;
 	//}
+
+	cout << timestamp << " - Launching Server at 127.0.0.1 on Port " << port << endl;
 
 	BasicServer::start(port);
 }
 
 void Server::processRequest(char req[], char ans[]) {
 	string request(req);
-	string query, sensor, roomDescr, opt;
-	int val, err = 0;
+	string query, sensorType, roomDescr, opt;
+	int sensor, err = 0;
+	char response[max_length];
+	double val = 0.0;
 
-	query = getNthWord(request, 1);	
-	sensor = getNthWord(request, 2);
+	time_t mytime = time(nullptr);
+	string timestamp(ctime(&mytime));
+	timestamp = timestamp.substr(0, timestamp.length() - 1);
+
+	query = getNthWord(request, 1);
+	sensorType = getNthWord(request, 2);
+	if (!sensorType.compare("Temp")) sensor = SENSOR_TEMP;
+	else if (!sensorType.compare("Door")) sensor = SENSOR_DOOR;
+	else if (!sensorType.compare("Toilet")) sensor = SENSOR_TOILET;
+	else sensor = -1;
+
 	roomDescr = getNthWord(request, 3);
 
 	opt = getNthWord(request, 4);
-	cout << "opt <" << opt << ">" << endl;
 	if (opt.compare(roomDescr)) opt = request.substr(request.find(opt));
 	else opt.clear();
 
 	// Debug
-	cout << "query <" << query << ">" << endl;
-	cout << "sensor <" << sensor << ">" << endl;
-	cout << "roomDescr <" << roomDescr << ">" << endl;
-	cout << "opt <" << opt << ">" << endl;
+	//cout << "query <" << query << ">" << endl;
+	//cout << "sensor <" << sensorType << ">" << endl;
+	//cout << "roomDescr <" << roomDescr << ">" << endl;
+	//cout << "opt <" << opt << ">" << endl;
 
-	cout << "processing request <" << req << ">" << endl;
+	cout << timestamp << " - Q - " << req << endl;
 
-	if (query.compare("get")) {
+	if (!query.compare("get")) {
 		switch (sensor) {
-		case "Temp":
+		case SENSOR_TEMP:
+			// TO DO 
 			// find index of ROOMDESCR in _rooms
 			// set val to return of _rooms[index].getTemp()
+			val = 20.6;
 			break;
 
-		case "Door":
+		case SENSOR_DOOR:
 			break;
 
-		case "Toilet":
+		case SENSOR_TOILET:
 			break;
 
 		default:
 			err = ERR_BAD_SENSOR_TYPE;
 		}
 
-	} else if (query.compare("set")) {
+	} else if (!query.compare("set")) {
 		switch (sensor) {
-		case "Temp":
+		case SENSOR_TEMP:
+			// TO DO 
 			// find index of ROOMDESCR in _rooms
 			// check if opt only holds val
 			// check if val is within range
@@ -81,10 +99,10 @@ void Server::processRequest(char req[], char ans[]) {
 			// IF VAL OUT OF RANGE: err = ERR_BAD_SENSOR_VAL
 			break;
 
-		case "Door":
+		case SENSOR_DOOR:
 			break;
 
-		case "Toilet":
+		case SENSOR_TOILET:
 			break;
 
 		default:
@@ -96,9 +114,14 @@ void Server::processRequest(char req[], char ans[]) {
 	}
 
 
-	// SERVER RESPONSE
-	// ...
+	sprintf(response, "%s %s %s %.2lf", query.c_str(), sensorType.c_str(), roomDescr.c_str(), val);
+	
+	if (err != 0) {
+		sprintf(response, "Error %i\n", err);
+	}
 
+	strncpy(ans, response, std::min<int>(max_length, strlen(ans) + 1));
+	cout << timestamp << " - A - " << response << endl;
 }
 
 Server::~Server(){

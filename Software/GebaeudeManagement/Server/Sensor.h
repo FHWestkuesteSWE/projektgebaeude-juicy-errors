@@ -8,6 +8,12 @@ typedef enum {
 	ERR_BAD_SENSOR_VAL,
 } ERR_CODES;
 
+typedef enum {
+	SENSOR_TEMP,
+	SENSOR_DOOR,
+	SENSOR_TOILET,
+} SENSOR_TYPES;
+
 class Sensor
 {
 private:
