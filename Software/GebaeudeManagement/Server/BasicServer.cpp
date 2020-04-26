@@ -29,9 +29,9 @@ void BasicServer::session(socket_ptr sock)
 		std::cerr << "Exception in thread: " << e.what() << "\n";
 	}
 }
-BasicServer::BasicServer()
-{
 
+
+BasicServer::BasicServer() {
 }
 
 void BasicServer::start(char port[]) {
@@ -48,15 +48,13 @@ void BasicServer::start(char port[]) {
 	}
 }
 
-/*
-Simple Server: just replies by echoing
-*/
-void BasicServer::processRequest(char req[], char ans[]) {
+void BasicServer::echo(char req[], char ans[]) {
 	strncpy(ans, req, std::min<int>(max_length,strlen(ans)+1));
-	std::cout << "Processing request ";
 	std::cout << req;
 }
 
-BasicServer::~BasicServer()
-{
+void BasicServer::processRequest(char req[], char ans[]) {
+}
+
+BasicServer::~BasicServer() {
 }

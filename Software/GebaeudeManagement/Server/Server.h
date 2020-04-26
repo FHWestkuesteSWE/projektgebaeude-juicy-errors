@@ -1,7 +1,7 @@
 #pragma once
+#include "BasicServer.h"
 
-class Server
-{
+class Server : public BasicServer {
 public:
 	void start(char port[]);
 	Server();
