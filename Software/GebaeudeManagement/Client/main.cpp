@@ -7,12 +7,12 @@
 #include "main.h"
 
 using namespace std;
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     BasicClient c(argv[1], argv[2]);
     char req[1024];
     char ans[1024];
     char wahl;
+
     do {
         std::cout << "\n\n-=[ BuildingMaster FHW 3000 ]=-\n\n";
         cout << "Main Menu" << endl;
@@ -32,64 +32,65 @@ int main(int argc, char* argv[])
         int value = 0; // set value
 
         switch (wahl) {
-        case 't': // Room temperature
-        // -------------------------------------------------------------------- 
-          while ( !roomAction ) roomAction = getOrSet ("temperature"); // ask for get or set 
+            case 't': // Room temperature
+            // -------------------------------------------------------------------- 
+                while ( !roomAction ) roomAction = getOrSet ("temperature"); // ask for get or set 
 
-          if ( roomAction == GET_VALUE ) { // get temperature
-            strcpy ( req, "get Temp " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
-          }
-          else if ( roomAction == SET_VALUE ) { // set temperature
-            value = askForValue ( "temperature", roomNumber, 14, 42 ); 
-            strcpy ( req, "set Temp " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
-            strcat ( req, " " );
-            char strValue[10];
-            sprintf(strValue, "%d", value);
-            strcat ( req, strValue ); // add temperature value
-          }
-          break;
-        // -------------------------------------------------------------------- 
+                if ( roomAction == GET_VALUE ) { // get temperature
+                strcpy ( req, "get Temp " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+                }
+                else if ( roomAction == SET_VALUE ) { // set temperature
+                value = askForValue ( "temperature", roomNumber, 14, 42 ); 
+                strcpy ( req, "set Temp " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+                strcat ( req, " " );
+                char strValue[10];
+                sprintf(strValue, "%d", value);
+                strcat ( req, strValue ); // add temperature value
+                }
+                break;
+            // -------------------------------------------------------------------- 
 
-        case 'd': // Outer doors
-        // -------------------------------------------------------------------- 
-          while ( !roomAction ) roomAction = getOrSet ("outer doors"); // ask for get or set 
+            case 'd': // Outer doors
+            // -------------------------------------------------------------------- 
+                while ( !roomAction ) roomAction = getOrSet ("outer doors"); // ask for get or set 
 
-          if ( roomAction == GET_VALUE ) { // get room door status
-            strcpy ( req, "get Door " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
-          }
-          else if ( roomAction == SET_VALUE ) { // set room door (lock or unlock)
-            value = -1;
-            while ( value == -1) value = lockOrUnlock ( "outer doors", roomNumber ); 
-            strcpy ( req, "set Door " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
-            strcat ( req, " " );
-            char strValue[10];
-            sprintf(strValue, "%d", value);
-            strcat ( req, strValue ); // add boolen value for lock (1) or unlock (0)
-          }
-          break;
-        // -------------------------------------------------------------------- 
+                if ( roomAction == GET_VALUE ) { // get room door status
+                strcpy ( req, "get Door " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
 
-        case 'w': // get toilet status
-        // -------------------------------------------------------------------- 
-            strcpy ( req, "get Toilet " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+                } else if ( roomAction == SET_VALUE ) { // set room door (lock or unlock)
+                value = -1;
 
-            value = askForValue ( "toilet number", roomNumber, 0, 6 ); 
-            strcpy ( req, "get Toilet " );
-            strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
-            strcat ( req, " " );
-            char strValue[10];
-            sprintf(strValue, "%d", value);
-            strcat ( req, strValue ); // add value for toilet number
-            break;
-        // -------------------------------------------------------------------- 
+                while ( value == -1) value = lockOrUnlock ( "outer doors", roomNumber ); 
+                strcpy ( req, "set Door " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+                strcat ( req, " " );
+                char strValue[10];
+                sprintf(strValue, "%d", value);
+                strcat ( req, strValue ); // add boolen value for lock (1) or unlock (0)
+                }
+                break;
+            // -------------------------------------------------------------------- 
 
-        default:;
-            cout << "I'm sorry Dave, I can't do that." << endl;
+            case 'w': // get toilet status
+            // -------------------------------------------------------------------- 
+                strcpy ( req, "get Toilet " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+
+                value = askForValue ( "toilet number", roomNumber, 0, 6 ); 
+                strcpy ( req, "get Toilet " );
+                strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
+                strcat ( req, " " );
+                char strValue[10];
+                sprintf(strValue, "%d", value);
+                strcat ( req, strValue ); // add value for toilet number
+                break;
+            // -------------------------------------------------------------------- 
+
+            default:;
+                cout << "I'm sorry Dave, I can't do that." << endl;
         }
             
         // send request and output reply
@@ -97,7 +98,7 @@ int main(int argc, char* argv[])
         c.sendRequest(req, ans);
         cout << "Answer from server: " << ans << endl;
         // ---
-    } while (wahl != 'e');
+    } while (wahl != 'q');
 
     cout << "Closing program" << endl;
     return 0;
