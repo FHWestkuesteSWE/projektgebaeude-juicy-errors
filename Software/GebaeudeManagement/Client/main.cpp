@@ -12,6 +12,9 @@ int main(int argc, char* argv[]) {
     char req[1024];
     char ans[1024];
     char wahl;
+    int roomNumber = 0;
+    int roomAction = 0; // either GET_VALUE or SET_VALUE
+    int value = 0; // set value
 
     do {
         std::cout << "\n\n-=[ BuildingMaster FHW 3000 ]=-\n\n";
@@ -26,14 +29,13 @@ int main(int argc, char* argv[]) {
         cout << "Choice: ";
         cin >> wahl;
 
-        // ask for room descriptor
-        int roomNumber = whichRoom(); 
-        int roomAction = 0; // either GET_VALUE or SET_VALUE
-        int value = 0; // set value
-
         switch (wahl) {
             case 't': // Room temperature
             // -------------------------------------------------------------------- 
+                // ask for room descriptor
+                roomNumber = whichRoom();
+                roomAction = 0; // either GET_VALUE or SET_VALUE
+                value = 0; // set value
                 while ( !roomAction ) roomAction = getOrSet ("temperature"); // ask for get or set 
 
                 if ( roomAction == GET_VALUE ) { // get temperature
@@ -49,11 +51,20 @@ int main(int argc, char* argv[]) {
                 sprintf(strValue, "%d", value);
                 strcat ( req, strValue ); // add temperature value
                 }
+
+                // send request to server and output reply
+                cout << "Request string: " << req << endl;
+                c.sendRequest(req, ans);
+                cout << "Answer from server: " << ans << endl;
                 break;
             // -------------------------------------------------------------------- 
 
             case 'd': // Outer doors
             // -------------------------------------------------------------------- 
+                // ask for room descriptor
+                roomNumber = whichRoom();
+                roomAction = 0; // either GET_VALUE or SET_VALUE
+                value = 0; // set value
                 while ( !roomAction ) roomAction = getOrSet ("outer doors"); // ask for get or set 
 
                 if ( roomAction == GET_VALUE ) { // get room door status
@@ -71,11 +82,20 @@ int main(int argc, char* argv[]) {
                 sprintf(strValue, "%d", value);
                 strcat ( req, strValue ); // add boolen value for lock (1) or unlock (0)
                 }
+
+                // send request to server and output reply
+                cout << "Request string: " << req << endl;
+                c.sendRequest(req, ans);
+                cout << "Answer from server: " << ans << endl;
                 break;
             // -------------------------------------------------------------------- 
 
             case 'w': // get toilet status
             // -------------------------------------------------------------------- 
+                // ask for room descriptor
+                roomNumber = whichRoom();
+                roomAction = 0; // either GET_VALUE or SET_VALUE
+                value = 0; // set value
                 strcpy ( req, "get Toilet " );
                 strcat ( req, roomDescriptors[roomNumber] ); // add room descriptor
 
@@ -86,18 +106,21 @@ int main(int argc, char* argv[]) {
                 char strValue[10];
                 sprintf(strValue, "%d", value);
                 strcat ( req, strValue ); // add value for toilet number
+
+                // send request to server and output reply
+                cout << "Request string: " << req << endl;
+                c.sendRequest(req, ans);
+                cout << "Answer from server: " << ans << endl;
                 break;
             // -------------------------------------------------------------------- 
 
-            default:;
+            case 'q':
+                break;
+
+            default:
                 cout << "I'm sorry Dave, I can't do that." << endl;
-        }
-            
-        // send request and output reply
-        cout << "Request string: " << req << endl;
-        c.sendRequest(req, ans);
-        cout << "Answer from server: " << ans << endl;
-        // ---
+                break;
+        }           
     } while (wahl != 'q');
 
     cout << "Closing program" << endl;
