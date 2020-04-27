@@ -7,8 +7,7 @@
 
 typedef boost::shared_ptr<boost::asio::ip::tcp::socket> socket_ptr;
 
-class BasicServer
-{
+class BasicServer {
 public:
 	void start(char port[]);
 	BasicServer();
@@ -17,6 +16,7 @@ public:
 
 private:
 	void session(socket_ptr sock);
+	void echo(char request[], char answer[]);
 	virtual void processRequest(char request[], char answer[]);
 };
 
