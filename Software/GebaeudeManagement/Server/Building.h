@@ -5,7 +5,7 @@
 
 class Building {
 public:
-	Building();
+	Building(char port[]);	
 
 private:
 	Room _rooms[NUM_ROOMS];

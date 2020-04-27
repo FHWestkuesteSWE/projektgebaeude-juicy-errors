@@ -1,12 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Building.h"
+#include "Server.h"
 #include"Room.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
 #include <time.h>
 
-
+using namespace std;
 
 int Building::getRandInteger(int min, int max) {
 	srand(time(0));
@@ -15,16 +16,17 @@ int Building::getRandInteger(int min, int max) {
 	return r;
 }
 
-Building::Building()
-{
-	
+Building::Building(char port[]) {
+	Server server;
+
 	createRooms(_rooms);
+	server.start(port);
 }
 
 void Building::createRooms(Room* rooms)
 {
 	int numToilets, numDoors, numTempSensors;
-	std::string descr;
+	string descr;
 	
 
 	// Room 1: WC1	
