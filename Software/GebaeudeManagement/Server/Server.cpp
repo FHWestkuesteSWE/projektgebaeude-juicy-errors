@@ -7,7 +7,6 @@
 #include <ctime>
 
 #include "Server.h"
-#include "Building.h"
 
 using namespace std;
 
@@ -22,15 +21,9 @@ Server::Server() {
 }
 
 void Server::start(char port[]) {
-	Building building;
 	time_t mytime = time(nullptr);
 	string timestamp(ctime(&mytime));
 	timestamp = timestamp.substr(0, timestamp.length() - 1);
-
-	//TO DO --- CREATE ROOMS
-	//for (int i = 0; i < NUM_ROOMS; i++) {
-	//	cout << building._rooms[i]->getDescriptor << endl;
-	//}
 
 	cout << timestamp << " - Launching Server at 127.0.0.1 on Port " << port << endl;
 
