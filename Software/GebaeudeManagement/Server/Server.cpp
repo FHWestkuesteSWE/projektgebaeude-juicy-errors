@@ -11,13 +11,13 @@
 using namespace std;
 
 
+Server::Server() {
+}
+
 string getNthWord(string s, size_t n) {
 	istringstream iss(s);
 	while (n-- > 0 && (iss >> s));
 	return s;
-}
-
-Server::Server() {
 }
 
 void Server::start(char port[]) {
@@ -115,6 +115,10 @@ void Server::processRequest(char req[], char ans[]) {
 
 	strncpy(ans, response, std::min<int>(max_length, strlen(ans) + 1));
 	cout << timestamp << " - A - " << response << endl;
+}
+
+void Server::properties() {
+
 }
 
 Server::~Server(){

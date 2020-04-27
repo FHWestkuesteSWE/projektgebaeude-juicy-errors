@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Building.h"
-#include "Server.h"
 #include"Room.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -17,10 +16,7 @@ int Building::getRandInteger(int min, int max) {
 }
 
 Building::Building(char port[]) {
-	Server server;
-
 	createRooms(_rooms);
-	server.start(port);
 }
 
 void Building::createRooms(Room* rooms)
