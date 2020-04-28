@@ -27,9 +27,8 @@ public:
 	Server();
 	~Server();
 	void start(char port[]);
-	void properties(char* out);
-	int addRoom(std::string descr, int numToilets, int numDoors, int numTempSensors);
-	int deleteRoom(std::string descr);
+	
+
 	
 protected:
 	void processRequest(char request[], char answer[]);
@@ -37,6 +36,11 @@ protected:
 private:
 	int build();
 	int getCFG();
+	void updateCFG();
+	void properties(char* out);
+	int addRoom(std::string descr, int numToilets, int numDoors, int numTempSensors);
+	int deleteRoom(std::string descr);
+	void print(std::string msg);
 
 	std::vector<std::string> roomCFG;
 };

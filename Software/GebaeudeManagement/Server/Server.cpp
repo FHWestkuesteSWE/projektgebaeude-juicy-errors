@@ -23,6 +23,7 @@ string getNthWord(string s, size_t n) {
 	return s;
 }
 
+// appends string vector DATA by the contents of istream IN
 void loadCSV(istream &in, vector<string> &data) {
 	string tmp;
 
@@ -38,20 +39,24 @@ void loadCSV(istream &in, vector<string> &data) {
 }
 
 void Server::start(char port[]) {
+	if (build() != EXIT_SUCCESS) {
+		this->print(" - Could not initialize building ");
+		this->print(" - Terminating service ");
+		return;
+	}
+
+	this->print("Building initialized");
+	this->print("Launching Server at 127.0.0.1 on Port ");
+
+	BasicServer::start(port);
+}
+
+void Server::print(std::string msg) {
 	time_t mytime = time(nullptr);
 	string timestamp(ctime(&mytime));
 	timestamp = timestamp.substr(0, timestamp.length() - 1);
 
-	if (build() != EXIT_SUCCESS) {
-		cout << timestamp << " - Could not initialize building " <<  endl;
-		cout << timestamp << " - Terminating service " << endl;
-		return;
-	}
-
-	cout << timestamp << " - Building initialized " << endl;
-	cout << timestamp << " - Launching Server at 127.0.0.1 on Port " << port << endl;
-
-	BasicServer::start(port);
+	cout << timestamp << " - SYS - " << msg << endl;
 }
 
 void Server::processRequest(char req[], char ans[]) {
@@ -133,7 +138,12 @@ void Server::processRequest(char req[], char ans[]) {
 		sprintf(response, "%s %s %s %.2lf", query.c_str(), sensorType.c_str(), roomDescr.c_str(), val);
 
 	} else if (!query.compare("cfg")) {
-		this->properties(response);
+		if (!sensorType.compare("-g")) {
+			this->properties(response);
+		} else if (!sensorType.compare("-u")) {
+			this->updateCFG();
+			this->properties(response);
+		}
 	} else {
 		err = ERR_BAD_QUERY;
 	}
@@ -169,10 +179,10 @@ int Server::getCFG() {
 		// try to create new file
 		std::ofstream cfg(CONFIG_NAME);
 		if (!cfg) {
-			cout << "Could not create config file" << endl;
+			this->print("Could not create config file");
 		}
 		else {
-			cout << "Created new config file" << endl;
+			this->print("Created new config file");
 		}
 
 		return EXIT_FAILURE;
@@ -181,10 +191,13 @@ int Server::getCFG() {
 	// read existing config file
 	std::ifstream cfg(CONFIG_NAME);
 	if (!cfg) {
-		cout << "Could not open existing config file" << endl;
+		this->print("Could not open existing config file");
 		return EXIT_FAILURE;
 	}
+
+	roomCFG.clear();
 	loadCSV(cfg, roomCFG);
+
 	// DEBUG OUTPUT
 	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
 	//	cout << *i << '\n';
@@ -193,9 +206,17 @@ int Server::getCFG() {
 	return EXIT_SUCCESS;
 }
 
+void Server::updateCFG() {
+	if (this->getCFG() != EXIT_SUCCESS) {
+		this->print("Could not update server config");
+	} else {
+		this->print("Server config successfully updated");
+	}
+}
+
 int Server::build() {
 	if (this->getCFG() != EXIT_SUCCESS) {
-		cout << "Could not load server config" << endl;
+		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
 	

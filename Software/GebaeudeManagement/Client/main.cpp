@@ -118,7 +118,23 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 'c':
-                strcpy(req, "cfg");
+                char choice;
+                cout << "(g)et or (u)pdate config " << "?" << endl;
+                cout << "\n\n(c)ancel" << endl;
+                cout << "----------------------------------------------------" << endl;
+                cout << "Choice: ";
+                cin >> choice;
+
+                switch (choice) {
+                case 'g':
+                    strcpy(req, "cfg -g");
+                    break;
+                case 'u':
+                    strcpy(req, "cfg -u");
+                    break;
+                default:
+                    break;
+                }
                 cout << "Request string: " << req << endl;
                 c.sendRequest(req, ans);
                 cout << "Answer from server: " << ans << endl;
