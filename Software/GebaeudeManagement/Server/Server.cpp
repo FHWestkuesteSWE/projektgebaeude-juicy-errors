@@ -151,7 +151,7 @@ void Server::processRequest(char req[], char ans[]) {
 void Server::properties(char* out) {
 	string temp1, temp2;
 
-	for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
+	for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
 		temp1 = *i;
 		temp1 = getNthWord(temp1, 1);
 		temp2.append(temp1);	
@@ -184,7 +184,7 @@ int Server::getCFG() {
 		cout << "Could not open existing config file" << endl;
 		return EXIT_FAILURE;
 	}
-	loadCSV(cfg, rooms);
+	loadCSV(cfg, roomCFG);
 	// DEBUG OUTPUT
 	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
 	//	cout << *i << '\n';
