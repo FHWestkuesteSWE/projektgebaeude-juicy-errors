@@ -159,8 +159,6 @@ void Server::properties(char* out) {
 	strncpy(out, temp2.c_str(), min<int>(max_length, strlen(out) + 1));
 	temp1.erase();
 	temp2.erase();
-	
-	cout << out << endl;
 }
 
 
@@ -196,8 +194,6 @@ int Server::build() {
 
 	// build rooms here
 	// ...
-
-	//cout << props << endl;
 
 	return EXIT_SUCCESS;
 }

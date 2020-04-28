@@ -117,6 +117,13 @@ int main(int argc, char* argv[]) {
             case 'q':
                 break;
 
+            case 'c':
+                strcpy(req, "cfg");
+                cout << "Request string: " << req << endl;
+                c.sendRequest(req, ans);
+                cout << "Answer from server: " << ans << endl;
+                break;
+
             default:
                 cout << "I'm sorry Dave, I can't do that." << endl;
                 break;
