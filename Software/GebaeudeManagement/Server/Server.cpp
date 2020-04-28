@@ -24,7 +24,6 @@ string getNthWord(string s, size_t n) {
 }
 
 void loadCSV(istream &in, vector<string> &data) {
-
 	string tmp;
 
 	while (!in.eof()) {
@@ -87,6 +86,8 @@ void Server::processRequest(char req[], char ans[]) {
 
 	cout << timestamp << " - Q - " << req << endl;
 
+
+
 	if (!query.compare("get")) {
 		switch (sensor) {
 		case SENSOR_TEMP:
@@ -105,6 +106,8 @@ void Server::processRequest(char req[], char ans[]) {
 		default:
 			err = ERR_BAD_SENSOR_TYPE;
 		}
+
+		sprintf(response, "%s %s %s %.2lf", query.c_str(), sensorType.c_str(), roomDescr.c_str(), val);
 
 	} else if (!query.compare("set")) {
 		switch (sensor) {
@@ -127,29 +130,37 @@ void Server::processRequest(char req[], char ans[]) {
 			err = ERR_BAD_SENSOR_TYPE;
 		}
 
+		sprintf(response, "%s %s %s %.2lf", query.c_str(), sensorType.c_str(), roomDescr.c_str(), val);
+
+	} else if (!query.compare("cfg")) {
+		this->properties(response);
 	} else {
 		err = ERR_BAD_QUERY;
 	}
-
-
-	sprintf(response, "%s %s %s %.2lf", query.c_str(), sensorType.c_str(), roomDescr.c_str(), val);
 	
+	// error handling
 	if (err != 0) {
 		sprintf(response, "Error %i\n", err);
 	}
 
+	// copy response to server answer
 	strncpy(ans, response, min<int>(max_length, strlen(ans) + 1));
 	cout << timestamp << " - A - " << response << endl;
 }
 
 void Server::properties(char* out) {
-	string temp[DESCR_MAX_LEN];
+	string temp1, temp2;
 
-	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
-	//	temp = temp->substr(*i, 1);
-	//	props = props->append(temp);
-	//}
-	delete temp;
+	for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
+		temp1 = *i;
+		temp1 = getNthWord(temp1, 1);
+		temp2.append(temp1);	
+	}
+	strncpy(out, temp2.c_str(), min<int>(max_length, strlen(out) + 1));
+	temp1.erase();
+	temp2.erase();
+	
+	cout << out << endl;
 }
 
 
@@ -185,6 +196,8 @@ int Server::build() {
 
 	// build rooms here
 	// ...
+
+	//cout << props << endl;
 
 	return EXIT_SUCCESS;
 }
