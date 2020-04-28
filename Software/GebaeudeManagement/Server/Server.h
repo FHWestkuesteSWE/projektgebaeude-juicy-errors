@@ -28,8 +28,6 @@ public:
 	~Server();
 	void start(char port[]);
 	
-
-	
 protected:
 	void processRequest(char request[], char answer[]);
 	

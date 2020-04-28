@@ -17,13 +17,14 @@ Server::Server() {
 }
 
 // TAKEN FROM http://www.cplusplus.com/forum/beginner/99171/
+// get the n-th word of a given string s
 string getNthWord(string s, size_t n) {
 	istringstream iss(s);
 	while (n-- > 0 && (iss >> s));
 	return s;
 }
 
-// appends string vector DATA by the contents of istream IN
+// append string vector DATA by the contents of istream IN
 void loadCSV(istream &in, vector<string> &data) {
 	string tmp;
 
@@ -38,6 +39,7 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
+// start the server
 void Server::start(char port[]) {
 	if (build() != EXIT_SUCCESS) {
 		this->print(" - Could not initialize building ");
@@ -51,6 +53,7 @@ void Server::start(char port[]) {
 	BasicServer::start(port);
 }
 
+// print system message on server console
 void Server::print(std::string msg) {
 	time_t mytime = time(nullptr);
 	string timestamp(ctime(&mytime));
@@ -59,6 +62,7 @@ void Server::print(std::string msg) {
 	cout << timestamp << " - SYS - " << msg << endl;
 }
 
+// process incoming Server Request
 void Server::processRequest(char req[], char ans[]) {
 	string request(req);
 	string query, sensorType, roomDescr, opt;
@@ -158,6 +162,7 @@ void Server::processRequest(char req[], char ans[]) {
 	cout << timestamp << " - A - " << response << endl;
 }
 
+// save the room configuration of the server in OUT
 void Server::properties(char* out) {
 	string temp1, temp2;
 
@@ -171,6 +176,7 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
+// get the room configuration from the config file, saves config to global vector roomCFG
 int Server::getCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	// Check if a config file exists
@@ -206,6 +212,7 @@ int Server::getCFG() {
 	return EXIT_SUCCESS;
 }
 
+// update the room configuration vector roomCFG by reading the config file
 void Server::updateCFG() {
 	if (this->getCFG() != EXIT_SUCCESS) {
 		this->print("Could not update server config");
@@ -214,6 +221,7 @@ void Server::updateCFG() {
 	}
 }
 
+// build the server architecture based on the preloaded room configuration
 int Server::build() {
 	if (this->getCFG() != EXIT_SUCCESS) {
 		this->print("Could not load server config");
@@ -228,12 +236,14 @@ int Server::build() {
 	return EXIT_SUCCESS;
 }
 
+// add a room to the server configuration
 int Server::addRoom(std::string descr, int numToilets, int numDoors, int numTempSensors) {
 
 
 	return EXIT_SUCCESS;
 }
 
+// delete a room from the server configuration
 int Server::deleteRoom(std::string descr) {
 
 
