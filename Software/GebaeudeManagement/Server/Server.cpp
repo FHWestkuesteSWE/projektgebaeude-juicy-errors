@@ -161,8 +161,7 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
-
-int Server::build() {
+int Server::getCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	// Check if a config file exists
 	if (!ifstream(CONFIG_NAME)) {
@@ -186,14 +185,24 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	loadCSV(cfg, rooms);
-
 	// DEBUG OUTPUT
 	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
 	//	cout << *i << '\n';
 	//}
 
+	return EXIT_SUCCESS;
+}
+
+int Server::build() {
+	if (this->getCFG() != EXIT_SUCCESS) {
+		cout << "Could not load server config" << endl;
+		return EXIT_FAILURE;
+	}
+	
+
 	// build rooms here
 	// ...
+
 
 	return EXIT_SUCCESS;
 }

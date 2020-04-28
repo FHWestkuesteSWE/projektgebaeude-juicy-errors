@@ -36,6 +36,7 @@ protected:
 	
 private:
 	int build();
+	int getCFG();
 
 	int num_rooms;
 	std::vector<std::string> rooms;
