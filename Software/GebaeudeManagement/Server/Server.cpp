@@ -3,10 +3,7 @@
 #include <string.h>
 #include <algorithm>
 #include <cstdlib>
-#include <iostream>
 #include <ctime>
-#include <fstream>
-#include <sstream>
 
 #include "Server.h"
 
@@ -26,16 +23,18 @@ string getNthWord(string s, size_t n) {
 
 // append string vector DATA by the contents of istream IN
 void loadCSV(istream &in, vector<string> &data) {
-	string tmp;
+	string temp;
+	temp = CSV_HEADLINE;
 
+	in.seekg(temp.length());
 	while (!in.eof()) {
-		getline(in, tmp, '\n');                     // get next line
-		data.push_back(tmp);						// append vector
+		getline(in, temp, '\n');                    // get next line
+		data.push_back(temp);						// append vector
 
 		// DEBUG OUTPUT
 		//cout << tmp << '\n';
 
-		tmp.clear();
+		temp.clear();
 	}
 }
 
@@ -169,7 +168,12 @@ void Server::processRequest(char req[], char ans[]) {
 		if (!sensorType.compare("-g")) {
 			this->properties(response);
 		} else if (!sensorType.compare("-u")) {
-			this->properties(response);
+			if (this->readCFG() != EXIT_SUCCESS) {
+				this->print("Could not update server config");
+			} else {
+				this->print("Server config successfully updated");
+				this->properties(response);
+			}			
 		}
 	} else {
 		err = ERR_BAD_QUERY;
@@ -185,7 +189,7 @@ void Server::processRequest(char req[], char ans[]) {
 	cout << timestamp << " - A - " << response << endl;
 }
 
-// save the room configuration of the server in OUT
+// save the room configuration of the server to char array OUT
 void Server::properties(char* out) {
 	string temp1, temp2;
 
@@ -199,70 +203,66 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
-// get the room configuration from the config file, saves config to global vector roomCFG
+// read the room configuration from the config file, saves config to global vector roomCFG
 int Server::readCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+	char const* filename = CONFIG_NAME;
+	ifstream cfg(filename);		// opens file if file exists, does not create new file if file doesn't exist
+	
 	// Check if a config file exists
-	if (!ifstream(CONFIG_NAME)) {
-
-		// try to create new file
-		std::ofstream cfg(CONFIG_NAME);
-		if (!cfg) {
-			this->print("Could not create config file");
-		}
-		else {
-			this->print("Created new config file");
-		}
-
+	if (!cfg.good()) {
+		this->print("Config file does not exist");
 		return EXIT_FAILURE;
 	}
 
 	// read existing config file
-	std::ifstream cfg(CONFIG_NAME);
-	if (!cfg) {
+	if (!cfg.is_open()) {
 		this->print("Could not open existing config file");
 		return EXIT_FAILURE;
 	}
 
 	roomCFG.clear();
 	loadCSV(cfg, roomCFG);
-
-	// DEBUG OUTPUT
-	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
-	//	cout << *i << '\n';
-	//}
+	cfg.close();
 
 	return EXIT_SUCCESS;
 }
 
-int Server::writeCFG(std::string s) {
-	// read existing config file
-	std::ofstream cfg(CONFIG_NAME, std::ios::app); //open in append mode
-	if (!cfg) {
-		this->print("Could not open existing config file");
-		return EXIT_FAILURE;
-	}
-	writeCSV(cfg, s);
-}
-
-int Server::deleteLinefromCFG(std::string s)
-{
+// write the room configuration to the config file
+int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+	char const *filename = TESTING_NAME;
+	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
+
 	// Check if a config file exists
-	if (!ifstream(CONFIG_NAME)) {
+	if (!cfg.good()) {
+		this->print("Config file does not exist");
 
-		this->print("No config file found");
+		// if file does not exist, create new file
+		cfg.open(filename, ios::out | ios::trunc);		// this is what creates the new file
+		if (cfg.is_open()) {
+			this->print("Created new config file");					
+		} else {
+			this->print("Could not create config file");
+			return EXIT_FAILURE;
+		}
+	} 
+	cfg.close();
+
+	// write to existing config file
+	cfg.open(filename, ios::out | ios::trunc);		
+	if (cfg.is_open()) {
+		cfg.clear();
+		//cfg.seekp(0, ios::beg);						// seek is not needed since ios::trunc deletes previous content and sets seekp to 0
+		cfg << CSV_HEADLINE;
+		for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
+			cfg << *i << '\n';
+		}
+		cfg.close();
+	} else {
+		this->print("Could not write on existing config file");
 		return EXIT_FAILURE;
 	}
-
-	// read existing config file
-	std::ifstream cfg(CONFIG_NAME);
-	if (!cfg) {
-		this->print("Could not open existing config file");
-		return EXIT_FAILURE;
-	}
-
-	deleteCSVline(cfg, s);
 
 	return EXIT_SUCCESS;
 }
