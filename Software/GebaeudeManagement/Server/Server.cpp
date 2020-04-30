@@ -39,9 +39,15 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
+// append string vector DATA by the contents of istream IN
+void writeCSV(ostream& out, string data) {
+	data = "\n" + data;
+	out.write(data.c_str(), data.size());
+}
+
+
 // start the server
 void Server::start(char port[]) {
-	createRoom("garden1 0 0 0");
 	if (build() != EXIT_SUCCESS) {
 		this->print(" - Could not initialize building ");
 		this->print(" - Terminating service ");
@@ -146,7 +152,6 @@ void Server::processRequest(char req[], char ans[]) {
 		if (!sensorType.compare("-g")) {
 			this->properties(response);
 		} else if (!sensorType.compare("-u")) {
-			this->updateCFG();
 			this->properties(response);
 		}
 	} else {
@@ -178,7 +183,7 @@ void Server::properties(char* out) {
 }
 
 // get the room configuration from the config file, saves config to global vector roomCFG
-int Server::getCFG() {
+int Server::readCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	// Check if a config file exists
 	if (!ifstream(CONFIG_NAME)) {
@@ -213,25 +218,26 @@ int Server::getCFG() {
 	return EXIT_SUCCESS;
 }
 
-// update the room configuration vector roomCFG by reading the config file
-void Server::updateCFG() {
-	if (this->getCFG() != EXIT_SUCCESS) {
-		this->print("Could not update server config");
-	} else {
-		this->print("Server config successfully updated");
+int Server::writeCFG(std::string s) {
+	// read existing config file
+	std::ofstream cfg(CONFIG_NAME, std::ios::app); //open in append mode
+	if (!cfg) {
+		this->print("Could not open existing config file");
+		return EXIT_FAILURE;
 	}
+	writeCSV(cfg, s);
 }
 
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
-	if (this->getCFG() != EXIT_SUCCESS) {
+	if (this->readCFG() != EXIT_SUCCESS) {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
 	
 	for (int i = 0; i < roomCFG.size(); i++)
 	{
-		//_rooms.push_back(createRoom(roomCFG[i]));
+		_rooms.push_back(createRoom(roomCFG[i]));
 	}
 
 	return EXIT_SUCCESS;
@@ -253,8 +259,8 @@ Room* Server::createRoom(std::string roomProps) {
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
 	Room* rp = createRoom(roomProps);
-	// call createRoom()
-	// and write new room to CFG file and in vector _rooms
+	
+	writeCFG(roomProps);
 
 	return EXIT_SUCCESS;
 }
