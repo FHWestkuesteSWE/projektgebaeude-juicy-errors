@@ -36,10 +36,12 @@ private:
 	int getCFG();
 	void updateCFG();
 	void properties(char* out);
-	int addRoom(std::string descr, int numToilets, int numDoors, int numTempSensors);
-	int deleteRoom(std::string descr);
+	Room* createRoom(std::string roomProps);
+	int addRoom(std::string roomProps);
+	int deleteRoom(int idx);
 	void print(std::string msg);
 
+	std::vector<Room*> _rooms;
 	std::vector<std::string> roomCFG;
 };
 

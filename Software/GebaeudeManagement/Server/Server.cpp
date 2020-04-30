@@ -228,7 +228,7 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	
-
+	//loop mit createRoom() and save Room* to vector _rooms
 	// build rooms here
 	// ...
 
@@ -237,15 +237,25 @@ int Server::build() {
 }
 
 // add a room to the server configuration
-int Server::addRoom(std::string descr, int numToilets, int numDoors, int numTempSensors) {
+Room* Server::createRoom(std::string roomProps) {
+	// parse roomProps and create Room object
 
+	return EXIT_SUCCESS;
+}
+
+// add a room to the server configuration and update 
+int Server::addRoom(std::string roomProps) {
+
+	// call createRoom()
+	// and write new room to CFG file and in vector _rooms
 
 	return EXIT_SUCCESS;
 }
 
 // delete a room from the server configuration
-int Server::deleteRoom(std::string descr) {
+int Server::deleteRoom(int idx) {
 
+	// delete room of index idx in CFG file and in roomCFG vector
 
 	return EXIT_SUCCESS;
 }
