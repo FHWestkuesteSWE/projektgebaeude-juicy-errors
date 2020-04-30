@@ -6,6 +6,7 @@
 #include "TemperatureSensor.h"
 #include "Thermostat.h"
 #include "ToiletSensor.h"
+#include <vector>
 
 class Room
 {
@@ -17,14 +18,14 @@ private:
 	int _numTempSensors;
 
 	double _curTemp;
-	std::list<bool> _curDoorStatus;
+	std::vector<bool> _curDoorStatus;
 
 	Thermostat _thermostat;
-	std::list<DoorActuator> _doorActuators;
-	TemperatureSensor _temperatureSensors[2];
-	ToiletSensor _toiletSensors[3];
+	std::vector<DoorActuator*> _doorActuators;
+	std::vector<TemperatureSensor*> _temperatureSensors;
+	std::vector <ToiletSensor*> _toiletSensors;
 
-	std::list <DoorLockingSensor> _doorLockingSensors[2];
+	std::vector<DoorLockingSensor*> _doorLockingSensors[2]; //vector of array
 
 public:
 	Room(); //default constructor
