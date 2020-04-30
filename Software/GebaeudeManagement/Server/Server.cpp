@@ -176,8 +176,8 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
-// get the room configuration from the config file, saves config to global vector roomCFG
-int Server::getCFG() {
+// load the room configuration from the config file, saves config to global vector roomCFG
+int Server::loadCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	// Check if a config file exists
 	if (!ifstream(CONFIG_NAME)) {
@@ -214,7 +214,7 @@ int Server::getCFG() {
 
 // update the room configuration vector roomCFG by reading the config file
 void Server::updateCFG() {
-	if (this->getCFG() != EXIT_SUCCESS) {
+	if (this->loadCFG() != EXIT_SUCCESS) {
 		this->print("Could not update server config");
 	} else {
 		this->print("Server config successfully updated");
@@ -223,7 +223,7 @@ void Server::updateCFG() {
 
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
-	if (this->getCFG() != EXIT_SUCCESS) {
+	if (this->loadCFG() != EXIT_SUCCESS) {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
