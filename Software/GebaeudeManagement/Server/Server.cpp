@@ -39,21 +39,38 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
-// append string vector DATA by the contents of istream IN
+// append string to file
 void writeCSV(ostream& out, string data) {
 	data = "\n" + data;
 	out.write(data.c_str(), data.size());
 }
 
+void deleteCSVline(istream& in, string s) {
+	string tmp;
+	vector<string> data;
+
+	while (!in.eof()) {
+		getline(in, tmp, '\n');                     // get next line
+		if (s != tmp)
+			data.push_back(tmp);						// append vector
+	}
+	std::ofstream cfg(CONFIG_NAME);
+	for (int i = 0; i < data.size()-1; i++)
+	{
+		cfg << data[i] << endl;
+	}
+	cfg << data[data.size() - 1]; // last without new line
+
+}
 
 // start the server
 void Server::start(char port[]) {
+	
 	if (build() != EXIT_SUCCESS) {
 		this->print(" - Could not initialize building ");
 		this->print(" - Terminating service ");
 		return;
 	}
-
 	this->print("Building initialized");
 	this->print("Launching Server at 127.0.0.1 on Port ");
 
@@ -95,10 +112,10 @@ void Server::processRequest(char req[], char ans[]) {
 	else opt.clear();
 
 	// DEBUG OUTPUT
-	//cout << "query <" << query << ">" << endl;
-	//cout << "sensor <" << sensorType << ">" << endl;
-	//cout << "roomDescr <" << roomDescr << ">" << endl;
-	//cout << "opt <" << opt << ">" << endl;
+	cout << "query <" << query << ">" << endl;
+	cout << "sensor <" << sensorType << ">" << endl;
+	cout << "roomDescr <" << roomDescr << ">" << endl;
+	cout << "opt <" << opt << ">" << endl;
 
 	cout << timestamp << " - Q - " << req << endl;
 
@@ -228,6 +245,28 @@ int Server::writeCFG(std::string s) {
 	writeCSV(cfg, s);
 }
 
+int Server::deleteLinefromCFG(std::string s)
+{
+	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+	// Check if a config file exists
+	if (!ifstream(CONFIG_NAME)) {
+
+		this->print("No config file found");
+		return EXIT_FAILURE;
+	}
+
+	// read existing config file
+	std::ifstream cfg(CONFIG_NAME);
+	if (!cfg) {
+		this->print("Could not open existing config file");
+		return EXIT_FAILURE;
+	}
+
+	deleteCSVline(cfg, s);
+
+	return EXIT_SUCCESS;
+}
+
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
 	if (this->readCFG() != EXIT_SUCCESS) {
@@ -267,8 +306,9 @@ int Server::addRoom(std::string roomProps) {
 
 // delete a room from the server configuration
 int Server::deleteRoom(int idx) {
+	std::string delString = roomCFG[idx];
 
-	// delete room of index idx in CFG file and in roomCFG vector
+	deleteLinefromCFG(delString);
 
 	return EXIT_SUCCESS;
 }

@@ -35,6 +35,7 @@ private:
 	int build();
 	int readCFG();
 	int writeCFG(std::string s);
+	int deleteLinefromCFG(std::string s);
 
 	void properties(char* out);
 	Room* createRoom(std::string roomProps);
