@@ -28,15 +28,11 @@ private:
 	std::vector<DoorLockingSensor*> _doorLockingSensors[2]; //vector of array
 
 public:
-	Room(); //default constructor
 	Room(std::string descr, int numToilets, int numDoors, int numTempSensors);
 	
 	void designRoom();
 	void setTemperature(double temp);
 	void openCloseDoor(int idx, bool isOpen);
-
-	DoorLockingSensor getDoorLockingSensorByIdx(std::list <DoorLockingSensor> l, int idx);
-	//bool getBoolByIdx(std::list <DoorLockingSensor> l, int idx);
 
 
 	// Getter
