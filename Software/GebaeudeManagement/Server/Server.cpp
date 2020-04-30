@@ -38,6 +38,13 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
+// append string vector DATA by the contents of istream IN
+void writeCSV(ostream& out, string data) {
+	data = "\n" + data;
+	out.write(data.c_str(), data.size());
+}
+
+
 // start the server
 void Server::start(char port[]) {
 	if (build() != EXIT_SUCCESS) {
@@ -250,30 +257,33 @@ int Server::build() {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
-
-	// WRITE FILE TESTING
-	this->writeCFG();
 	
-	//loop mit createRoom() and save Room* to vector _rooms
-	// build rooms here
-	// ...
-
+	for (int i = 0; i < roomCFG.size(); i++)
+	{
+		_rooms.push_back(createRoom(roomCFG[i]));
+	}
 
 	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration
 Room* Server::createRoom(std::string roomProps) {
-	// parse roomProps and create Room object
+	std::string descr="";
+	int numToilets=0, numDoors=0, numTempSensors=0;
 
-	return EXIT_SUCCESS;
+	descr = getNthWord(roomProps, 1);
+	numToilets = std::stoi(getNthWord(roomProps, 2));
+	numDoors = std::stoi(getNthWord(roomProps, 3));
+	numTempSensors = std::stoi(getNthWord(roomProps, 4));
+
+	return &Room(descr, numToilets, numDoors, numTempSensors);
 }
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-
-	// call createRoom()
-	// and write new room to CFG file and in vector _rooms
+	Room* rp = createRoom(roomProps);
+	
+	writeCFG(roomProps);
 
 	return EXIT_SUCCESS;
 }
