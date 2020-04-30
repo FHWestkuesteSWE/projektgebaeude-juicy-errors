@@ -23,16 +23,18 @@ string getNthWord(string s, size_t n) {
 
 // append string vector DATA by the contents of istream IN
 void loadCSV(istream &in, vector<string> &data) {
-	string tmp;
+	string temp;
+	temp = CSV_HEADLINE;
 
+	in.seekg(temp.length());
 	while (!in.eof()) {
-		getline(in, tmp, '\n');                     // get next line
-		data.push_back(tmp);						// append vector
+		getline(in, temp, '\n');                    // get next line
+		data.push_back(temp);						// append vector
 
 		// DEBUG OUTPUT
 		//cout << tmp << '\n';
 
-		tmp.clear();
+		temp.clear();
 	}
 }
 
@@ -142,7 +144,7 @@ void Server::processRequest(char req[], char ans[]) {
 		if (!sensorType.compare("-g")) {
 			this->properties(response);
 		} else if (!sensorType.compare("-u")) {
-			if (this->loadCFG() != EXIT_SUCCESS) {
+			if (this->readCFG() != EXIT_SUCCESS) {
 				this->print("Could not update server config");
 			} else {
 				this->print("Server config successfully updated");
@@ -177,29 +179,27 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
-// load the room configuration from the config file, saves config to global vector roomCFG
-int Server::loadCFG() {
+// read the room configuration from the config file, saves config to global vector roomCFG
+int Server::readCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+	char const* filename = CONFIG_NAME;
+	ifstream cfg(filename);		// opens file if file exists, does not create new file if file doesn't exist
+	
 	// Check if a config file exists
-	if (!ifstream(CONFIG_NAME)) {
+	if (!cfg.good()) {
 		this->print("Config file does not exist");
 		return EXIT_FAILURE;
 	}
 
 	// read existing config file
-	std::ifstream cfg(CONFIG_NAME);
-	if (!cfg) {
+	if (!cfg.is_open()) {
 		this->print("Could not open existing config file");
 		return EXIT_FAILURE;
 	}
 
 	roomCFG.clear();
 	loadCSV(cfg, roomCFG);
-
-	// DEBUG OUTPUT
-	//for (auto i = rooms.cbegin(); i != rooms.cend(); i++) {
-	//	cout << *i << '\n';
-	//}
+	cfg.close();
 
 	return EXIT_SUCCESS;
 }
@@ -208,7 +208,7 @@ int Server::loadCFG() {
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	char const *filename = TESTING_NAME;
-	fstream cfg(filename, ios::out | ios::trunc);		// opens file if file exists, does not create new file if file doesn't exist
+	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
 
 	// Check if a config file exists
 	if (!cfg.good()) {
@@ -217,19 +217,20 @@ int Server::writeCFG() {
 		// if file does not exist, create new file
 		cfg.open(filename, ios::out | ios::trunc);		// this is what creates the new file
 		if (cfg.is_open()) {
-			this->print("Created new config file");		
+			this->print("Created new config file");					
 		} else {
 			this->print("Could not create config file");
-			cfg.close();
 			return EXIT_FAILURE;
 		}
 	} 
+	cfg.close();
 
 	// write to existing config file
+	cfg.open(filename, ios::out | ios::trunc);		
 	if (cfg.is_open()) {
 		cfg.clear();
 		//cfg.seekp(0, ios::beg);						// seek is not needed since ios::trunc deletes previous content and sets seekp to 0
-		cfg << CSV_HEADLINE << endl;
+		cfg << CSV_HEADLINE;
 		for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
 			cfg << *i << '\n';
 		}
@@ -239,17 +240,13 @@ int Server::writeCFG() {
 		return EXIT_FAILURE;
 	}
 
-	//char temp[NUM_MAX_ROOMS * DESCR_MAX_LEN];
-	//this->properties(temp);
-	//cfg.write(temp, sizeof(temp));
-
 	return EXIT_SUCCESS;
 }
 
 
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
-	if (this->loadCFG() != EXIT_SUCCESS) {
+	if (this->readCFG() != EXIT_SUCCESS) {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
