@@ -39,6 +39,21 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
+// write contents of string vector DATA to ostream OUT
+void writeCSV(ostream& out, vector<string>& data) {
+	//string tmp;
+
+	//while (!in.eof()) {
+	//	getline(in, tmp, '\n');                     // get next line
+	//	data.push_back(tmp);						// append vector
+
+	//	// DEBUG OUTPUT
+	//	//cout << tmp << '\n';
+
+	//	tmp.clear();
+	//}
+}
+
 // start the server
 void Server::start(char port[]) {
 	if (build() != EXIT_SUCCESS) {
@@ -145,8 +160,12 @@ void Server::processRequest(char req[], char ans[]) {
 		if (!sensorType.compare("-g")) {
 			this->properties(response);
 		} else if (!sensorType.compare("-u")) {
-			this->updateCFG();
-			this->properties(response);
+			if (this->loadCFG() != EXIT_SUCCESS) {
+				this->print("Could not update server config");
+			} else {
+				this->print("Server config successfully updated");
+				this->properties(response);
+			}			
 		}
 	} else {
 		err = ERR_BAD_QUERY;
@@ -181,16 +200,7 @@ int Server::loadCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	// Check if a config file exists
 	if (!ifstream(CONFIG_NAME)) {
-
-		// try to create new file
-		std::ofstream cfg(CONFIG_NAME);
-		if (!cfg) {
-			this->print("Could not create config file");
-		}
-		else {
-			this->print("Created new config file");
-		}
-
+		this->print("Config file does not exist");
 		return EXIT_FAILURE;
 	}
 
@@ -212,14 +222,33 @@ int Server::loadCFG() {
 	return EXIT_SUCCESS;
 }
 
-// update the room configuration vector roomCFG by reading the config file
-void Server::updateCFG() {
-	if (this->loadCFG() != EXIT_SUCCESS) {
-		this->print("Could not update server config");
-	} else {
-		this->print("Server config successfully updated");
+// write the room configuration to the config file
+int Server::writeCFG() {
+	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+	// Check if a config file exists
+	std::ofstream cfg(CONFIG_NAME);
+	if (!ifstream(CONFIG_NAME)) {
+		this->print("Config file does not exist yet");
+
+		// try to create new file
+		if (!cfg) {
+			this->print("Could not create config file");
+		} else {
+			this->print("Created new config file");
+		}
 	}
+
+	// write to existing config file
+	if (!cfg) {
+		this->print("Could not open existing config file");
+		return EXIT_FAILURE;
+	}
+
+	writeCSV(cfg, roomCFG);
+
+	return EXIT_SUCCESS;
 }
+
 
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
