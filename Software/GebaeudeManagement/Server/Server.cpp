@@ -38,21 +38,38 @@ void loadCSV(istream &in, vector<string> &data) {
 	}
 }
 
-// append string vector DATA by the contents of istream IN
+// append string to file
 void writeCSV(ostream& out, string data) {
 	data = "\n" + data;
 	out.write(data.c_str(), data.size());
 }
 
+void deleteCSVline(istream& in, string s) {
+	string tmp;
+	vector<string> data;
+
+	while (!in.eof()) {
+		getline(in, tmp, '\n');                     // get next line
+		if (s != tmp)
+			data.push_back(tmp);						// append vector
+	}
+	std::ofstream cfg(CONFIG_NAME);
+	for (int i = 0; i < data.size()-1; i++)
+	{
+		cfg << data[i] << endl;
+	}
+	cfg << data[data.size() - 1]; // last without new line
+
+}
 
 // start the server
 void Server::start(char port[]) {
+	
 	if (build() != EXIT_SUCCESS) {
 		this->print(" - Could not initialize building ");
 		this->print(" - Terminating service ");
 		return;
 	}
-
 	this->print("Building initialized");
 	this->print("Launching Server at 127.0.0.1 on Port ");
 
@@ -94,10 +111,10 @@ void Server::processRequest(char req[], char ans[]) {
 	else opt.clear();
 
 	// DEBUG OUTPUT
-	//cout << "query <" << query << ">" << endl;
-	//cout << "sensor <" << sensorType << ">" << endl;
-	//cout << "roomDescr <" << roomDescr << ">" << endl;
-	//cout << "opt <" << opt << ">" << endl;
+	cout << "query <" << query << ">" << endl;
+	cout << "sensor <" << sensorType << ">" << endl;
+	cout << "roomDescr <" << roomDescr << ">" << endl;
+	cout << "opt <" << opt << ">" << endl;
 
 	cout << timestamp << " - Q - " << req << endl;
 
@@ -157,20 +174,6 @@ void Server::processRequest(char req[], char ans[]) {
 				this->print("Server config successfully updated");
 				this->properties(response);
 			}			
-		} else if (!sensorType.compare("-a")) {
-			if (this->addRoom(roomDescr) != EXIT_SUCCESS) {
-				this->print("Could not add room xxx");
-			} else {
-				this->print("Successfully added room xxx");
-				this->properties(response);
-			}
-		} else if (!sensorType.compare("-d")) {
-			if (this->deleteRoom(roomDescr) != EXIT_SUCCESS) {
-				this->print("Could not delete room xxx");
-			} else {
-				this->print("Successfully deleted room xxx");
-				this->properties(response);
-			}
 		}
 	} else {
 		err = ERR_BAD_QUERY;
@@ -228,7 +231,7 @@ int Server::readCFG() {
 // write the room configuration to the config file
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	char const *filename = CONFIG_NAME;
+	char const *filename = TESTING_NAME;
 	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
 
 	// Check if a config file exists
@@ -264,7 +267,6 @@ int Server::writeCFG() {
 	return EXIT_SUCCESS;
 }
 
-
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
 	if (this->readCFG() != EXIT_SUCCESS) {
@@ -272,10 +274,10 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	
-	//for (int i = 0; i < roomCFG.size(); i++)
-	//{
-	//	_rooms.push_back(createRoom(roomCFG[i]));
-	//}
+	for (int i = 0; i < roomCFG.size(); i++)
+	{
+		_rooms.push_back(createRoom(roomCFG[i]));
+	}
 
 	return EXIT_SUCCESS;
 }
@@ -295,18 +297,18 @@ Room* Server::createRoom(std::string roomProps) {
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-	//Room* rp = createRoom(roomProps);
+	Room* rp = createRoom(roomProps);
 	
-	roomCFG.push_back(roomProps);
-	writeCFG();
+	writeCFG(roomProps);
 
 	return EXIT_SUCCESS;
 }
 
 // delete a room from the server configuration
-int Server::deleteRoom(std::string roomProps) {
+int Server::deleteRoom(int idx) {
+	std::string delString = roomCFG[idx];
 
-	// delete room of index idx in CFG file and in roomCFG vector
+	deleteLinefromCFG(delString);
 
 	return EXIT_SUCCESS;
 }
