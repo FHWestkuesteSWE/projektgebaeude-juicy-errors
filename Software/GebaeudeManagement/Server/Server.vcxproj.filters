@@ -4,7 +4,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Actuator.cpp" />
-    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="BasicServer.cpp" />
     <ClCompile Include="DoorActuator.cpp">
@@ -27,7 +26,6 @@
   <ItemGroup>
     <ClInclude Include="Server.h" />
     <ClInclude Include="Actuator.h" />
-    <ClInclude Include="Building.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="BasicServer.h" />
     <ClInclude Include="DoorActuator.h">

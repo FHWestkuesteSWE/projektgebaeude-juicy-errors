@@ -152,7 +152,6 @@
   <ItemGroup>
     <ClCompile Include="Actuator.cpp" />
     <ClCompile Include="BasicServer.cpp" />
-    <ClCompile Include="Building.cpp" />
     <ClCompile Include="DoorActuator.cpp" />
     <ClCompile Include="DoorLockingSensor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,7 +165,6 @@
   <ItemGroup>
     <ClInclude Include="Actuator.h" />
     <ClInclude Include="BasicServer.h" />
-    <ClInclude Include="Building.h" />
     <ClInclude Include="DoorActuator.h" />
     <ClInclude Include="DoorLockingSensor.h" />
     <ClInclude Include="Room.h" />
