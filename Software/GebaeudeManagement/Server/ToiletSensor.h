@@ -5,5 +5,7 @@ class ToiletSensor :
 {
 public:
 	ToiletSensor();
+
+	bool getToiletStatus();
 };
 

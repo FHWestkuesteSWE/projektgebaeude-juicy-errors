@@ -4,4 +4,9 @@
 //default Constructor
 ToiletSensor::ToiletSensor(){}
 
+bool ToiletSensor::getToiletStatus()
+{
+	return getBooleanValue();
+}
+
 
