@@ -39,7 +39,8 @@ protected:
 private:
 	int build();
 	int readCFG();
-	int writeCFG();
+	int writeCFG(std::string s);
+
 	void properties(char* out);
 	Room* createRoom(std::string roomProps);
 	int addRoom(std::string roomProps);
