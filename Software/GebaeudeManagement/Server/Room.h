@@ -8,6 +8,9 @@
 #include "ToiletSensor.h"
 #include <vector>
 
+#define TEMP_MAX 50.0
+#define TEMP_MIN 0.0
+
 class Room
 {
 private:
@@ -32,7 +35,10 @@ public:
 	
 	void designRoom();
 	void setTemperature(double temp);
+	double getTemperature();
 	void openCloseDoor(int idx, bool isOpen);
+	bool getDoorStatus(int idx);
+	bool getToiletStatus(int idx);
 
 
 	// Getter

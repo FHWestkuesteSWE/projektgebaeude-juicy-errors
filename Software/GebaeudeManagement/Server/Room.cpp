@@ -49,6 +49,12 @@ void Room::setTemperature(double temp)
 	this->_thermostat.setDoubleValue(temp);
 }
 
+double Room::getTemperature()
+{
+	//return average of both temp sensors
+	return (_temperatureSensors[0]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp) + _temperatureSensors[1]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp))/2;
+}
+
 //set isOpen val to door with index idx
 void Room::openCloseDoor(int idx, bool isOpen)
 {
@@ -56,6 +62,25 @@ void Room::openCloseDoor(int idx, bool isOpen)
 	{
 		_curDoorStatus[idx] = isOpen;
 	}
+}
+
+bool Room::getDoorStatus(int idx)
+{
+	//only use one sensor (other for checker)
+	if (_doorLockingSensors[0].size() > idx)
+	{
+		return _doorLockingSensors[0][idx]->getDoorStatus();
+	}
+	return false;
+}
+
+bool Room::getToiletStatus(int idx)
+{
+	if (_toiletSensors.size() > idx)
+	{
+		return _toiletSensors[idx]->getToiletStatus();
+	}
+	return false;
 }
 
 // Getter
