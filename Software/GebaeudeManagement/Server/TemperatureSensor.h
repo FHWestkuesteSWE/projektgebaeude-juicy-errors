@@ -5,5 +5,7 @@ class TemperatureSensor :
 {
 public:
 	TemperatureSensor();
+
+	double getTemp(double fMin, double fMax, double lastValue);
 };
 
