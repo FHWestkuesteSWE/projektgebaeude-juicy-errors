@@ -119,6 +119,7 @@ int main(int argc, char* argv[]) {
 
             case 'c':
                 char choice;
+                char descr[12];
                 cout << "(g)et or (u)pdate config " << "?" << endl;
                 cout << "\n\n(c)ancel" << endl;
                 cout << "----------------------------------------------------" << endl;
@@ -131,6 +132,18 @@ int main(int argc, char* argv[]) {
                     break;
                 case 'u':
                     strcpy(req, "cfg -u");
+                    break;
+                case 'a':
+                    cout << "Enter room descriptor: ";
+                    cin >> descr;
+                    strcpy(req, "cfg -a ");
+                    strcat(req, descr);
+                    break;
+                case 'd':
+                    cout << "Enter room descriptor: ";
+                    cin >> descr;
+                    strcpy(req, "cfg -d ");
+                    strcat(req, descr);
                     break;
                 default:
                     break;

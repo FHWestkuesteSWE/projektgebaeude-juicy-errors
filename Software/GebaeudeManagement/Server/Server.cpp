@@ -157,6 +157,20 @@ void Server::processRequest(char req[], char ans[]) {
 				this->print("Server config successfully updated");
 				this->properties(response);
 			}			
+		} else if (!sensorType.compare("-a")) {
+			if (this->addRoom(roomDescr) != EXIT_SUCCESS) {
+				this->print("Could not add room xxx");
+			} else {
+				this->print("Successfully added room xxx");
+				this->properties(response);
+			}
+		} else if (!sensorType.compare("-d")) {
+			if (this->deleteRoom(roomDescr) != EXIT_SUCCESS) {
+				this->print("Could not delete room xxx");
+			} else {
+				this->print("Successfully deleted room xxx");
+				this->properties(response);
+			}
 		}
 	} else {
 		err = ERR_BAD_QUERY;
@@ -214,7 +228,7 @@ int Server::readCFG() {
 // write the room configuration to the config file
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	char const *filename = TESTING_NAME;
+	char const *filename = CONFIG_NAME;
 	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
 
 	// Check if a config file exists
@@ -258,10 +272,10 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	
-	for (int i = 0; i < roomCFG.size(); i++)
-	{
-		_rooms.push_back(createRoom(roomCFG[i]));
-	}
+	//for (int i = 0; i < roomCFG.size(); i++)
+	//{
+	//	_rooms.push_back(createRoom(roomCFG[i]));
+	//}
 
 	return EXIT_SUCCESS;
 }
@@ -281,15 +295,16 @@ Room* Server::createRoom(std::string roomProps) {
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-	Room* rp = createRoom(roomProps);
+	//Room* rp = createRoom(roomProps);
 	
-	writeCFG(roomProps);
+	roomCFG.push_back(roomProps);
+	writeCFG();
 
 	return EXIT_SUCCESS;
 }
 
 // delete a room from the server configuration
-int Server::deleteRoom(int idx) {
+int Server::deleteRoom(std::string roomProps) {
 
 	// delete room of index idx in CFG file and in roomCFG vector
 
