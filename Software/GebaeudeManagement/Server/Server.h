@@ -44,7 +44,7 @@ private:
 	void properties(char* out);
 	Room* createRoom(std::string roomProps);
 	int addRoom(std::string roomProps);
-	int deleteRoom(int idx);
+	int deleteRoom(std::string roomProps);
 	void print(std::string msg);
 
 	std::vector<Room*> _rooms;
