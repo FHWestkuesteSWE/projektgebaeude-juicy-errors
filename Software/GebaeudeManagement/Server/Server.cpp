@@ -3,10 +3,7 @@
 #include <string.h>
 #include <algorithm>
 #include <cstdlib>
-#include <iostream>
 #include <ctime>
-#include <fstream>
-#include <sstream>
 
 #include "Server.h"
 
@@ -37,21 +34,6 @@ void loadCSV(istream &in, vector<string> &data) {
 
 		tmp.clear();
 	}
-}
-
-// write contents of string vector DATA to ostream OUT
-void writeCSV(ostream& out, vector<string>& data) {
-	//string tmp;
-
-	//while (!in.eof()) {
-	//	getline(in, tmp, '\n');                     // get next line
-	//	data.push_back(tmp);						// append vector
-
-	//	// DEBUG OUTPUT
-	//	//cout << tmp << '\n';
-
-	//	tmp.clear();
-	//}
 }
 
 // start the server
@@ -181,7 +163,7 @@ void Server::processRequest(char req[], char ans[]) {
 	cout << timestamp << " - A - " << response << endl;
 }
 
-// save the room configuration of the server in OUT
+// save the room configuration of the server to char array OUT
 void Server::properties(char* out) {
 	string temp1, temp2;
 
@@ -225,26 +207,41 @@ int Server::loadCFG() {
 // write the room configuration to the config file
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	// Check if a config file exists
-	std::ofstream cfg(CONFIG_NAME);
-	if (!ifstream(CONFIG_NAME)) {
-		this->print("Config file does not exist yet");
+	char const *filename = TESTING_NAME;
+	fstream cfg(filename, ios::out | ios::trunc);		// opens file if file exists, does not create new file if file doesn't exist
 
-		// try to create new file
-		if (!cfg) {
-			this->print("Could not create config file");
+	// Check if a config file exists
+	if (!cfg.good()) {
+		this->print("Config file does not exist");
+
+		// if file does not exist, create new file
+		cfg.open(filename, ios::out | ios::trunc);		// this is what creates the new file
+		if (cfg.is_open()) {
+			this->print("Created new config file");		
 		} else {
-			this->print("Created new config file");
+			this->print("Could not create config file");
+			cfg.close();
+			return EXIT_FAILURE;
 		}
-	}
+	} 
 
 	// write to existing config file
-	if (!cfg) {
-		this->print("Could not open existing config file");
+	if (cfg.is_open()) {
+		cfg.clear();
+		//cfg.seekp(0, ios::beg);						// seek is not needed since ios::trunc deletes previous content and sets seekp to 0
+		cfg << CSV_HEADLINE << endl;
+		for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
+			cfg << *i << '\n';
+		}
+		cfg.close();
+	} else {
+		this->print("Could not write on existing config file");
 		return EXIT_FAILURE;
 	}
 
-	writeCSV(cfg, roomCFG);
+	//char temp[NUM_MAX_ROOMS * DESCR_MAX_LEN];
+	//this->properties(temp);
+	//cfg.write(temp, sizeof(temp));
 
 	return EXIT_SUCCESS;
 }
@@ -256,6 +253,9 @@ int Server::build() {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
+
+	// WRITE FILE TESTING
+	this->writeCFG();
 	
 	//loop mit createRoom() and save Room* to vector _rooms
 	// build rooms here

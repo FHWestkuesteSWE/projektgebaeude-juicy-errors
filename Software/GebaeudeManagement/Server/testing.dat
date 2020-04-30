@@ -1,3 +1,4 @@
+Descriptor,NumToilets,NumDoors,NumTempSensors
 living1, 0, 1, 1
 living2, 0, 2, 2
 kitchen1, 0, 1, 2
