@@ -41,6 +41,7 @@ void loadCSV(istream &in, vector<string> &data) {
 
 // start the server
 void Server::start(char port[]) {
+	createRoom("garden1 0 0 0");
 	if (build() != EXIT_SUCCESS) {
 		this->print(" - Could not initialize building ");
 		this->print(" - Terminating service ");
@@ -228,24 +229,30 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	
-	//loop mit createRoom() and save Room* to vector _rooms
-	// build rooms here
-	// ...
-
+	for (int i = 0; i < roomCFG.size(); i++)
+	{
+		//_rooms.push_back(createRoom(roomCFG[i]));
+	}
 
 	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration
 Room* Server::createRoom(std::string roomProps) {
-	// parse roomProps and create Room object
+	std::string descr="";
+	int numToilets=0, numDoors=0, numTempSensors=0;
 
-	return EXIT_SUCCESS;
+	descr = getNthWord(roomProps, 1);
+	numToilets = std::stoi(getNthWord(roomProps, 2));
+	numDoors = std::stoi(getNthWord(roomProps, 3));
+	numTempSensors = std::stoi(getNthWord(roomProps, 4));
+
+	return &Room(descr, numToilets, numDoors, numTempSensors);
 }
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-
+	Room* rp = createRoom(roomProps);
 	// call createRoom()
 	// and write new room to CFG file and in vector _rooms
 
