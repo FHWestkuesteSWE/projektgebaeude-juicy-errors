@@ -294,6 +294,7 @@ Room* Server::createRoom(std::string roomProps) {
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
 	_rooms.push_back(createRoom(roomProps));
+	roomCFG.push_back(roomProps);
 	writeCFG();
 
 	return EXIT_SUCCESS;
