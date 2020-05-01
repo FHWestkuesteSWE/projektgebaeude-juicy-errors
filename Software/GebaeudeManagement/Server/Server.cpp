@@ -154,6 +154,20 @@ void Server::processRequest(char req[], char ans[]) {
 				this->print("Server config successfully updated");
 				this->properties(response);
 			}			
+		} else if (!sensorType.compare("-a")) {
+			if (this->addRoom(roomDescr) != EXIT_SUCCESS) {
+				this->print("Could not add room");
+			} else {
+				this->print("New room successfully added");
+				this->properties(response);
+			}
+		} else if (!sensorType.compare("-d")) {
+			if (this->deleteRoom(roomDescr) != EXIT_SUCCESS) {
+				this->print("Could not delete room");
+			} else {
+				this->print("Room successfully deleted");
+				this->properties(response);
+			}
 		}
 	} else {
 		err = ERR_BAD_QUERY;
@@ -288,7 +302,18 @@ int Server::addRoom(std::string roomProps) {
 }
 
 // delete a room from the server configuration
-int Server::deleteRoom(int idx) {
+int Server::deleteRoom(std::string roomDescr) {
+	int i = 0;
+
+	// find room with the given roomDescr
+	while (roomCFG[i].compare(roomDescr) != 0) {
+		i++;
+		if (i == roomCFG.size()) {
+			return EXIT_FAILURE;
+		}
+	}
+	
+	// delete found room
 	_rooms.erase(_rooms.cbegin() + idx);
 	writeCFG();
 
