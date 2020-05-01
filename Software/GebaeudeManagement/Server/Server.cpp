@@ -87,18 +87,16 @@ void Server::processRequest(char req[], char ans[]) {
 	roomDescr = getNthWord(request, 3);
 
 	opt = getNthWord(request, 4);
-	if (opt.compare(roomDescr)) opt = request.substr(request.find(opt));
-	else opt.clear();
+	if (opt.compare(roomDescr) == 0) opt.clear();
+	else opt = request.substr(request.find(opt));		// if there are optional arguments available write them to optopt.clear();
 
 	// DEBUG OUTPUT
-	//cout << "query <" << query << ">" << endl;
-	//cout << "sensor <" << sensorType << ">" << endl;
-	//cout << "roomDescr <" << roomDescr << ">" << endl;
-	//cout << "opt <" << opt << ">" << endl;
+	cout << "query <" << query << ">" << endl;
+	cout << "sensor <" << sensorType << ">" << endl;
+	cout << "roomDescr <" << roomDescr << ">" << endl;
+	cout << "opt <" << opt << ">" << endl;
 
 	cout << timestamp << " - Q - " << req << endl;
-
-
 
 	if (!query.compare("get")) {
 		switch (sensor) {
@@ -155,7 +153,7 @@ void Server::processRequest(char req[], char ans[]) {
 				this->properties(response);
 			}			
 		} else if (!sensorType.compare("-a")) {
-			if (this->addRoom(roomDescr) != EXIT_SUCCESS) {
+			if (this->addRoom(roomDescr.append(opt)) != EXIT_SUCCESS) {
 				this->print("Could not add room");
 			} else {
 				this->print("New room successfully added");
