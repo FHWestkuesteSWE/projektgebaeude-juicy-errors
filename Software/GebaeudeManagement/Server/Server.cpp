@@ -314,7 +314,7 @@ int Server::deleteRoom(std::string roomDescr) {
 	}
 	
 	// delete found room
-	_rooms.erase(_rooms.cbegin() + idx);
+	_rooms.erase(_rooms.cbegin() + i);
 	writeCFG();
 
 	return EXIT_SUCCESS;
