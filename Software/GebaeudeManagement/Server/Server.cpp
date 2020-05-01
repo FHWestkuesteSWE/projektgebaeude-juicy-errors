@@ -24,9 +24,7 @@ string getNthWord(string s, size_t n) {
 // append string vector DATA by the contents of istream IN
 void loadCSV(istream &in, vector<string> &data) {
 	string temp;
-	temp = CSV_HEADLINE;
 
-	in.seekg(temp.length());
 	while (!in.eof()) {
 		getline(in, temp, '\n');                    // get next line
 		data.push_back(temp);						// append vector
@@ -207,6 +205,9 @@ int Server::readCFG() {
 	loadCSV(cfg, roomCFG);
 	cfg.close();
 
+	// remove CSV headline
+	roomCFG.erase(roomCFG.cbegin());
+
 	return EXIT_SUCCESS;
 }
 
@@ -251,22 +252,15 @@ int Server::writeCFG() {
 
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
+	// read config from file
 	if (this->readCFG() != EXIT_SUCCESS) {
 		this->print("Could not load server config");
 		return EXIT_FAILURE;
 	}
 	
-
-	//for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
-	//	cout << *i << endl;
-	//	_rooms.push_back(createRoom(*i));
-	//	cout << *i << endl;
-	//}
-
+	// create rooms according to config
 	for (int i = 0; i < roomCFG.size(); i++) {
-		//cout << roomCFG[i] << endl;
 		_rooms.push_back(createRoom(roomCFG[i]));
-
 	}
 
 	return EXIT_SUCCESS;
@@ -274,27 +268,15 @@ int Server::build() {
 
 // add a room to the server configuration
 Room* Server::createRoom(std::string roomProps) {
-	std::string descr="";
-	int numToilets=0, numDoors=0, numTempSensors=0;
+	std::string descr;
+	int numToilets, numDoors, numTempSensors;
 
 	descr = getNthWord(roomProps, 1);
 	numToilets = std::stoi(getNthWord(roomProps, 2));
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
-	//std::string numToilets, numDoors, numTempSensors;
-	//numToilets = getNthWord(roomProps, 2);
-	//numDoors = getNthWord(roomProps, 3);
-	//numTempSensors = getNthWord(roomProps, 4);
-
-	// DEBUG
-	//cout << descr << endl;
-	//cout << numToilets << endl;
-	//cout << numDoors << endl;
-	//cout << numTempSensors << endl;
-
 	return &Room(descr, numToilets, numDoors, numTempSensors);
-	//return &Room(descr, 0, 1, 2);
 }
 
 // add a room to the server configuration and update 
