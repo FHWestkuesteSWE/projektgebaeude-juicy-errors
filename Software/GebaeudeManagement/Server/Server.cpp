@@ -44,24 +44,6 @@ void writeCSV(ostream& out, string data) {
 	out.write(data.c_str(), data.size());
 }
 
-void deleteCSVline(istream& in, string s) {
-	string tmp;
-	vector<string> data;
-
-	while (!in.eof()) {
-		getline(in, tmp, '\n');                     // get next line
-		if (s != tmp)
-			data.push_back(tmp);						// append vector
-	}
-	std::ofstream cfg(CONFIG_NAME);
-	for (int i = 0; i < data.size()-1; i++)
-	{
-		cfg << data[i] << endl;
-	}
-	cfg << data[data.size() - 1]; // last without new line
-
-}
-
 // start the server
 void Server::start(char port[]) {
 	
@@ -111,10 +93,10 @@ void Server::processRequest(char req[], char ans[]) {
 	else opt.clear();
 
 	// DEBUG OUTPUT
-	cout << "query <" << query << ">" << endl;
-	cout << "sensor <" << sensorType << ">" << endl;
-	cout << "roomDescr <" << roomDescr << ">" << endl;
-	cout << "opt <" << opt << ">" << endl;
+	//cout << "query <" << query << ">" << endl;
+	//cout << "sensor <" << sensorType << ">" << endl;
+	//cout << "roomDescr <" << roomDescr << ">" << endl;
+	//cout << "opt <" << opt << ">" << endl;
 
 	cout << timestamp << " - Q - " << req << endl;
 
@@ -274,9 +256,17 @@ int Server::build() {
 		return EXIT_FAILURE;
 	}
 	
-	for (int i = 0; i < roomCFG.size(); i++)
-	{
+
+	//for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
+	//	cout << *i << endl;
+	//	_rooms.push_back(createRoom(*i));
+	//	cout << *i << endl;
+	//}
+
+	for (int i = 0; i < roomCFG.size(); i++) {
+		//cout << roomCFG[i] << endl;
 		_rooms.push_back(createRoom(roomCFG[i]));
+
 	}
 
 	return EXIT_SUCCESS;
@@ -292,23 +282,33 @@ Room* Server::createRoom(std::string roomProps) {
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
+	//std::string numToilets, numDoors, numTempSensors;
+	//numToilets = getNthWord(roomProps, 2);
+	//numDoors = getNthWord(roomProps, 3);
+	//numTempSensors = getNthWord(roomProps, 4);
+
+	// DEBUG
+	//cout << descr << endl;
+	//cout << numToilets << endl;
+	//cout << numDoors << endl;
+	//cout << numTempSensors << endl;
+
 	return &Room(descr, numToilets, numDoors, numTempSensors);
+	//return &Room(descr, 0, 1, 2);
 }
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-	Room* rp = createRoom(roomProps);
-	
-	writeCFG(roomProps);
+	_rooms.push_back(createRoom(roomProps));
+	writeCFG();
 
 	return EXIT_SUCCESS;
 }
 
 // delete a room from the server configuration
 int Server::deleteRoom(int idx) {
-	std::string delString = roomCFG[idx];
-
-	deleteLinefromCFG(delString);
+	_rooms.erase(_rooms.cbegin() + idx);
+	writeCFG();
 
 	return EXIT_SUCCESS;
 }

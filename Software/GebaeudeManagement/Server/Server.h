@@ -39,12 +39,12 @@ protected:
 private:
 	int build();
 	int readCFG();
-	int writeCFG(std::string s);
+	int writeCFG();
 
 	void properties(char* out);
 	Room* createRoom(std::string roomProps);
 	int addRoom(std::string roomProps);
-	int deleteRoom(std::string roomProps);
+	int deleteRoom(int idx);
 	void print(std::string msg);
 
 	std::vector<Room*> _rooms;
