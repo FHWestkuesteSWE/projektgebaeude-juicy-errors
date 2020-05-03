@@ -52,7 +52,7 @@ void Server::start(char port[]) {
 	}
 	this->print("Building initialized");
 	this->print("Launching Server at 127.0.0.1 on Port ");
-
+	this->deleteRoom("living2"); //debug
 	BasicServer::start(port);
 }
 
@@ -272,28 +272,41 @@ int Server::build() {
 	
 	// create rooms according to config
 	for (int i = 0; i < roomCFG.size(); i++) {
-		_rooms.push_back(createRoom(roomCFG[i]));
+		createRoom(roomCFG[i]);
 	}
 
+	for (int i = 0; i < _rooms.size(); i++)
+	{
+		cout << "\n\ngetNumDoors: " << (*(_rooms[i])).getNumDoors() << "\n";
+	}
 	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration
-Room* Server::createRoom(std::string roomProps) {
+int Server::createRoom(std::string roomProps) {
 	std::string descr;
 	int numToilets, numDoors, numTempSensors;
-
+	Room* rp;
 	descr = getNthWord(roomProps, 1);
 	numToilets = std::stoi(getNthWord(roomProps, 2));
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
+	Room r =  Room(descr, numToilets, numDoors, numTempSensors);
+	//Room r2 = Room(descr, numToilets, numDoors, numTempSensors);
+	rp = &r;
+	_rooms.push_back(rp);
 
-	return &Room(descr, numToilets, numDoors, numTempSensors);
+	//debug
+	/*Room r = Room(descr, numToilets, numDoors, numTempSensors);*/
+	//cout << "\n\ndescr: " << (*rp).getDescriptor();
+	//cout << "toilets: " << (*rp).getNumToilets();
+
+	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-	_rooms.push_back(createRoom(roomProps));
+	createRoom(roomProps);
 	roomCFG.push_back(roomProps);
 	writeCFG();
 
@@ -302,10 +315,28 @@ int Server::addRoom(std::string roomProps) {
 
 // delete a room from the server configuration
 int Server::deleteRoom(std::string roomDescr) {
-	int i = 0;
+	int i = 0;	
+	//std::string descr;
+	//Room r;
+	//for (int i = 0; i < _rooms.size(); i++)
+	//{
+	//	r = *_rooms[i];
+	//	descr = r.getDescriptor();
+	//	if (descr.compare(roomDescr) != 0) {
+	//		// delete found room
+	//		_rooms.erase(_rooms.cbegin() + i);
+	//		roomCFG.erase(roomCFG.cbegin() + i);
+	//		writeCFG();
+
+	//		return EXIT_SUCCESS;
+	//	}
+	//}
+	//	// if nothing was found
+	//	return EXIT_FAILURE;
+
 
 	// find room with the given roomDescr
-	while (roomCFG[i].compare(roomDescr) != 0) {
+	while (getNthWord(roomCFG[i],1).compare(roomDescr) != 0) {
 		i++;
 		if (i == roomCFG.size()) {
 			return EXIT_FAILURE;
@@ -314,6 +345,7 @@ int Server::deleteRoom(std::string roomDescr) {
 	
 	// delete found room
 	_rooms.erase(_rooms.cbegin() + i);
+	roomCFG.erase(roomCFG.cbegin() + i);
 	writeCFG();
 
 	return EXIT_SUCCESS;

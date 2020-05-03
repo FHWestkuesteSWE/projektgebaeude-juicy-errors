@@ -31,8 +31,10 @@ private:
 	std::vector<DoorLockingSensor*> _doorLockingSensors[2]; //vector of array
 
 public:
+	//std::string _descr;
 	Room(std::string descr, int numToilets, int numDoors, int numTempSensors);
-	
+	//Room();
+
 	void designRoom();
 	void setTemperature(double temp);
 	double getTemperature();

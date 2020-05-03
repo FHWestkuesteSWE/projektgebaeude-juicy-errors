@@ -8,17 +8,26 @@
 // Constructor
 Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
 {
-	_descr = descr;
-	_numToilets = numToilets;
-	_numDoors = numDoors;
-	_numTempSensors = numTempSensors;
+	this->_descr = descr;
+	this->_numToilets = numToilets;
+	this->_numDoors = numDoors;
+	this->_numTempSensors = numTempSensors;
 	
 	designRoom();
 }
+//default constructor
+//Room::Room()
+//{
+//}
 
 // design room => create objects for every door, actuator and sensor
 void Room::designRoom()
 {
+	/*std::cout << this->_descr << std::endl;
+	std::cout << "_numToilets: " << this->_numToilets;
+	std::cout << "_numDoors: " << this->_numDoors;
+	std::cout << "_numTempSensors: " << this->_numTempSensors;*/
+
 	for (int i = 0; i < _numToilets; i++)
 	{
 		_toiletSensors.push_back(&ToiletSensor());
@@ -84,7 +93,7 @@ bool Room::getToiletStatus(int idx)
 }
 
 // Getter
-std::string Room::getDescriptor() { return _descr; }
+std::string Room::getDescriptor() { return this->_descr; }
 int Room::getNumToilets() { return _numToilets; }
 int Room::getNumDoors() { return _numDoors; }
 int Room::getNumTempSensors() { return _numTempSensors; }
