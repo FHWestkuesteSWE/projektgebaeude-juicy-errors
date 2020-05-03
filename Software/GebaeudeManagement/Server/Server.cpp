@@ -91,10 +91,10 @@ void Server::processRequest(char req[], char ans[]) {
 	else opt = request.substr(request.find(opt));		// if there are optional arguments available write them to optopt.clear();
 
 	// DEBUG OUTPUT
-	cout << "query <" << query << ">" << endl;
-	cout << "sensor <" << sensorType << ">" << endl;
-	cout << "roomDescr <" << roomDescr << ">" << endl;
-	cout << "opt <" << opt << ">" << endl;
+	//cout << "query <" << query << ">" << endl;
+	//cout << "sensor <" << sensorType << ">" << endl;
+	//cout << "roomDescr <" << roomDescr << ">" << endl;
+	//cout << "opt <" << opt << ">" << endl;
 
 	cout << timestamp << " - Q - " << req << endl;
 
@@ -188,6 +188,7 @@ void Server::properties(char* out) {
 	for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
 		temp1 = *i;
 		temp1 = getNthWord(temp1, 1);
+		temp1.append(" ");
 		temp2.append(temp1);	
 	}
 	strncpy(out, temp2.c_str(), min<int>(max_length, strlen(out) + 1));
