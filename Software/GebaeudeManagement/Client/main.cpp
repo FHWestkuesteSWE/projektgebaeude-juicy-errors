@@ -48,6 +48,9 @@ int main(int argc, char* argv[])
       while ( selectSensor(roomNumber,sens) != 'b' ) // select sensor ( (t)emp, (d)oor, (w)c )
       {
 
+      // -----------------------------------------------------------------------
+      // MENU: select action (get, set)
+      // -----------------------------------------------------------------------
         char action;
         while ( ( action=selectAction(sens) ) != 'b' ) // get, set or configure sensor
         {
@@ -70,6 +73,9 @@ int main(int argc, char* argv[])
             default:
               break;
           }
+      // -----------------------------------------------------------------------
+      // SEND: compose server query
+      // -----------------------------------------------------------------------
           strcat ( req, " " );                                  // append space 
           strcat ( req, sens );                                 // append sensor type
           strcat ( req, " " );                                  // append space 
