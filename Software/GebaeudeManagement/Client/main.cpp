@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
       strcpy(req, "cfg -g");
       cout << "DEBUG: Request string: " << req << endl;
       c.sendRequest(req, ans);
-      strcpy ( ans, "living1 living2 kitchen1 lavatory1 garden1 garage1 patio1" ); // because server doesn't use delimiters yet
+      //strcpy ( ans, "living1 living2 kitchen1 lavatory1 garden1 garage1 patio1" ); // because server doesn't use delimiters yet
       cout << "DEBUG: Answer from server: " << ans << endl; 
       numRooms = splitString ( (string)ans, roomDescriptors, ' ' ); // split string into vector of strings
       // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
