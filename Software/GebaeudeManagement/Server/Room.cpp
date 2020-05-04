@@ -5,6 +5,8 @@
 #include "Thermostat.h"
 #include "ToiletSensor.h"
 
+//TEST: no
+//
 // Constructor
 Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
 {
@@ -16,6 +18,9 @@ Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
 	designRoom();
 }
 
+
+// TEST: correct number of objects are create, false values (neg) of _numToilets, _numDoors, _numTempSensors 
+//
 // design room => create objects for every door, actuator and sensor
 void Room::designRoom()
 {
@@ -42,6 +47,8 @@ void Room::designRoom()
 	_doorActuators.push_back(&DoorActuator());
 }
 
+// TEST: no
+//
 // set temperature to thermostat and save in _curTemp
 void Room::setTemperature(double temp)
 {
@@ -49,12 +56,16 @@ void Room::setTemperature(double temp)
 	this->_thermostat.setDoubleValue(temp);
 }
 
+// TEST: no
+//
 double Room::getTemperature()
 {
 	//return average of both temp sensors
 	return (_temperatureSensors[0]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp) + _temperatureSensors[1]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp))/2;
 }
 
+// TEST: no
+//
 //set isOpen val to door with index idx
 void Room::openCloseDoor(int idx, bool isOpen)
 {
@@ -64,6 +75,8 @@ void Room::openCloseDoor(int idx, bool isOpen)
 	}
 }
 
+// TEST: no
+//
 bool Room::getDoorStatus(int idx)
 {
 	//only use one sensor (other for checker)
@@ -74,6 +87,8 @@ bool Room::getDoorStatus(int idx)
 	return false;
 }
 
+// TEST: no
+//
 bool Room::getToiletStatus(int idx)
 {
 	if (_toiletSensors.size() > idx)
@@ -83,12 +98,16 @@ bool Room::getToiletStatus(int idx)
 	return false;
 }
 
+// TEST: no
+//
 // Getter
 std::string Room::getDescriptor() { return _descr; }
 int Room::getNumToilets() { return _numToilets; }
 int Room::getNumDoors() { return _numDoors; }
 int Room::getNumTempSensors() { return _numTempSensors; }
 
+// TEST: no
+//
 // Setter 
 void Room::setDescriptor(std::string descr) { _descr = descr; }
 void Room::setNumToilets(int numToilets) { _numToilets = numToilets; }

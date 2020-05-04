@@ -1,5 +1,7 @@
 #include "Server.h"
 
+// TEST: no
+//
 int main(int argc, char* argv[]) {
 	Server s;
 

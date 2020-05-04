@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include<time.h> 
 
+// TEST: no
+//
 bool Sensor::getBooleanValue()
 {
 	srand(time(0));
@@ -14,6 +16,8 @@ bool Sensor::getBooleanValue()
 	return _bVal;
 }
 
+// TEST: fMax < fMin, is output in range and 10% around lastValue
+//
 double Sensor::getDoubleValue(double fMin, double fMax, double lastValue)
 {
 	srand(time(0));
