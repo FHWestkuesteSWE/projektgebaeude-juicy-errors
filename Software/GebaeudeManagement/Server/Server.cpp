@@ -173,7 +173,7 @@ void Server::processRequest(char req[], char ans[]) {
 	
 	// error handling
 	if (err != 0) {
-		sprintf(response, "Error %i\n", err);
+		sprintf(response, "Error %i", err);
 	}
 
 	// copy response to server answer
@@ -278,6 +278,8 @@ int Server::build() {
 
 	for (int i = 0; i < _rooms.size(); i++)
 	{
+		cout << "\n\descr: " << (*(_rooms[i])).getDescriptor() << "\n";
+
 		cout << "\n\ngetNumDoors: " << (*(_rooms[i])).getNumDoors() << "\n";
 	}
 
@@ -295,8 +297,8 @@ int Server::createRoom(std::string roomProps) {
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
-	Room r = Room(descr, numToilets, numDoors, numTempSensors);
-	rp = &r;
+	//Room r = Room(descr, numToilets, numDoors, numTempSensors);
+	rp = new Room(descr, numToilets, numDoors, numTempSensors);
 	_rooms.push_back(rp);
 
 	return EXIT_SUCCESS;
