@@ -42,7 +42,7 @@ private:
 	int writeCFG();
 
 	void properties(char* out);
-	Room* createRoom(std::string roomProps);
+	int createRoom(std::string roomProps);
 	int addRoom(std::string roomProps);
 	int deleteRoom(std::string roomDescr);
 	void print(std::string msg);

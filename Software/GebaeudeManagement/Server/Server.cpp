@@ -273,28 +273,38 @@ int Server::build() {
 	
 	// create rooms according to config
 	for (int i = 0; i < roomCFG.size(); i++) {
-		_rooms.push_back(createRoom(roomCFG[i]));
+		createRoom(roomCFG[i]);
+	}
+
+	for (int i = 0; i < _rooms.size(); i++)
+	{
+		cout << "\n\ngetNumDoors: " << (*(_rooms[i])).getNumDoors() << "\n";
 	}
 
 	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration
-Room* Server::createRoom(std::string roomProps) {
+int Server::createRoom(std::string roomProps) {
 	std::string descr;
 	int numToilets, numDoors, numTempSensors;
+	Room* rp;
 
 	descr = getNthWord(roomProps, 1);
 	numToilets = std::stoi(getNthWord(roomProps, 2));
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
-	return &Room(descr, numToilets, numDoors, numTempSensors);
+	Room r = Room(descr, numToilets, numDoors, numTempSensors);
+	rp = &r;
+	_rooms.push_back(rp);
+
+	return EXIT_SUCCESS;
 }
 
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
-	_rooms.push_back(createRoom(roomProps));
+	//_rooms.push_back(createRoom(roomProps));
 	roomCFG.push_back(roomProps);
 	writeCFG();
 
