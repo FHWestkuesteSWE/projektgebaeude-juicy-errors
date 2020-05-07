@@ -20,6 +20,13 @@ bool Sensor::getBooleanValue()
 //
 double Sensor::getDoubleValue(double fMin, double fMax, double lastValue)
 {
+	if (fMin > fMax)
+		return -1.0;
+	if (lastValue < fMin)
+		return fMin;
+	if (lastValue > fMax)
+		return fMax;
+
 	srand(time(0));
 	double dev;
 	int r = rand() % 100; // random integer between 0..100
