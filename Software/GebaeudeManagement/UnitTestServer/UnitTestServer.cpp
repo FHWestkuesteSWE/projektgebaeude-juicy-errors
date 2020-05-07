@@ -19,14 +19,12 @@ namespace UnitTestServer
 			double lastValue = 3.0;
 			double val = sensor.getDoubleValue(fMin, fMax, lastValue);
 
-			// return value in 20% range around lastValue
-			if (val <= lastValue + 0.1 * lastValue && val >= lastValue - 0.1 * lastValue)
+			if (val > fMax || val < fMin)
 			{
-				Assert::IsTrue(true);
+				Assert::IsTrue(false);
 			}
 			else
-				Assert::IsTrue(false);;
-
+				Assert::IsTrue(true);
 		}
 	};
 }
