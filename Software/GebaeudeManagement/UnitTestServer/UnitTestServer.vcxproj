@@ -92,15 +92,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Boost\boost_1_72_0;C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\boost_1_72_0;Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server;C:\Boost\boost_1_72_0;C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Boost\boost_1_72_0\stage\x64\lib;C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Actuator.obj;BasicServer.obj;DoorActuator.obj;DoorLockingSensor.obj;main.obj;Room.obj;Sensor.obj;Server.obj;TemperatureSensor.obj;Thermostat.obj;ToiletSensor.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\x64\Debug;C:\Boost\boost_1_72_0\stage\x64\lib;C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Actuator.obj;BasicServer.obj;DoorActuator.obj;DoorLockingSensor.obj;main.obj;Room.obj;Sensor.obj;Server.obj;TemperatureSensor.obj;Thermostat.obj;ToiletSensor.obj;FileHandling.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
