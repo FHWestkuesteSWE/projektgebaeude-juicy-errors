@@ -1,3 +1,6 @@
+#ifndef INC_MAIN_H
+#define INC_MAIN_H
+
 // room descriptors
 #define NUM_ROOMS 3
 
@@ -21,4 +24,6 @@ size_t splitString (const std::string &txt, std::vector<std::string> &strs, char
 
 int selectRoom    ( int roomCount );
 char selectSensor ( int room, char * sens );
+
+#endif /* INC_MAIN_H */
 
