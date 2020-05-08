@@ -1,14 +1,24 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
+#include <cstdlib>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <stdio.h>
+
+#include "main.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace UnitTest_Client
+namespace UnitTestClient
 {
   TEST_CLASS( UnitTest_askForValue )
   {
 
   public:
+
+    /* TEST_CLASS_INITIALIZE ( UnitTestInit ) */
     
     TEST_METHOD( descrIsEmpty )
     {
@@ -20,6 +30,7 @@ namespace UnitTest_Client
       Assert::AreEqual( askForValue (descr, roomId ), -1 ); 
     }
 
+    /*
     TEST_METHOD( descrNotZeroTerminated )
     {
       char descr[2]; 
@@ -32,6 +43,7 @@ namespace UnitTest_Client
 
       Assert::AreEqual( askForValue (descr, roomId ), -1 ); 
     }
+    */
     
     
     TEST_METHOD( roomIdInRange )
