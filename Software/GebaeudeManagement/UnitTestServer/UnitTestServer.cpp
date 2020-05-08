@@ -1,12 +1,21 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <cstdlib>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+
 #include "Sensor.h"
+#include "Server.h"
+#include "FileHandling.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace UnitTestServer
+namespace UnitTest_Server
 {
-	TEST_CLASS(UnitTestServer)
+	TEST_CLASS(UnitTest_Sensor)
 	{
 	public:
 		
@@ -70,5 +79,54 @@ namespace UnitTestServer
 			Assert::AreEqual(fMax, val3);
 		}
 
+	};
+
+
+	/*** Tests for File handling ***/
+	TEST_CLASS(UnitTest_FileHandling) {
+	public:	
+
+		TEST_CLASS_INITIALIZE(Test_FileHandling_Init) {
+			char filename[] = "testing.dat";
+			fstream file;						
+
+			// Create "testing.dat" and write content to it
+			file.open(filename, ios::out | ios::trunc);
+			if (file.is_open()) {
+				file.write("This is the test file.", 23);
+				file.close();
+				Logger::WriteMessage("Created test file <testing.dat>");
+			}
+
+			// make sure "delete.dat" does not exist 
+			std::remove("delete.dat");
+			Logger::WriteMessage("Test_FileHandling_Init completed");
+		}
+
+
+		/*** Tests for method writeCSV ***/
+		//TEST_METHOD(Test_writeCSV_CreateNewFileIfNotExists) {		
+
+		//}
+
+
+		/*** Tests for method loadCSV ***/
+		TEST_METHOD(Test_loadCSV_FileDoesNotExist) {
+			char filename[] = "delete.dat";
+			std::vector<std::string> data;
+
+			Assert::AreEqual(loadCSV(filename, data), EXIT_FAILURE);
+			Logger::WriteMessage("Test_loadCSV_FileDoesNotExist completed");
+		}
+
+		TEST_METHOD(Test_loadCSV_FileIsRead) {
+			char filename[] = "testing.dat";
+			std::vector<std::string> data;
+
+			Assert::IsFalse(data.size());
+			Assert::AreEqual(loadCSV(filename, data), EXIT_SUCCESS);
+			Assert::IsTrue(data.size());
+			Logger::WriteMessage("Test_loadCSV_FileIsRead completed");
+		}
 	};
 }
