@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-
+// TEST: check user valid input, empty string and zero-termination, roomID range
 int askForValue ( const char * descr, int roomID )
 {
   if ( !strcmp ( descr, "door" ) ) {
@@ -127,7 +127,8 @@ int askForValue ( const char * descr, int roomID )
   }
 }
 
-
+// TEST: empty string, zero-termination, range of roomID
+// check return value
 int lockOrUnlock ( const char * descr, int roomID )
 {
   char choice;
@@ -142,7 +143,7 @@ int lockOrUnlock ( const char * descr, int roomID )
     else return -1; // error
  }
 
-
+// TEST: check range roomCount, check return value
 int selectRoom ( int roomCount )
 {
   int choice;
