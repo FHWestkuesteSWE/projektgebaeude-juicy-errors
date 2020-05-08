@@ -7,6 +7,8 @@
 #include <iostream>
 #include <stdio.h>
 
+#define UNITTEST
+
 #include "main.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

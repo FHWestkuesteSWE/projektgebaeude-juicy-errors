@@ -14,7 +14,7 @@
 /*   "toiletRoom1", */
 /* }; */
     
-std::vector<std::string> roomDescriptors; // list of room descriptors from server
+extern std::vector<std::string> roomDescriptors; // list of room descriptors from server
 
 int askForValue   ( const char * descr, int roomID );
 // int askForValue   ( const char * descr, int roomID, int dim_high, int dim_low );
