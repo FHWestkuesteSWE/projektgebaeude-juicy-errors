@@ -7,6 +7,8 @@
 #include "BasicClient.h"
 #include "main.h"
 
+std::vector<std::string> roomDescriptors; // list of room descriptors from server
+
 using namespace std;
 int main(int argc, char* argv[]) 
 {
@@ -260,6 +262,16 @@ size_t splitString ( const std::string &txt, std::vector<std::string> &strs, cha
     return strs.size();
 }
 
+/* int kbEntryInt ( void ) */
+/* { */
+/* #ifndef UNITTEST */
+/*   int choice; */
+/*   cin << choice; */
+/*   return choice; */
+/* #else */ 
+/*   return 0; */ 
+/* #endif */
+/* } */
 
 #if 0
 void getTempMenu(void)
