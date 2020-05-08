@@ -6,48 +6,34 @@
 #include <ctime>
 
 #include "Server.h"
+#include "FileHandling.h"
 
 using namespace std;
 
-
+// TEST: no
+//
 Server::Server() {
 }
 
 // TAKEN FROM http://www.cplusplus.com/forum/beginner/99171/
 // get the n-th word of a given string s
+// TEST: no
+//
 string getNthWord(string s, size_t n) {
 	istringstream iss(s);
 	while (n-- > 0 && (iss >> s));
 	return s;
 }
 
-// append string vector DATA by the contents of istream IN
-void loadCSV(istream &in, vector<string> &data) {
-	string temp;
 
-	while (!in.eof()) {
-		getline(in, temp, '\n');                    // get next line
-		data.push_back(temp);						// append vector
-
-		// DEBUG OUTPUT
-		//cout << tmp << '\n';
-
-		temp.clear();
-	}
-}
-
-// append string to file
-void writeCSV(ostream& out, string data) {
-	data = "\n" + data;
-	out.write(data.c_str(), data.size());
-}
-
+// TEST: no port given, no \0 in char[]
+//
 // start the server
 void Server::start(char port[]) {
 	
 	if (build() != EXIT_SUCCESS) {
-		this->print(" - Could not initialize building ");
-		this->print(" - Terminating service ");
+		this->print("Failed to initialize building");
+		this->print("Terminating service");
 		return;
 	}
 	this->print("Building initialized");
@@ -56,6 +42,9 @@ void Server::start(char port[]) {
 	BasicServer::start(port);
 }
 
+
+// TEST: no
+//
 // print system message on server console
 void Server::print(std::string msg) {
 	time_t mytime = time(nullptr);
@@ -65,6 +54,9 @@ void Server::print(std::string msg) {
 	cout << timestamp << " - SYS - " << msg << endl;
 }
 
+// TEST: no \0 in char[], char[] empty, all possible correct requests types give right answer, 
+//		false requests are detected
+//
 // process incoming Server Request
 void Server::processRequest(char req[], char ans[]) {
 	string request(req);
@@ -173,7 +165,7 @@ void Server::processRequest(char req[], char ans[]) {
 	
 	// error handling
 	if (err != 0) {
-		sprintf(response, "Error %i\n", err);
+		sprintf(response, "Error %i", err);
 	}
 
 	// copy response to server answer
@@ -181,6 +173,9 @@ void Server::processRequest(char req[], char ans[]) {
 	cout << timestamp << " - A - " << response << endl;
 }
 
+
+//TEST: rooms does not exist, correct answer is returned
+//
 // save the room configuration of the server to char array OUT
 void Server::properties(char* out) {
 	string temp1, temp2;
@@ -196,27 +191,19 @@ void Server::properties(char* out) {
 	temp2.erase();
 }
 
+
+// TEST: (fileNotFound in loadCSV), headline has been removed, vector is filled
+//
 // read the room configuration from the config file, saves config to global vector roomCFG
 int Server::readCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	char const* filename = CONFIG_NAME;
-	ifstream cfg(filename);		// opens file if file exists, does not create new file if file doesn't exist
-	
-	// Check if a config file exists
-	if (!cfg.good()) {
-		this->print("Config file does not exist");
-		return EXIT_FAILURE;
-	}
-
-	// read existing config file
-	if (!cfg.is_open()) {
-		this->print("Could not open existing config file");
-		return EXIT_FAILURE;
-	}
 
 	roomCFG.clear();
-	loadCSV(cfg, roomCFG);
-	cfg.close();
+	if (loadCSV(filename, roomCFG) == EXIT_FAILURE) {
+		this->print("Could not access config file");
+		return EXIT_FAILURE;
+	}
 
 	// remove CSV headline
 	roomCFG.erase(roomCFG.cbegin());
@@ -224,10 +211,12 @@ int Server::readCFG() {
 	return EXIT_SUCCESS;
 }
 
+// TEST: (fileNotFound in writeCSV), output file structure is correct
+//
 // write the room configuration to the config file
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	char const *filename = TESTING_NAME;
+	char const *filename = CONFIG_NAME;
 	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
 
 	// Check if a config file exists
@@ -263,11 +252,13 @@ int Server::writeCFG() {
 	return EXIT_SUCCESS;
 }
 
+// TEST: no
+//
 // build the server architecture based on the preloaded room configuration
 int Server::build() {
 	// read config from file
 	if (this->readCFG() != EXIT_SUCCESS) {
-		this->print("Could not load server config");
+		this->print("Failed to load server config");
 		return EXIT_FAILURE;
 	}
 	
@@ -276,14 +267,12 @@ int Server::build() {
 		createRoom(roomCFG[i]);
 	}
 
-	for (int i = 0; i < _rooms.size(); i++)
-	{
-		cout << "\n\ngetNumDoors: " << (*(_rooms[i])).getNumDoors() << "\n";
-	}
-
 	return EXIT_SUCCESS;
 }
 
+
+// TEST: formatting of roomProps correct and false, or roomProps NULL or empty
+//
 // add a room to the server configuration
 int Server::createRoom(std::string roomProps) {
 	std::string descr;
@@ -295,13 +284,16 @@ int Server::createRoom(std::string roomProps) {
 	numDoors = std::stoi(getNthWord(roomProps, 3));
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
-	Room r = Room(descr, numToilets, numDoors, numTempSensors);
-	rp = &r;
+	//Room r = Room(descr, numToilets, numDoors, numTempSensors);
+	rp = new Room(descr, numToilets, numDoors, numTempSensors);
 	_rooms.push_back(rp);
 
 	return EXIT_SUCCESS;
 }
 
+
+// TEST: no
+//
 // add a room to the server configuration and update 
 int Server::addRoom(std::string roomProps) {
 	//_rooms.push_back(createRoom(roomProps));
@@ -311,6 +303,9 @@ int Server::addRoom(std::string roomProps) {
 	return EXIT_SUCCESS;
 }
 
+
+// TEST: roomDescr NULL or empty, error thrown if no room exists
+//
 // delete a room from the server configuration
 int Server::deleteRoom(std::string roomDescr) {
 	int i = 0;
@@ -330,5 +325,7 @@ int Server::deleteRoom(std::string roomDescr) {
 	return EXIT_SUCCESS;
 }
 
+// TEST: no
+//
 Server::~Server(){
 }
