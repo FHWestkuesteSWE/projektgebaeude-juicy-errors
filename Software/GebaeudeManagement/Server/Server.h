@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <fstream>
 
 #include "BasicServer.h"
 #include "Room.h"
@@ -9,7 +7,6 @@
 #define NUM_MAX_ROOMS	255
 #define DESCR_MAX_LEN	12
 const char CONFIG_NAME[] = "building.cfg";
-const char TESTING_NAME[] = "testing.dat";
 const char CSV_HEADLINE[] = "Descriptor,NumToilets,NumDoors,NumTempSensors";
 
 typedef enum {

@@ -6,6 +6,7 @@
 #include <ctime>
 
 #include "Server.h"
+#include "FileHandling.h"
 
 using namespace std;
 
@@ -25,40 +26,14 @@ string getNthWord(string s, size_t n) {
 }
 
 
-// TEST: fileNotFound, no vector
-//
-// append string vector DATA by the contents of istream IN
-void loadCSV(istream &in, vector<string> &data) {
-	string temp;
-
-	while (!in.eof()) {
-		getline(in, temp, '\n');                    // get next line
-		data.push_back(temp);						// append vector
-
-		// DEBUG OUTPUT
-		//cout << tmp << '\n';
-
-		temp.clear();
-	}
-}
-
-
-// TEST: fileNotFound, no vector
-//
-// append string to file
-void writeCSV(ostream& out, string data) {
-	data = "\n" + data;
-	out.write(data.c_str(), data.size());
-}
-
 // TEST: no port given, no \0 in char[]
 //
 // start the server
 void Server::start(char port[]) {
 	
 	if (build() != EXIT_SUCCESS) {
-		this->print(" - Could not initialize building ");
-		this->print(" - Terminating service ");
+		this->print("Failed to initialize building");
+		this->print("Terminating service");
 		return;
 	}
 	this->print("Building initialized");
@@ -223,23 +198,12 @@ void Server::properties(char* out) {
 int Server::readCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	char const* filename = CONFIG_NAME;
-	ifstream cfg(filename);		// opens file if file exists, does not create new file if file doesn't exist
-	
-	// Check if a config file exists
-	if (!cfg.good()) {
-		this->print("Config file does not exist");
-		return EXIT_FAILURE;
-	}
-
-	// read existing config file
-	if (!cfg.is_open()) {
-		this->print("Could not open existing config file");
-		return EXIT_FAILURE;
-	}
 
 	roomCFG.clear();
-	loadCSV(cfg, roomCFG);
-	cfg.close();
+	if (loadCSV(filename, roomCFG) == EXIT_FAILURE) {
+		this->print("Could not access config file");
+		return EXIT_FAILURE;
+	}
 
 	// remove CSV headline
 	roomCFG.erase(roomCFG.cbegin());
@@ -252,7 +216,7 @@ int Server::readCFG() {
 // write the room configuration to the config file
 int Server::writeCFG() {
 	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	char const *filename = TESTING_NAME;
+	char const *filename = CONFIG_NAME;
 	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
 
 	// Check if a config file exists
@@ -294,7 +258,7 @@ int Server::writeCFG() {
 int Server::build() {
 	// read config from file
 	if (this->readCFG() != EXIT_SUCCESS) {
-		this->print("Could not load server config");
+		this->print("Failed to load server config");
 		return EXIT_FAILURE;
 	}
 	
