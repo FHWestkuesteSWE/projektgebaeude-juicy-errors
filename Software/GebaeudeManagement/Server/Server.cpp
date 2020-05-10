@@ -285,7 +285,7 @@ int Server::createRoom(std::string roomProps) {
 	numTempSensors = std::stoi(getNthWord(roomProps, 4));
 
 	//Room r = Room(descr, numToilets, numDoors, numTempSensors);
-	rp = new Room(descr, numToilets, numDoors, numTempSensors);
+	rp = new Room(descr, numToilets, numDoors, numTempSensors, false); //no windows as default
 	_rooms.push_back(rp);
 
 	return EXIT_SUCCESS;
