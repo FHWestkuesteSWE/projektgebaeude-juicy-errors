@@ -34,7 +34,7 @@ public:
 	Room(std::string descr, int numToilets, int numDoors, int numTempSensors);
 	Room();
 
-	void designRoom();
+	int designRoom();
 	void setTemperature(double temp);
 	double getTemperature();
 	void openCloseDoor(int idx, bool isOpen);

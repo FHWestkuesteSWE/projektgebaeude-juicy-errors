@@ -27,8 +27,15 @@ Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
 // TEST: correct number of objects are create, false values (neg) of _numToilets, _numDoors, _numTempSensors 
 //
 // design room => create objects for every door, actuator and sensor
-void Room::designRoom()
+int Room::designRoom()
 {
+	if (_numDoors < 0)
+		return EXIT_FAILURE;
+	if (_numToilets < 0)
+		return EXIT_FAILURE;
+	if (_numTempSensors < 0)
+		return EXIT_FAILURE;
+
 	for (int i = 0; i < _numToilets; i++)
 	{
 		_toiletSensors.push_back(&ToiletSensor());
@@ -50,6 +57,9 @@ void Room::designRoom()
 
 	_thermostat = Thermostat();
 	_doorActuators.push_back(&DoorActuator());
+
+	return EXIT_SUCCESS;
+
 }
 
 // TEST: no
