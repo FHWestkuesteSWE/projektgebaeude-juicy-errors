@@ -65,7 +65,8 @@ Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
 2 Kein Thermostat für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
 3 keine Antwort vom Sensor → Fehlermeldung des Servers
-4 Thermostat liefert Fehler → Anfrage an Thermostat wiederholen, wenn mehrfach Fehler auftreten: Fehlerhinweis des Servers
+4 Thermostat liefert Fehler → Anfrage an Thermostat wiederholen, wenn mehrfach 
+  Fehler auftreten: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
@@ -95,17 +96,19 @@ Abschätzung:
 --------------------------------------------------------------------------------
 Details
 --------------------------------------------------------------------------------
-Auf der Konsole des Clients besteht die Möglichkeit, die Raumtür
-zu öffnen bzw. zu schließen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Auf der Konsole des Clients besteht die Möglichkeit, die Raumtür zu öffnen bzw.
+zu schließen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
 Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die
-entsprechende Tür öffnet bzw. schließt. Die Tür antwortet dem Server, worauf dieser dem Client 
-eine Bestätigung über die Änderung des Tür-Zustandes zurückschickt.
+entsprechende Tür öffnet bzw. schließt. Die Tür antwortet dem Server, worauf
+dieser dem Client eine Bestätigung über die Änderung des Tür-Zustandes
+zurückschickt.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
 2 Keine Tür für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
 3 keine Antwort von der Tür → Fehlermeldung des Servers
-4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
+4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach 
+  unplausibler Wert: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
@@ -143,7 +146,8 @@ Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
 2 Keine Tür für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
 3 keine Antwort von der Tür → Fehlermeldung des Servers
-4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach unplausibler Wert: Fehlerhinweis des Servers
+4 Tür-Zustand unplausibel  → Abfrage an Tür wiederholen, wenn mehrfach
+  unplausibler Wert: Fehlerhinweis des Servers
 Timeouts setzen !
 
 Protokoll:
@@ -211,11 +215,13 @@ Abschätzung:
 Details
 --------------------------------------------------------------------------------
 Auf der Konsole des Clients besteht die Möglichkeit, die Fenster
-zu öffnen bzw. zu schließen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
-Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die Türsensoren abfragt und die
-Fenster öffnet bzw. schließt, wenn mindestens eine Tür offen ist. Der Raum antwortet dem Server, worauf dieser dem Client 
-eine Bestätigung über die Änderung des Fenster-Zustandes zurückschickt. Sind alle Türen geschlossen wird die Anfrage nicht 
-durchgeführt um Einbrüche zu verhindern.
+zu öffnen bzw. zu schließen. Der Raum muss dann angegeben (eingegeben oder
+ausgewählt) werden. Die entsprechende Anfrage wird an den Server geschickt,
+worauf dieser die Türsensoren abfragt und die Fenster öffnet bzw. schließt, wenn
+mindestens eine Tür offen ist. Der Raum antwortet dem Server, worauf dieser dem
+Client eine Bestätigung über die Änderung des Fenster-Zustandes zurückschickt.
+Sind alle Türen geschlossen wird die Anfrage nicht durchgeführt um Einbrüche zu
+verhindern.
 
 Fehlermöglichkeiten:
 1 Server nicht erreichbar → Fehlermeldung des Clients
@@ -227,4 +233,30 @@ vom Client an Server gesendeter String: „set Windows <Raumbezeichner> <boolean
 von Server an Client gesendeter String: „set Windows <Raumbezeichner> 0 <boolean>“ (kein Fehler) 
 bzw. „Windows <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
 bzw. „Windows <Raumbezeichner> 4 <boolean>“
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+User Story G
+================================================================================
+
+Kurzbeschreibung:
+Die Kommunikation zwischen Server und Client wird auf Client-Seite in einem
+Logfile gespeichert.
+
+Priorität: ( ) must | (X) should | () could | ( ) won't
+
+Abschätzung:
+1 Tag
+
+--------------------------------------------------------------------------------
+Details
+--------------------------------------------------------------------------------
+Jedes mal wenn der Client eine Anfrage an den Server schickt, wird diese Anfrage
+und die erhaltene Antwort in einem Logfile abgelegt.
+
+Fehlermöglichkeiten:
+1 Logfile kann nicht geschrieben werden
+2 Logfile kann nicht gefunden werden 
 --------------------------------------------------------------------------------

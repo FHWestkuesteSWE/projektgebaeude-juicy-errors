@@ -1,5 +1,6 @@
 // main.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms :).
 
+#define UNITTEST
 
 #include <signal.h>
 #include <iostream>
@@ -7,10 +8,9 @@
 #include "BasicClient.h"
 #include "main.h"
 
-#define UNITTEST
-
 #ifdef UNITTEST
   int kbRetVal = 42; // default integer return value for keyboard entry
+  char kbRetValCh = 'f'; // default integer return value for keyboard entry
 #endif
 
 std::vector<std::string> roomDescriptors; // list of room descriptors from server
@@ -141,7 +141,7 @@ int askForValue ( const char * descr, int roomID )
   }
 }
 
-// TEST: empty string, zero-termination, range of roomID
+// TEST: empty string, range of roomID
 // check return value
 int lockOrUnlock ( const char * descr, int roomID )
 {
@@ -160,7 +160,8 @@ int lockOrUnlock ( const char * descr, int roomID )
     else return -1; // error
  }
 
-// TEST: 
+// TEST: check return value against input value, check out of range behaviour
+// for selection
 int selectRoom ( void )
 { 
   int 
@@ -182,12 +183,14 @@ int selectRoom ( void )
   else return -1; // wrong entry
 }
 
-
-
+// TEST: range of room ID
 char selectSensor ( int room, char * sens )
 {
   char choice;
   bool decided = false;
+  
+  // roomID out of range:
+  if ( (room >= roomDescriptors.size()) || (room < 0) ) return -1; 
 
   do { 
     cout << "----------------------------------------------------" << endl;
@@ -226,7 +229,7 @@ char selectSensor ( int room, char * sens )
   return choice; 
 }
 
-
+// TEST: empty string
 char selectAction ( const char * descr )
 {
   char choice;
@@ -260,7 +263,32 @@ char selectAction ( const char * descr )
   return choice; 
 }
 
+// returns user input (changes behavior for UNITTEST)
+int getKBEntry ( char * kbentry )
+{
+  int choice = 0;
+#ifdef UNITTEST
+  if ( !kbentry ) {
+    return kbRetVal;
+  }
+  else {
+    kbentry[0] = kbRetValCh; // return default
+    return 0;
+  } 
+#else
+  if ( !kbentry ) {
+    std::cin >> choice; 
+    return choice;
+  }
+  else {
+    std::cin >> kbentry;
+  }
+#endif 
+  return -1;
+}
 
+
+// third party code (stackoverflow.com)
 size_t splitString ( const std::string &txt, std::vector<std::string> &strs, char ch )
 {
     size_t pos = txt.find( ch );
@@ -281,112 +309,3 @@ size_t splitString ( const std::string &txt, std::vector<std::string> &strs, cha
     return strs.size();
 }
 
-
-int getKBEntry ( char * kbentry )
-{
-  int choice = 0;
-#ifdef UNITTEST
-  if ( !kbentry ) {
-    return kbRetVal;
-  }
-  else {
-    // strcpy ( kbentry, "f" );
-    kbentry[0] = 'f';
-    return 0;
-  } 
-#else
-  if ( !kbentry ) {
-    std::cin >> choice; 
-    return choice;
-  }
-  else {
-    std::cin >> kbentry;
-  }
-#endif 
-  return -1;
-}
-
-
-
-#if 0
-void getTempMenu(void)
-{
-
-    std::cout << "\nPlease choose room descriptor of the following: \n";
-    std::cout << "\tlivingRoom \t\t(1)\n";
-    std::cout << "\tkitchen \t\t(2)\n";
-    std::cout << "\ttoiletRoom1 \t\t(3)\n\n";
-    std::cout << "Exit \t\t\t\t(0)\n";
-    std::cout << "------------------------------------\n";
-
-    std::cout << "Please enter an integer value (0-3): \n";
-
-}
-
-void mainMenu(void)
-{
-    int userInput = -1;
-    while (userInput < 0 || userInput > 5) {
-        std::cout << "Building management system FHW 3000\n";
-        std::cout << "------------------------------------\n";
-        std::cout << "What do you want to do?\n";
-        std::cout << "------------------------------------\n";
-        std::cout << "Get current room temperature \t(1)\n";
-        std::cout << "Set current room temperature \t(2)\n\n";
-
-        std::cout << "Get current door status \t(3)\n";
-        std::cout << "Set current door status \t(4)\n\n";
-
-        std::cout << "Get current toilet status \t(5)\n\n";
-        std::cout << "Exit \t\t\t\t(0)\n\n";
-
-        std::cout << "------------------------------------\n";
-
-        std::cout << "Please enter an integer value (0-5): ";
-        std::cin >> userInput;
-    }
-    switch (userInput)
-    {
-    case 1:
-        getTempMenu();
-    default:
-        break;
-    }
-}
-
-// felix's get/set config from server
-  char choice;
-  char descr[12];
-  cout << "(g)et or (u)pdate config " << "?" << endl;
-  cout << "\n\n(c)ancel" << endl;
-  cout << "----------------------------------------------------" << endl;
-  cout << "Choice: ";
-  cin >> choice;
-
-  switch (choice) {
-  case 'g':
-      strcpy(req, "cfg -g");
-      break;
-  case 'u':
-      strcpy(req, "cfg -u");
-      break;
-  case 'a':
-      cout << "Enter room descriptor: ";
-      cin >> descr;
-      strcpy(req, "cfg -a ");
-      strcat(req, descr);
-      break;
-  case 'd':
-      cout << "Enter room descriptor: ";
-      cin >> descr;
-      strcpy(req, "cfg -d ");
-      strcat(req, descr);
-      break;
-  default:
-      break;
-  }
-  cout << "Request string: " << req << endl;
-  c.sendRequest(req, ans);
-  cout << "Answer from server: " << ans << endl;
-  break;
-#endif

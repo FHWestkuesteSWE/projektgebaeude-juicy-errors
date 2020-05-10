@@ -128,4 +128,46 @@ namespace UnitTestClient
     }
 
   };
+
+  //----------------------------------------------------------------------------
+  // selectSensor ()
+  //---------------------------------------------------------------------------- 
+  TEST_CLASS( UnitTest_selectSensor )
+  {
+
+  public:
+    
+    TEST_METHOD( roomInRange )
+    {
+      kbRetValCh = 't';
+      int room = 42;
+      roomDescriptors.clear(); // clear list
+      roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
+      char sens[5];
+
+      Assert::AreEqual( selectSensor (room, sens), kbRetValCh ); // expecting -1 for ERROR
+    }
+    
+  };
+  
+  //----------------------------------------------------------------------------
+  // selectAction ()
+  //---------------------------------------------------------------------------- 
+  TEST_CLASS( UnitTest_selectAction )
+  {
+
+  public:
+    
+    TEST_METHOD( descrIsEmpty )
+    {
+      char descr[2] = ""; 
+      kbRetValCh = 'g';
+      roomDescriptors.clear(); // clear list
+      roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
+
+      Assert::AreEqual( selectAction (descr), 'g' ); // expecting keyboard input 
+    }
+
+  };
+  
 }

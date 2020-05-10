@@ -7,15 +7,10 @@
 #define GET_VALUE 1
 #define SET_VALUE 2
 
-/* const char roomDescriptors[NUM_ROOMS][50] = */ 
-/* { */ 
-/*   "livingRoom", */
-/*   "kitchen", */
-/*   "toiletRoom1", */
-/* }; */
-    
 extern std::vector<std::string> roomDescriptors; // list of room descriptors from server
+
 extern int kbRetVal; // default integer return value for keyboard entry
+extern char kbRetValCh; // default char return value for keyboard entry
 
 int askForValue   ( const char * descr, int roomID );
 // int askForValue   ( const char * descr, int roomID, int dim_high, int dim_low );
