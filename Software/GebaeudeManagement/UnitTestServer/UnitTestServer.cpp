@@ -139,33 +139,61 @@ public:
 			Room* rp = new Room();
 			rp->setNumDoors(1);
 			// allowed value
-			Assert::AreEqual(rp->designRoom(), EXIT_SUCCESS);
+			Assert::AreEqual(EXIT_SUCCESS, rp->designRoom());
 
 			rp->setNumDoors(-1);
 			// negative value
-			Assert::AreEqual(rp->designRoom(), EXIT_FAILURE);
+			Assert::AreEqual(EXIT_FAILURE, rp->designRoom());
 		}
 
 		TEST_METHOD(Test_designRoom_negNumToiletValue) {
 			Room* rp = new Room();
 			rp->setNumToilets(1);
 			// allowed value
-			Assert::AreEqual(rp->designRoom(), EXIT_SUCCESS);
+			Assert::AreEqual(EXIT_SUCCESS, rp->designRoom());
 
 			rp->setNumToilets(-1);
 			// negative value
-			Assert::AreEqual(rp->designRoom(), EXIT_FAILURE);
+			Assert::AreEqual(EXIT_FAILURE, rp->designRoom());
 		}
 
 		TEST_METHOD(Test_designRoom_negNumTempSensorsValue) {
 			Room* rp = new Room();
 			rp->setNumTempSensors(1);
 			// allowed value
-			Assert::AreEqual(rp->designRoom(), EXIT_SUCCESS);
+			Assert::AreEqual(EXIT_SUCCESS, rp->designRoom());
 
 			rp->setNumTempSensors(-1);
 			// negative value
-			Assert::AreEqual(rp->designRoom(), EXIT_FAILURE);
+			Assert::AreEqual(EXIT_FAILURE, rp->designRoom());
+		}
+
+		TEST_METHOD(Test_designRoom_correctNumTempSensors) {
+			Room* rp = new Room();
+			rp->setNumTempSensors(4);
+			rp->designRoom();
+			Assert::AreEqual(rp->getSizeTempSensors(), 4);			
+		}
+
+		TEST_METHOD(Test_designRoom_correctNumToiletSensors) {
+			Room* rp = new Room();
+			rp->setNumToilets(3);
+			rp->designRoom();
+			Assert::AreEqual(rp->getSizeToiletSensors(), 3);
+		}
+
+		TEST_METHOD(Test_designRoom_correctNumDoorLockingSensors) {
+			Room* rp = new Room();
+			rp->setNumDoors(3);
+			rp->designRoom();
+			Assert::AreEqual(rp->getSizeDoorLockingSensors(), 3 * 2);
+		}
+
+		TEST_METHOD(Test_designRoom_correctNumDoorActuators) {
+			Room* rp = new Room();
+			rp->setNumDoors(3);
+			rp->designRoom();
+			Assert::AreEqual(3, rp->getSizeDoorActuators());
 		}
 
 	};

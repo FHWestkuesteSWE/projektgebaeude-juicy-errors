@@ -47,6 +47,11 @@ public:
 	int getNumToilets();
 	int getNumDoors();
 	int getNumTempSensors();
+	int getSizeDoorActuators();
+	int getSizeTempSensors();
+	int getSizeToiletSensors();
+	int getSizeDoorLockingSensors();
+
 
 	// Setter 
 	void setDescriptor(std::string descr);

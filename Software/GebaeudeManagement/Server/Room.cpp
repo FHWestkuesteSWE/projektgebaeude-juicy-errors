@@ -46,6 +46,7 @@ int Room::designRoom()
 		//add two Door Locking sensors for every Door (redundancy)
 		_doorLockingSensors[0].push_back(&DoorLockingSensor());
 		_doorLockingSensors[1].push_back(&DoorLockingSensor()); // redundant sensor
+		_doorActuators.push_back(&DoorActuator());
 		//add isOpen boolean to every door (default: door is closed)
 		_curDoorStatus.push_back(false);
 	}
@@ -56,7 +57,7 @@ int Room::designRoom()
 	}
 
 	_thermostat = Thermostat();
-	_doorActuators.push_back(&DoorActuator());
+	
 
 	return EXIT_SUCCESS;
 
@@ -120,6 +121,26 @@ std::string Room::getDescriptor() { return _descr; }
 int Room::getNumToilets() { return _numToilets; }
 int Room::getNumDoors() { return _numDoors; }
 int Room::getNumTempSensors() { return _numTempSensors; }
+
+int Room::getSizeDoorActuators()
+{
+	return this->_doorActuators.size();
+}
+
+int Room::getSizeTempSensors()
+{
+	return this->_temperatureSensors.size();
+}
+
+int Room::getSizeToiletSensors()
+{
+	return this->_toiletSensors.size();
+}
+
+int Room::getSizeDoorLockingSensors()
+{
+	return this->_doorLockingSensors[0].size() + this->_doorLockingSensors[1].size();
+}
 
 // TEST: no
 //
