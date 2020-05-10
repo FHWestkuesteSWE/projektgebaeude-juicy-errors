@@ -196,6 +196,43 @@ public:
 			Assert::AreEqual(3, rp->getSizeDoorActuators());
 		}
 
+		TEST_METHOD(Test_setWindowStatus_doorsClosed_openCloseWindows)
+		{
+			Room* rp = new Room();
+			rp->setHasWindows(true);
+
+			rp->setNumDoors(3);
+
+			rp->designRoom();
+
+			for (int i = 0; i < 3; i++)
+			{
+				rp->setDoorStatus(i, false); //close all doors
+			}
+
+			//forbitten to open windows if doors closed
+			Assert::AreEqual(EXIT_FAILURE, rp->setWindowStatus(true));
+		}
+
+		TEST_METHOD(Test_setWindowStatus_atLeastOneDoorOpen_openCloseWindows)
+		{
+			Room* rp = new Room();
+			rp->setHasWindows(true);
+
+			rp->setNumDoors(3);
+
+			rp->designRoom();
+
+			for (int i = 0; i < 3; i++)
+			{
+				rp->setDoorStatus(i, false); //close all doors
+			}
+			rp->setDoorStatus(1, true); // open one door
+
+			rp->setWindowStatus(true);
+			Assert::AreEqual(true, rp->getWindowStatus());
+		}
+
 	};
 
 }
