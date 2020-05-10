@@ -6,8 +6,9 @@
 #include <string>
 #include <iostream>
 #include <stdio.h>
+#include <cstdio>
 #include <sys/stat.h> // for file exists
-
+#include <fstream>
 #include "main.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -191,7 +192,7 @@ namespace UnitTestClient
 
       Assert::AreEqual( ret, 0); // should return 0 if file exists
 
-      if (!ret) DeleteFile(filename); // delete testfile
+      if (!ret) remove(filename); // delete testfile
     }
     
     TEST_METHOD( fileNotWriteable )
@@ -208,12 +209,12 @@ namespace UnitTestClient
       in.close();
       // ---
 
-      Assert::AreEqual( message, line ); // expecting keyboard input 
+      Assert::AreEqual( message, line.c_str() ); // expecting keyboard input 
       
       // delete file if it was created
       struct stat info;
       int ret = stat (filename, &info);
-      if (!ret) DeleteFile(filename); // delete testfile
+      if (!ret) remove(filename); // delete testfile
       // ---
     }
 

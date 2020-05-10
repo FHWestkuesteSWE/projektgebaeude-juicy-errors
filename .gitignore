@@ -411,3 +411,7 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/c++,windows,visualstudio
+/Software/GebaeudeManagement/Client/.main.h.swp
+/Software/GebaeudeManagement/Client/.main.cpp.swp
+/Software/GebaeudeManagement/GebaeudeManagementTest
+/Software/GebaeudeManagement/UnitTestClient/.UnitTestClient.cpp.swp

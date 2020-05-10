@@ -39,6 +39,9 @@ int main(int argc, char* argv[])
       strcpy(req, "cfg -g");
       cout << "DEBUG: Request string: " << req << endl;
       c.sendRequest(req, ans);
+      writeLog ( FILENAME, req ); // log request
+      writeLog ( FILENAME, ans ); // log answer
+
       //strcpy ( ans, "living1 living2 kitchen1 lavatory1 garden1 garage1 patio1" ); // because server doesn't use delimiters yet
       cout << "DEBUG: Answer from server: " << ans << endl; 
       numRooms = splitString ( (string)ans, roomDescriptors, ' ' ); // split string into vector of strings
@@ -100,6 +103,9 @@ int main(int argc, char* argv[])
           cout << "Answer from server: " << ans << endl; 
           cout << "====================================================" << endl; 
           cout << "\n\n";
+          
+          writeLog ( FILENAME, req ); // log request
+          writeLog ( FILENAME, ans ); // log answer
         }
       } 
 
@@ -261,6 +267,14 @@ char selectAction ( const char * descr )
   } while (!decided);
 
   return choice; 
+}
+
+// write client-server communication to logfile
+int writeLog ( char * filename, char * message )
+{
+  // TODO: implementation
+
+  return 0;
 }
 
 // returns user input (changes behavior for UNITTEST)
