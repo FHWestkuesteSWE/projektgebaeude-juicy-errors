@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <stdio.h>
+#include <sys/stat.h> // for file exists
 
 #include "main.h"
 
@@ -166,6 +167,54 @@ namespace UnitTestClient
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
       Assert::AreEqual( selectAction (descr), 'g' ); // expecting keyboard input 
+    }
+
+  };
+  
+  //----------------------------------------------------------------------------
+  // writeLog ( filename, message )
+  //---------------------------------------------------------------------------- 
+  TEST_CLASS( UnitTest_writeLog )
+  {
+
+  public:
+    
+    TEST_METHOD( fileDoesntExist )
+    {
+      char message[] = "This is a test!";
+      char filename[] = "testlogfile.txt";
+      struct stat info;
+
+      writeLog ( filename, message ); // file should be created if it doesnt exist
+
+      int ret = stat (filename, &info);
+
+      Assert::AreEqual( ret, 0); // should return 0 if file exists
+
+      if (!ret) DeleteFile(filename); // delete testfile
+    }
+    
+    TEST_METHOD( fileNotWriteable )
+    {
+      char message[] = "This is a test!";
+      char filename[] = "testlogfile.txt";
+      
+      writeLog (filename, message);
+
+      // open file and check if message was written
+      std::ifstream in(filename, std::ios::out); 
+      std::string line;
+      while (std::getline(in, line)); 
+      in.close();
+      // ---
+
+      Assert::AreEqual( message, line ); // expecting keyboard input 
+      
+      // delete file if it was created
+      struct stat info;
+      int ret = stat (filename, &info);
+      if (!ret) DeleteFile(filename); // delete testfile
+      // ---
     }
 
   };
