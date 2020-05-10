@@ -7,6 +7,11 @@
 
 //TEST: no
 //
+// default Constructor
+Room::Room() {}
+
+//TEST: no
+//
 // Constructor
 Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
 {

@@ -32,7 +32,8 @@ private:
 
 public:
 	Room(std::string descr, int numToilets, int numDoors, int numTempSensors);
-	
+	Room();
+
 	void designRoom();
 	void setTemperature(double temp);
 	double getTemperature();
