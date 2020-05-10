@@ -7,6 +7,12 @@
 #include "BasicClient.h"
 #include "main.h"
 
+#define UNITTEST
+
+#ifdef UNITTEST
+  int kbRetVal = 42; // default integer return value for keyboard entry
+#endif
+
 std::vector<std::string> roomDescriptors; // list of room descriptors from server
 
 using namespace std;
@@ -39,7 +45,7 @@ int main(int argc, char* argv[])
       // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
       // ---
 
-      while ( roomNumber < 0 ) roomNumber = selectRoom ( numRooms ); 
+      while ( roomNumber < 0 ) roomNumber = selectRoom (); 
       
       // -----------------------------------------------------------------------
       // MENU: select sensor/actuator
@@ -107,6 +113,12 @@ int main(int argc, char* argv[])
 // TEST: check user valid input, empty string and zero-termination, roomID range
 int askForValue ( const char * descr, int roomID )
 {
+  // roomID out of range:
+  if ( (roomID >= roomDescriptors.size()) || (roomID < 0) ) return -1; 
+
+  // descr is empty:
+  if ( descr[0] == '\0' ) return -1;
+
   if ( !strcmp ( descr, "door" ) ) {
     return lockOrUnlock ( descr, roomID );
   }
@@ -120,7 +132,7 @@ int askForValue ( const char * descr, int roomID )
       cout << "----------------------------------------------------" << endl;
       //cout << "\n\n(c)ancel" << endl; 
       cout << "Value: ";
-      cin >> choice; 
+      choice = getKBEntry(NULL);
       // if ( !strcmp (choice, "c") ) return 0;
       validChoice = true;
       cout << "\n\n";
@@ -133,22 +145,27 @@ int askForValue ( const char * descr, int roomID )
 // check return value
 int lockOrUnlock ( const char * descr, int roomID )
 {
+  // roomID out of range:
+  if ( (roomID >= roomDescriptors.size()) || (roomID < 0) ) return -1; 
+
   char choice;
     cout << "\n\n----------------------------------------------------" << endl;
     cout << "(l)ock or (u)nlock " << descr << " for room '" << roomDescriptors[roomID] << "'" << endl;
     cout << "----------------------------------------------------" << endl; 
     cout << "Choice: ";
-    cin >> choice; 
+    getKBEntry(&choice);
     cout << "\n\n";
     if ( choice == 'l' ) return 1; // lock
     else if ( choice == 'u' ) return 0; // unlock
     else return -1; // error
  }
 
-// TEST: check range roomCount, check return value
-int selectRoom ( int roomCount )
-{
-  int choice;
+// TEST: 
+int selectRoom ( void )
+{ 
+  int 
+    choice, 
+    roomCount = roomDescriptors.size();
 
   cout << "----------------------------------------------------" << endl;
   std::cout << "\nSelect room \n";
@@ -159,11 +176,12 @@ int selectRoom ( int roomCount )
   //cout << "\n\n(q)uit program" << endl;
   cout << "----------------------------------------------------" << endl; 
   std::cout << "Choice: (0 - " << roomCount << "): ";
-  cin >> choice;
+  choice = getKBEntry (NULL); 
   cout << "\n\n";
   if ( ( choice >= 0 ) && ( choice < roomCount ) ) return choice;
   else return -1; // wrong entry
 }
+
 
 
 char selectSensor ( int room, char * sens )
@@ -181,7 +199,8 @@ char selectSensor ( int room, char * sens )
     cout << "\n\n(b)ack" << endl;
     cout << "----------------------------------------------------" << endl; 
     cout << "Choice: ";
-    cin >> choice;
+    getKBEntry (&choice);
+    cout << "Choice: " << choice << endl;
     cout << "\n\n";
 
     switch (choice) {
@@ -223,7 +242,7 @@ char selectAction ( const char * descr )
     cout << "\n\n(b)ack" << endl;
     cout << "----------------------------------------------------" << endl; 
     std::cout << "Choice: ";
-    cin >> choice;
+    getKBEntry (&choice);
     cout << "\n\n";
 
     switch ( choice ) {
@@ -262,16 +281,32 @@ size_t splitString ( const std::string &txt, std::vector<std::string> &strs, cha
     return strs.size();
 }
 
-/* int kbEntryInt ( void ) */
-/* { */
-/* #ifndef UNITTEST */
-/*   int choice; */
-/*   cin << choice; */
-/*   return choice; */
-/* #else */ 
-/*   return 0; */ 
-/* #endif */
-/* } */
+
+int getKBEntry ( char * kbentry )
+{
+  int choice = 0;
+#ifdef UNITTEST
+  if ( !kbentry ) {
+    return kbRetVal;
+  }
+  else {
+    // strcpy ( kbentry, "f" );
+    kbentry[0] = 'f';
+    return 0;
+  } 
+#else
+  if ( !kbentry ) {
+    std::cin >> choice; 
+    return choice;
+  }
+  else {
+    std::cin >> kbentry;
+  }
+#endif 
+  return -1;
+}
+
+
 
 #if 0
 void getTempMenu(void)
