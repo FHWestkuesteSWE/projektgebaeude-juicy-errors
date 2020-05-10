@@ -192,3 +192,39 @@ von Server an Client gesendeter String: „get Toilet <Raumbezeichner> <Toilette
 bzw. „Toilet <Raumbezeichner> <Toilettennummer> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
 bzw. „Toilet <Raumbezeichner> <Toilettennummer> 4 <boolean>“
 --------------------------------------------------------------------------------
+
+
+
+================================================================================
+User Story F
+================================================================================
+
+Kurzbeschreibung:
+Der User kann die Fenster für einen bestimmten Raum öffnen und schließen, wenn die Tür offen ist.
+
+Priorität: (X) must | ( ) should | () could | ( ) won't
+
+Abschätzung:
+1 Tag
+
+--------------------------------------------------------------------------------
+Details
+--------------------------------------------------------------------------------
+Auf der Konsole des Clients besteht die Möglichkeit, die Fenster
+zu öffnen bzw. zu schließen. Der Raum muss dann angegeben (eingegeben oder ausgewählt) werden.
+Die entsprechende Anfrage wird an den Server geschickt, worauf dieser die Türsensoren abfragt und die
+Fenster öffnet bzw. schließt, wenn mindestens eine Tür offen ist. Der Raum antwortet dem Server, worauf dieser dem Client 
+eine Bestätigung über die Änderung des Fenster-Zustandes zurückschickt. Sind alle Türen geschlossen wird die Anfrage nicht 
+durchgeführt um Einbrüche zu verhindern.
+
+Fehlermöglichkeiten:
+1 Server nicht erreichbar → Fehlermeldung des Clients
+2 Keine Fenster für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+3 keine Antwort vom Raum → Fehlermeldung des Servers
+
+Protokoll:
+vom Client an Server gesendeter String: „set Windows <Raumbezeichner> <boolean>“
+von Server an Client gesendeter String: „set Windows <Raumbezeichner> 0 <boolean>“ (kein Fehler) 
+bzw. „Windows <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
+bzw. „Windows <Raumbezeichner> 4 <boolean>“
+--------------------------------------------------------------------------------
