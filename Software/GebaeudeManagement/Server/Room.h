@@ -19,9 +19,11 @@ private:
 	int _numToilets;
 	int _numDoors;
 	int _numTempSensors;
+	bool _hasWindows;
 
 	double _curTemp;
 	std::vector<bool> _curDoorStatus;
+	bool _curWindowStatus;
 
 	Thermostat _thermostat;
 	std::vector<DoorActuator*> _doorActuators;
@@ -31,7 +33,7 @@ private:
 	std::vector<DoorLockingSensor*> _doorLockingSensors[2]; //vector of array
 
 public:
-	Room(std::string descr, int numToilets, int numDoors, int numTempSensors);
+	Room(std::string descr, int numToilets, int numDoors, int numTempSensors, bool hasWindows);
 	Room();
 
 	int designRoom();
@@ -40,7 +42,7 @@ public:
 	void openCloseDoor(int idx, bool isOpen);
 	bool getDoorStatus(int idx);
 	bool getToiletStatus(int idx);
-
+	int openCloseWindow(bool areOpen);
 
 	// Getter
 	std::string getDescriptor();
@@ -51,12 +53,14 @@ public:
 	int getSizeTempSensors();
 	int getSizeToiletSensors();
 	int getSizeDoorLockingSensors();
-
+	bool getHasWindows();
+	bool getWindowStatus();
 
 	// Setter 
 	void setDescriptor(std::string descr);
 	void setNumToilets(int numToilets);
 	void setNumDoors(int numDoors);
 	void setNumTempSensors(int numTempSensors);
+	void setHasWindows(bool hasWindows);
 };
 

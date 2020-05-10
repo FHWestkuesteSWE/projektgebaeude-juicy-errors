@@ -13,12 +13,13 @@ Room::Room() {}
 //TEST: no
 //
 // Constructor
-Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors)
+Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors, bool hasWindows)
 {
 	_descr = descr;
 	_numToilets = numToilets;
 	_numDoors = numDoors;
 	_numTempSensors = numTempSensors;
+	_hasWindows = hasWindows;
 	
 	designRoom();
 }
@@ -57,7 +58,7 @@ int Room::designRoom()
 	}
 
 	_thermostat = Thermostat();
-	
+	_curWindowStatus = false; // windows closed
 
 	return EXIT_SUCCESS;
 
@@ -114,6 +115,27 @@ bool Room::getToiletStatus(int idx)
 	return false;
 }
 
+int Room::openCloseWindow(bool areOpen)
+{
+	bool atLeastOneDoorOpen = false;
+	for (int i = 0; i < this->_numDoors; i++)
+	{
+		if (_curDoorStatus[i] == true)
+		{
+			atLeastOneDoorOpen = true;
+			break;
+		}		
+	}
+	if (atLeastOneDoorOpen)
+	{
+		this->_curWindowStatus = areOpen;
+		return EXIT_SUCCESS;
+	}
+	else
+		return EXIT_FAILURE;
+	
+}
+
 // TEST: no
 //
 // Getter
@@ -142,6 +164,16 @@ int Room::getSizeDoorLockingSensors()
 	return this->_doorLockingSensors[0].size() + this->_doorLockingSensors[1].size();
 }
 
+bool Room::getHasWindows()
+{
+	return this->_hasWindows;
+}
+
+bool Room::getWindowStatus()
+{
+	return this->_curWindowStatus;
+}
+
 // TEST: no
 //
 // Setter 
@@ -149,4 +181,5 @@ void Room::setDescriptor(std::string descr) { _descr = descr; }
 void Room::setNumToilets(int numToilets) { _numToilets = numToilets; }
 void Room::setNumDoors(int numDoors) { _numDoors = numDoors; }
 void Room::setNumTempSensors(int numTempSensors) { _numTempSensors = numTempSensors; }
+void Room::setHasWindows(bool hasWindows) { _hasWindows = hasWindows; }
 

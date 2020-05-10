@@ -207,11 +207,11 @@ public:
 
 			for (int i = 0; i < 3; i++)
 			{
-				rp->setDoorStatus(i, false); //close all doors
+				rp->openCloseDoor(i, false); //close all doors
 			}
 
 			//forbitten to open windows if doors closed
-			Assert::AreEqual(EXIT_FAILURE, rp->setWindowStatus(true));
+			Assert::AreEqual(EXIT_FAILURE, rp->openCloseWindow(true));
 		}
 
 		TEST_METHOD(Test_setWindowStatus_atLeastOneDoorOpen_openCloseWindows)
@@ -225,11 +225,11 @@ public:
 
 			for (int i = 0; i < 3; i++)
 			{
-				rp->setDoorStatus(i, false); //close all doors
+				rp->openCloseDoor(i, false); //close all doors
 			}
-			rp->setDoorStatus(1, true); // open one door
+			rp->openCloseDoor(1, true); // open one door
 
-			rp->setWindowStatus(true);
+			rp->openCloseWindow(true);
 			Assert::AreEqual(true, rp->getWindowStatus());
 		}
 
