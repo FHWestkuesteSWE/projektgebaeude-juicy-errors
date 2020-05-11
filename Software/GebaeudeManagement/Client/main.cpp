@@ -4,14 +4,16 @@
 
 #include <signal.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "BasicClient.h"
 #include "main.h"
-#include "../Server/FileHandling.h"
+#include <ctime>
+/* #include "../Server/FileHandling.h" */
 
 #ifdef UNITTEST
   int kbRetVal = 42; // default integer return value for keyboard entry
-  char kbRetValCh = 'f'; // default integer return value for keyboard entry
+  char kbRetValCh = 'f'; // default char return value for keyboard entry
 #endif
 
 std::vector<std::string> roomDescriptors; // list of room descriptors from server
@@ -273,7 +275,42 @@ char selectAction ( const char * descr )
 // write client-server communication to logfile
 int writeLog ( const char * filename, const char * message )
 {
-  // TODO: convert and pass parameters to writeCSV in FileHandling.h
+  // FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
+  fstream logfile(filename); // opens file if file exists, does not create new file if file doesn't exist
+
+  // check if logfile exists
+  if (!logfile.good()) {
+    cout << "Config file does not exist" << endl;
+
+    // if file does not exist, create new file
+    logfile.open(filename, ios::out | ios::trunc);    // this is what creates the new file
+    if (logfile.is_open()) {
+      cout << "Created new config file";
+    } else {
+      cout << "Could not create config file";
+      return -1;
+    }
+  } 
+  logfile.close();
+
+  // write to existing logfile
+
+  logfile.open(filename, std::ios_base::app);
+  if (logfile.is_open()) {
+    
+    time_t now = time(0); // current date/time based on current system
+    tm *ltm = localtime(&now);
+    // insert date
+    logfile << "\n" << 1900 + ltm->tm_year << "-" << 1 + ltm->tm_mon << "-" << ltm->tm_mday;
+    // insert timestamp
+    logfile << " " << ltm->tm_hour << ":" << ltm->tm_min << ":" << ltm->tm_sec; 
+    // insert message
+    logfile << " " << message;
+    logfile.close();
+  } else {
+    cout << "Could not write on existing config file";
+    return -1;
+  }
 
   return 0;
 }
