@@ -85,51 +85,201 @@ namespace UnitTest_Server
 
 	/*** Tests for File handling ***/
 	TEST_CLASS(UnitTest_FileHandling) {
-public:
+	public:
 
-	TEST_CLASS_INITIALIZE(Test_FileHandling_Init) {
-		char filename[] = "testing.dat";
-		fstream file;
+		TEST_CLASS_INITIALIZE(Test_FileHandling_Init) {
+			char filename[] = "testing.dat";
+			fstream file;
 
-		// Create "testing.dat" and write content to it
-		file.open(filename, ios::out | ios::trunc);
-		if (file.is_open()) {
-			file.write("This is the test file.", 23);
-			file.close();
-			Logger::WriteMessage("Created test file <testing.dat>");
+			// Create "testing.dat" and write content to it
+			file.open(filename, ios::out | ios::trunc);
+			if (file.is_open()) {
+				file << "This is the original test file." << '\n';
+				file.close();
+				Logger::WriteMessage("Created test file <testing.dat>");
+			}
+
+			// make sure the files for the exist test do not exist yet
+			std::remove("truncate.dat");
+			std::remove("size.log");
+
+			Logger::WriteMessage("Test_FileHandling_Init completed");
 		}
 
-		// make sure "delete.dat" does not exist 
-		std::remove("delete.dat");
-		Logger::WriteMessage("Test_FileHandling_Init completed");
-	}
+
+		/*** Tests for method txt_putLine ***/
+		TEST_METHOD(Test_txt_putLine_FileDoesNotExist) {
+			char filename[] = "deleted.dat";
+			std::string line = std::string("File created by txt_putLine.");
+
+			Assert::IsFalse(txt_putLine(filename, line));
+
+			fstream file(filename);
+			Assert::IsFalse(file.good());
+
+			Logger::WriteMessage("Test_txt_putLine_FileDoesNotExist completed");
+		}
+
+		TEST_METHOD(Test_txt_putLine_FileSizeIncreaseMatchesDataSize) {
+			char filename[] = "testing.dat";
+			std::string line = std::string("Added by txt_putLine.");
+
+			// determine file size before the operation
+			ifstream testFile(filename, ios::binary);
+			auto begin = testFile.tellg();
+			testFile.seekg(0, ios::end);
+			auto end = testFile.tellg();
+			auto fsize_start = (end - begin);
+			testFile.close();
+
+			Assert::IsTrue(txt_putLine(filename, line));
+
+			// determine file size after the operation
+			testFile.open(filename, ios::binary);
+			begin = testFile.tellg();
+			testFile.seekg(0, ios::end);
+			end = testFile.tellg();
+			auto fsize_end = (end - begin);
+			testFile.close();
+
+			// write data and file size to file size.log
+			std::string size;
+			size.append("putLine data size: "); size.append(std::to_string(line.size()));
+			size.append("\nputLine start file size: "); size.append(std::to_string(fsize_start));
+			size.append("\nputLine end file size: "); size.append(std::to_string(fsize_end));
+			size.append("\nputLine file size diff: "); size.append(std::to_string(fsize_end - fsize_start));
+			fstream log;
+			log.open("size.log", ios::out | ios::app);
+			log << size << '\n';
+			log.close();
+
+			Assert::IsTrue(fsize_end - 1 == fsize_start + line.length() + 1);	// substract 1 from fsize_end due to the newline character, add 1 to line.length() due to string terminator
+
+			Logger::WriteMessage("Test_txt_putLine_FileSizeIncreaseMatchesDataSize completed");
+		}
 
 
-	/*** Tests for method writeCSV ***/
-	//TEST_METHOD(Test_writeCSV_CreateNewFileIfNotExists) {		
+		/*** Tests for method txt_truncate ***/
+		TEST_METHOD(Test_txt_truncate_FileDoesNotExistCreatedNew) {
+			char filename[] = "truncate.dat";
+			std::vector<std::string> data;
+			data.push_back("File created by txt_truncate.");
 
-	//}
+			Assert::IsTrue(txt_truncate(filename, data));
+
+			fstream file(filename);
+			Assert::IsTrue(file.good());
+
+			Logger::WriteMessage("Test_txt_truncate_FileDoesNotExistCreatedNew completed");
+		}
+
+		TEST_METHOD(Test_txt_truncate_FileSizeIncreaseMatchesDataSize) {
+			char filename[] = "truncate.dat";
+			std::vector<std::string> data;
+			data.push_back("File content overwritten by txt_truncate.");
+
+			Assert::IsTrue(txt_truncate(filename, data));
+
+			// determine file size after the operation
+			ifstream testFile(filename, ios::binary);
+			auto begin = testFile.tellg();
+			testFile.seekg(0, ios::end);
+			auto end = testFile.tellg();
+			auto fsize = (end - begin);
+			testFile.close();
+			
+			// write truncated file size to file size.log
+			std::string size;
+			size.append("Truncate data size: "); size.append(std::to_string(data[0].size()));
+			size.append("\nTruncate file size: "); size.append(std::to_string(fsize));
+			fstream log;
+			log.open("size.log", ios::out | ios::app);
+			log << size << '\n';
+			log.close();
+
+			Assert::IsTrue(data[0].size() + 1 == fsize - 1);	// add 1 to data size due to string terminator, substract fsize by 1 due to newline character
+
+			Logger::WriteMessage("Test_txt_truncate_FileSizeIncreaseMatchesDataSize completed");
+		}
+	
+
+		/*** Tests for method txt_read ***/
+		TEST_METHOD(Test_txt_read_FileDoesNotExist) {
+			char filename[] = "deleted.dat";
+			std::vector<std::string> data;
+
+			Assert::IsFalse(txt_read(filename, data));
+
+			fstream file(filename);
+			Assert::IsFalse(file.good());
+
+			Logger::WriteMessage("Test_txt_read_FileDoesNotExist completed");
+		}
+
+		TEST_METHOD(Test_txt_read_OutputVectorSizeIncreased) {
+			char filename[] = "testing.dat";
+			std::vector<std::string> data;
+			int dataSize = 0;
+
+			Assert::IsTrue(data.empty());
+			Assert::IsTrue(txt_read(filename, data));
+
+			// determine file size after the operation
+			ifstream testFile(filename, ios::binary);
+			auto begin = testFile.tellg();
+			testFile.seekg(0, ios::end);
+			auto end = testFile.tellg();
+			auto fsize = (end - begin);
+			testFile.close();
+
+			for (int i = 0; i < data.size(); i++) {
+				dataSize += data[i].size();
+			}
+
+			// write read data size to file size.log
+			std::string size;
+			size.append("read data size: "); size.append(std::to_string(dataSize));
+			size.append("\nread file size: "); size.append(std::to_string(fsize));
+			size.append("\nread file lines: "); size.append(std::to_string(data.size()));
+			fstream log;
+			log.open("size.log", ios::out | ios::app);
+			log << size << '\n';
+			log.close();
+
+			Assert::IsTrue(dataSize + data.size() == fsize - 1);	// substract fsize by 1 due to newline character
+
+			Logger::WriteMessage("Test_txt_read_FileIsRead completed");
+		}
 
 
-	/*** Tests for method loadCSV ***/
-	TEST_METHOD(Test_loadCSV_FileDoesNotExist) {
-		char filename[] = "delete.dat";
-		std::vector<std::string> data;
 
-		Assert::AreEqual(loadCSV(filename, data), EXIT_FAILURE);
-		Logger::WriteMessage("Test_loadCSV_FileDoesNotExist completed");
-	}
+		/*** Tests for method txt_exists ***/
+		TEST_METHOD(Test_txt_exists_FileDoesNotExist) {
+			char filename[] = "deleted.dat";
+			std::vector<std::string> data;
 
-	TEST_METHOD(Test_loadCSV_FileIsRead) {
-		char filename[] = "testing.dat";
-		std::vector<std::string> data;
+			Assert::IsFalse(txt_exists(filename));
 
-		Assert::IsFalse(data.size());
-		Assert::AreEqual(loadCSV(filename, data), EXIT_SUCCESS);
-		Assert::IsTrue(data.size());
-		Logger::WriteMessage("Test_loadCSV_FileIsRead completed");
-	}
+			fstream file(filename);
+			Assert::IsFalse(file.good());
+
+			Logger::WriteMessage("Test_txt_exists_FileDoesNotExist completed");
+		}
+
+		TEST_METHOD(Test_txt_exists_FileDoesExist) {
+			char filename[] = "testing.dat";
+			std::vector<std::string> data;
+
+			Assert::IsTrue(txt_exists(filename));
+
+			fstream file(filename);
+			Assert::IsTrue(file.good());
+
+			Logger::WriteMessage("Test_txt_exists_FileDoesExist completed");
+		}
 	};
+
+
 
 	/*** Tests for Class Room ***/
 	TEST_CLASS(UnitTest_Room)
