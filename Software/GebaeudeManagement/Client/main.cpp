@@ -270,7 +270,7 @@ char selectAction ( const char * descr )
 }
 
 // write client-server communication to logfile
-int writeLog ( char * filename, char * message )
+int writeLog ( const char * filename, const char * message )
 {
   // TODO: implementation
 

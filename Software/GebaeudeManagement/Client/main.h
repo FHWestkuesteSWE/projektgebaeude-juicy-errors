@@ -4,6 +4,8 @@
 // room descriptors
 #define NUM_ROOMS 3
 
+#define FILENAME "client.log"
+
 #define GET_VALUE 1
 #define SET_VALUE 2
 
@@ -19,7 +21,7 @@ int lockOrUnlock    ( const char * descr, int roomID );
 int selectRoom      ( void );
 char selectSensor   ( int room, char * sens );
 
-int writeLog        ( char * filename, char * message );
+int writeLog        ( const char * filename, const char * message );
 int getKBEntry      ( char * kbentry );
 size_t splitString  (const std::string &txt, std::vector<std::string> &strs, char ch);
 
