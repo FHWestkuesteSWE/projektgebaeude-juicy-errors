@@ -7,6 +7,7 @@
 #include <string>
 #include "BasicClient.h"
 #include "main.h"
+#include "../Server/FileHandling.h"
 
 #ifdef UNITTEST
   int kbRetVal = 42; // default integer return value for keyboard entry
@@ -272,7 +273,7 @@ char selectAction ( const char * descr )
 // write client-server communication to logfile
 int writeLog ( const char * filename, const char * message )
 {
-  // TODO: implementation
+  // TODO: convert and pass parameters to writeCSV in FileHandling.h
 
   return 0;
 }
