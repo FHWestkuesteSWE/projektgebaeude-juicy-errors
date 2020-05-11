@@ -196,11 +196,10 @@ void Server::properties(char* out) {
 //
 // read the room configuration from the config file, saves config to global vector roomCFG
 int Server::readCFG() {
-	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
 	char const* filename = CONFIG_NAME;
 
 	roomCFG.clear();
-	if (loadCSV(filename, roomCFG) == EXIT_FAILURE) {
+	if (txt_read(filename, roomCFG) == EXIT_FAILURE) {
 		this->print("Could not access config file");
 		return EXIT_FAILURE;
 	}
@@ -215,41 +214,23 @@ int Server::readCFG() {
 //
 // write the room configuration to the config file
 int Server::writeCFG() {
-	// FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
-	char const *filename = CONFIG_NAME;
-	fstream cfg(filename);								// opens file if file exists, does not create new file if file doesn't exist
+	char const* filename = CONFIG_NAME;
 
-	// Check if a config file exists
-	if (!cfg.good()) {
-		this->print("Config file does not exist");
+	// add CSV Headline at the beginning
+	std::reverse(roomCFG.begin(), roomCFG.end());
+	roomCFG.push_back(CSV_HEADLINE);
+	std::reverse(roomCFG.begin(), roomCFG.end());
 
-		// if file does not exist, create new file
-		cfg.open(filename, ios::out | ios::trunc);		// this is what creates the new file
-		if (cfg.is_open()) {
-			this->print("Created new config file");					
-		} else {
-			this->print("Could not create config file");
-			return EXIT_FAILURE;
-		}
-	} 
-	cfg.close();
+	if (txt_truncate(filename, roomCFG)) {
+		roomCFG.erase(roomCFG.cbegin());		// remove CSV headline
 
-	// write to existing config file
-	cfg.open(filename, ios::out | ios::trunc);		
-	if (cfg.is_open()) {
-		cfg.clear();
-		//cfg.seekp(0, ios::beg);						// seek is not needed since ios::trunc deletes previous content and sets seekp to 0
-		cfg << CSV_HEADLINE;
-		for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
-			cfg << *i << '\n';
-		}
-		cfg.close();
-	} else {
-		this->print("Could not write on existing config file");
+		return EXIT_SUCCESS;
+	}
+	else  {
+		roomCFG.erase(roomCFG.cbegin());		// remove CSV headline
+
 		return EXIT_FAILURE;
 	}
-
-	return EXIT_SUCCESS;
 }
 
 // TEST: no
