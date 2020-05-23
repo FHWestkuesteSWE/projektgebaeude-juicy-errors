@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2461856120">
+        <error id="noConstructor" severity="style" msg="The class &apos;Actuator&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Actuator&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.h" line="3" column="2"/>
+            <symbol>Actuator</symbol>
+        </error>
+        <error id="noConstructor" severity="style" msg="The class &apos;Sensor&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Sensor&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3" column="1"/>
+            <symbol>Sensor</symbol>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier.">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.h" line="34" column="7" info="Function in derived class"/>
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="20" column="15" info="Virtual function in base class"/>
+            <symbol>processRequest</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;msg&apos; should be passed by const reference." verbose="Parameter &apos;msg&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="49" column="32"/>
+            <symbol>msg</symbol>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &apos;roomProps&apos; should be passed by const reference." verbose="Parameter &apos;roomProps&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="277" column="36"/>
+            <symbol>roomProps</symbol>
+        </error>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:41:7" my-argnr="1" my-argname="out" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="189" col="11" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="getNthWord" lineNumber="22"/>
+    <functiondecl functionName="start" lineNumber="32"/>
+    <functiondecl functionName="print" lineNumber="49"/>
+    <functiondecl functionName="processRequest" lineNumber="61"/>
+    <functiondecl functionName="properties" lineNumber="180"/>
+    <functiondecl functionName="readCFG" lineNumber="198"/>
+    <functiondecl functionName="writeCFG" lineNumber="217"/>
+    <functiondecl functionName="build" lineNumber="258"/>
+    <functiondecl functionName="createRoom" lineNumber="277"/>
+    <functiondecl functionName="addRoom" lineNumber="298"/>
+    <functiondecl functionName="deleteRoom" lineNumber="310"/>
+    <functioncall functionName="BasicServer"/>
+    <functioncall functionName="CONFIG_NAME"/>
+    <functioncall functionName="ERR_BAD_QUERY"/>
+    <functioncall functionName="ERR_BAD_ROOM_ID"/>
+    <functioncall functionName="ERR_BAD_SENSOR_ID"/>
+    <functioncall functionName="ERR_BAD_SENSOR_TYPE"/>
+    <functioncall functionName="ERR_BAD_SENSOR_VAL"/>
+    <functioncall functionName="Room"/>
+    <functioncall functionName="SENSOR_DOOR"/>
+    <functioncall functionName="SENSOR_TEMP"/>
+    <functioncall functionName="SENSOR_TOILET"/>
+    <functioncall functionName="Server"/>
+    <functioncall functionName="addRoom"/>
+    <functioncall functionName="ans"/>
+    <functioncall functionName="append"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="build"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="cbegin"/>
+    <functioncall functionName="cend"/>
+    <functioncall functionName="cfg"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="compare"/>
+    <functioncall functionName="createRoom"/>
+    <functioncall functionName="ctime"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="deleteRoom"/>
+    <functioncall functionName="descr"/>
+    <functioncall functionName="erase"/>
+    <functioncall functionName="err"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="filename"/>
+    <functioncall functionName="find"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getNthWord"/>
+    <functioncall functionName="good"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="is_open"/>
+    <functioncall functionName="iss"/>
+    <functioncall functionName="length"/>
+    <functioncall functionName="loadCSV"/>
+    <functioncall functionName="max_length"/>
+    <functioncall functionName="min"/>
+    <functioncall functionName="mytime"/>
+    <functioncall functionName="nullptr"/>
+    <functioncall functionName="numDoors"/>
+    <functioncall functionName="numTempSensors"/>
+    <functioncall functionName="numToilets"/>
+    <functioncall functionName="open"/>
+    <functioncall functionName="opt"/>
+    <functioncall functionName="out"/>
+    <functioncall functionName="port"/>
+    <functioncall functionName="print"/>
+    <functioncall functionName="properties"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="readCFG"/>
+    <functioncall functionName="req"/>
+    <functioncall functionName="request"/>
+    <functioncall functionName="response"/>
+    <functioncall functionName="return"/>
+    <functioncall functionName="roomCFG"/>
+    <functioncall functionName="roomDescr"/>
+    <functioncall functionName="roomProps"/>
+    <functioncall functionName="rp"/>
+    <functioncall functionName="s"/>
+    <functioncall functionName="sensor"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="start"/>
+    <functioncall functionName="stoi"/>
+    <functioncall functionName="strlen"/>
+    <functioncall functionName="strncpy"/>
+    <functioncall functionName="substr"/>
+    <functioncall functionName="switch"/>
+    <functioncall functionName="temp1"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="timestamp"/>
+    <functioncall functionName="trunc"/>
+    <functioncall functionName="val"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="writeCFG"/>
+  </FileInfo>
+</analyzerinfo>

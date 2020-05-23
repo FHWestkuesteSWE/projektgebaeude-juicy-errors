@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="548691086">
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &apos;BasicServer::echo&apos;" verbose="Unused private function: &apos;BasicServer::echo&apos;" cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="19" column="7"/>
+            <symbol>BasicServer::echo</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="session" lineNumber="9"/>
+    <functiondecl functionName="start" lineNumber="37"/>
+    <functiondecl functionName="echo" lineNumber="51"/>
+    <functiondecl functionName="processRequest" lineNumber="56"/>
+    <functioncall functionName="BasicServer"/>
+    <functioncall functionName="a"/>
+    <functioncall functionName="accept"/>
+    <functioncall functionName="ans"/>
+    <functioncall functionName="answer"/>
+    <functioncall functionName="atoi"/>
+    <functioncall functionName="bind"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="buffer"/>
+    <functioncall functionName="catch"/>
+    <functioncall functionName="endpoint"/>
+    <functioncall functionName="error"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="io_service"/>
+    <functioncall functionName="max_length"/>
+    <functioncall functionName="min"/>
+    <functioncall functionName="port"/>
+    <functioncall functionName="processRequest"/>
+    <functioncall functionName="read_some"/>
+    <functioncall functionName="req"/>
+    <functioncall functionName="request"/>
+    <functioncall functionName="session"/>
+    <functioncall functionName="sock"/>
+    <functioncall functionName="socket"/>
+    <functioncall functionName="strlen"/>
+    <functioncall functionName="strncpy"/>
+    <functioncall functionName="system_error"/>
+    <functioncall functionName="t"/>
+    <functioncall functionName="this"/>
+    <functioncall functionName="v4"/>
+    <functioncall functionName="what"/>
+    <functioncall functionName="write"/>
+  </FileInfo>
+</analyzerinfo>
