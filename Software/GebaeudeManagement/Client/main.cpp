@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     BasicClient c(argv[1], argv[2]);
     char req[1024];
     char ans[1024];
-    int numRooms = 0; // number of configured rooms
+    // int numRooms = 0; // number of configured rooms
 
     int roomNumber = -1;
     int roomAction = 0; // either GET_VALUE or SET_VALUE
@@ -46,7 +46,8 @@ int main(int argc, char* argv[])
 
       //strcpy ( ans, "living1 living2 kitchen1 lavatory1 garden1 garage1 patio1" ); // because server doesn't use delimiters yet
       cout << "DEBUG: Answer from server: " << ans << endl; 
-      numRooms = splitString ( (string)ans, roomDescriptors, ' ' ); // split string into vector of strings
+      // numRooms = 
+      splitString ( (string)ans, roomDescriptors, ' ' ); // split string into vector of strings
       // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
       // ---
 
@@ -317,7 +318,6 @@ int writeLog ( const char * filename, const char * message )
 // returns user input (changes behavior for UNITTEST)
 int getKBEntry ( char * kbentry )
 {
-  int choice = 0;
 #ifdef UNITTEST
   if ( !kbentry ) {
     return kbRetVal;
@@ -328,6 +328,7 @@ int getKBEntry ( char * kbentry )
   } 
 #else
   if ( !kbentry ) {
+    int choice; // = 0;
     std::cin >> choice; 
     return choice;
   }
