@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1241288359">
+        <error id="preprocessorErrorDirective" severity="error" msg="#error Multithreaded RTL must be selected." verbose="#error Multithreaded RTL must be selected.">
+            <location file="C:\Program Files (x86)\boost_1_72_0\boost\asio\detail\push_options.hpp" line="169" column="0"/>
+        </error>
+</analyzerinfo>

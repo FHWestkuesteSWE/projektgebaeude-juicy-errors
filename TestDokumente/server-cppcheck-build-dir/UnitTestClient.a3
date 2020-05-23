@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2485864800">
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41" column="5"/>
+        </error>
+</analyzerinfo>

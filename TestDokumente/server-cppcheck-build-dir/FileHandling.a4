@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1934017554">
+        <error id="constParameter" severity="style" msg="Parameter &apos;line&apos; can be declared with const" verbose="Parameter &apos;line&apos; can be declared with const" cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\FileHandling.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\FileHandling.cpp" line="66" column="48"/>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="txt_read" lineNumber="5"/>
+    <functiondecl functionName="txt_truncate" lineNumber="31"/>
+    <functiondecl functionName="txt_putLine" lineNumber="66"/>
+    <functiondecl functionName="txt_exists" lineNumber="92"/>
+    <functioncall functionName="app"/>
+    <functioncall functionName="cbegin"/>
+    <functioncall functionName="cend"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="eof"/>
+    <functioncall functionName="file"/>
+    <functioncall functionName="filename"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getline"/>
+    <functioncall functionName="good"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="in"/>
+    <functioncall functionName="is_open"/>
+    <functioncall functionName="open"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="temp"/>
+    <functioncall functionName="trunc"/>
+    <functioncall functionName="txt_exists"/>
+    <functioncall functionName="while"/>
+  </FileInfo>
+</analyzerinfo>

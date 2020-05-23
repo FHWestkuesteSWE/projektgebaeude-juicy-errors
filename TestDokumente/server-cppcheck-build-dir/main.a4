@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3777998320">
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &apos;!validChoice&apos; is always false" verbose="Condition &apos;!validChoice&apos; is always false" cwe="570">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="149" column="15" info="Condition &apos;!validChoice&apos; is always false"/>
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="147" column="21" info="Assignment &apos;validChoice=true&apos;, assigned value is 1"/>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="44" col="16" call-argexpr="req" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="45" col="16" call-argexpr="ans" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:22:6" call-funcname="selectSensor" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="63" col="27" call-argexpr="roomNumber" call-argvaluetype="0" call-argvalue="0" warning="true">
+  <path file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="55" col="26" info="Assuming that condition 'roomNumber<0' is not redundant"/>
+</function-call><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:22:6" call-funcname="selectSensor" call-argnr="2" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="63" col="27" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" call-funcname="selectAction" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="70" col="38" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:17:5" call-funcname="askForValue" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="80" col="35" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="111" col="20" call-argexpr="req" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="112" col="20" call-argexpr="ans" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="145" col="26" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="166" col="15" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="166" col="15" call-argexpr="choice" call-argvaluetype="4" call-argvalue="0"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="190" col="23" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="215" col="16" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/><function-call call-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="258" col="16" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/>  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" my-argnr="1" my-argname="descr" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="250" col="42" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" my-argnr="1" my-argname="descr" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="250" col="42" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="main" lineNumber="22"/>
+    <functiondecl functionName="askForValue" lineNumber="124"/>
+    <functiondecl functionName="lockOrUnlock" lineNumber="156"/>
+    <functiondecl functionName="selectRoom" lineNumber="175"/>
+    <functiondecl functionName="selectSensor" lineNumber="197"/>
+    <functiondecl functionName="selectAction" lineNumber="243"/>
+    <functiondecl functionName="writeLog" lineNumber="277"/>
+    <functiondecl functionName="getKBEntry" lineNumber="320"/>
+    <functiondecl functionName="splitString" lineNumber="345"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="action"/>
+    <functioncall functionName="ans"/>
+    <functioncall functionName="app"/>
+    <functioncall functionName="askForValue"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="c"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="ch"/>
+    <functioncall functionName="choice"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="decided"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="descr"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="filename"/>
+    <functioncall functionName="find"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getKBEntry"/>
+    <functioncall functionName="good"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="initialPos"/>
+    <functioncall functionName="int"/>
+    <functioncall functionName="is_open"/>
+    <functioncall functionName="kbRetValCh"/>
+    <functioncall functionName="kbentry"/>
+    <functioncall functionName="localtime"/>
+    <functioncall functionName="lockOrUnlock"/>
+    <functioncall functionName="logfile"/>
+    <functioncall functionName="min"/>
+    <functioncall functionName="now"/>
+    <functioncall functionName="open"/>
+    <functioncall functionName="pos"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="req"/>
+    <functioncall functionName="return"/>
+    <functioncall functionName="room"/>
+    <functioncall functionName="roomDescriptors"/>
+    <functioncall functionName="roomID"/>
+    <functioncall functionName="roomNumber"/>
+    <functioncall functionName="selectAction"/>
+    <functioncall functionName="selectRoom"/>
+    <functioncall functionName="selectSensor"/>
+    <functioncall functionName="sendRequest"/>
+    <functioncall functionName="sens"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="splitString"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="strValue"/>
+    <functioncall functionName="strcat"/>
+    <functioncall functionName="strcmp"/>
+    <functioncall functionName="strcpy"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="substr"/>
+    <functioncall functionName="switch"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="tm_mday"/>
+    <functioncall functionName="tm_sec"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="trunc"/>
+    <functioncall functionName="validChoice"/>
+    <functioncall functionName="value"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="writeLog"/>
+  </FileInfo>
+</analyzerinfo>

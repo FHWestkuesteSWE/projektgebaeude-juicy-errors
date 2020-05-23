@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2625579836">
+        <error id="noConstructor" severity="style" msg="The class &apos;Sensor&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Sensor&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3" column="1"/>
+            <symbol>Sensor</symbol>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;dev&apos; can be reduced." verbose="The scope of the variable &apos;dev&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.cpp" line="31" column="9"/>
+            <symbol>dev</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="getBooleanValue" lineNumber="7"/>
+    <functiondecl functionName="getDoubleValue" lineNumber="21"/>
+    <functioncall functionName="RAND_MAX"/>
+    <functioncall functionName="dev"/>
+    <functioncall functionName="double"/>
+    <functioncall functionName="fMin"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="lastValue"/>
+    <functioncall functionName="r"/>
+    <functioncall functionName="rand"/>
+    <functioncall functionName="srand"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="true"/>
+  </FileInfo>
+</analyzerinfo>

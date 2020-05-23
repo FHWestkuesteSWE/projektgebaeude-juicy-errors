@@ -51,7 +51,8 @@ int main(int argc, char* argv[])
       // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
       // ---
 
-      //while ( roomNumber < 0 ) roomNumber = selectRoom (); 
+      // BUG - roomNumber is never changed -> INFINITE LOOP
+      while ( roomNumber < 0 ) roomNumber = selectRoom (); 
       
       // -----------------------------------------------------------------------
       // MENU: select sensor/actuator

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2158156153">
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="sendRequest" lineNumber="8"/>
+    <functioncall functionName="Client"/>
+    <functioncall functionName="protected:"/>
+  </FileInfo>
+</analyzerinfo>

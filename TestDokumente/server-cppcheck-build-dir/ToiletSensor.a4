@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="224158251">
+        <error id="noConstructor" severity="style" msg="The class &apos;Sensor&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Sensor&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\ToiletSensor.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3" column="1"/>
+            <symbol>Sensor</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="getToiletStatus" lineNumber="7"/>
+    <functioncall functionName="ToiletSensor"/>
+    <functioncall functionName="getBooleanValue"/>
+  </FileInfo>
+</analyzerinfo>

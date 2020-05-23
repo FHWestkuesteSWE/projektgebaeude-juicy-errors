@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1228793555">
+        <error id="noConstructor" severity="style" msg="The class &apos;Actuator&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Actuator&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\DoorActuator.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.h" line="3" column="2"/>
+            <symbol>Actuator</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functioncall functionName="DoorActuator"/>
+  </FileInfo>
+</analyzerinfo>

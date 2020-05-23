@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.0"/>
+    <errors>
+        <error id="knownConditionTrueFalse" severity="style" msg="Condition &amp;#039;!validChoice&amp;#039; is always false" verbose="Condition &amp;#039;!validChoice&amp;#039; is always false" cwe="570" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="149" info="Condition &amp;#039;!validChoice&amp;#039; is always false"/>
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="147" info="Assignment &amp;#039;validChoice=true&amp;#039;, assigned value is 1"/>
+        </error>
+        <error id="noConstructor" severity="style" msg="The class &amp;#039;Actuator&amp;#039; does not have a constructor although it has private member variables." verbose="The class &amp;#039;Actuator&amp;#039; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Actuator.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.h" line="3"/>
+        </error>
+        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &amp;#039;BasicServer::echo&amp;#039;" verbose="Unused private function: &amp;#039;BasicServer::echo&amp;#039;" cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/BasicServer.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="19"/>
+        </error>
+        <error id="noConstructor" severity="style" msg="The class &amp;#039;Sensor&amp;#039; does not have a constructor although it has private member variables." verbose="The class &amp;#039;Sensor&amp;#039; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/DoorLockingSensor.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3"/>
+        </error>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.h" line="34" info="Function in derived class"/>
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="20" info="Virtual function in base class"/>
+        </error>
+        <error id="constParameter" severity="style" msg="Parameter &amp;#039;line&amp;#039; can be declared with const" verbose="Parameter &amp;#039;line&amp;#039; can be declared with const" cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/FileHandling.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\FileHandling.cpp" line="66"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;txt_putLine&amp;#039; is never used." verbose="The function &amp;#039;txt_putLine&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\FileHandling.cpp" line="66"/>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;Room::_curTemp&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;Room::_curTemp&amp;#039; is not initialized in the constructor." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="16"/>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &amp;#039;_descr&amp;#039; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&amp;#039;t explicitly write them to the initialization list. You could avoid assigning &amp;#039;_descr&amp;#039; a value by passing the value to the constructor in the initialization list." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="18"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;descr&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;descr&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="16"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;descr&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;descr&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="180"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getDescriptor&amp;#039; is never used." verbose="The function &amp;#039;getDescriptor&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="142"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getHasWindows&amp;#039; is never used." verbose="The function &amp;#039;getHasWindows&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="167"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumDoors&amp;#039; is never used." verbose="The function &amp;#039;getNumDoors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="144"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getNumTempSensors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="145"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumToilets&amp;#039; is never used." verbose="The function &amp;#039;getNumToilets&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="143"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="147"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="162"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="152"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="157"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getTemperature&amp;#039; is never used." verbose="The function &amp;#039;getTemperature&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="78"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getWindowStatus&amp;#039; is never used." verbose="The function &amp;#039;getWindowStatus&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="172"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;openCloseDoor&amp;#039; is never used." verbose="The function &amp;#039;openCloseDoor&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="87"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;openCloseWindow&amp;#039; is never used." verbose="The function &amp;#039;openCloseWindow&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="118"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setDescriptor&amp;#039; is never used." verbose="The function &amp;#039;setDescriptor&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="180"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setHasWindows&amp;#039; is never used." verbose="The function &amp;#039;setHasWindows&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="184"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumDoors&amp;#039; is never used." verbose="The function &amp;#039;setNumDoors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="182"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;setNumTempSensors&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="183"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumToilets&amp;#039; is never used." verbose="The function &amp;#039;setNumToilets&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="181"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setTemperature&amp;#039; is never used." verbose="The function &amp;#039;setTemperature&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="70"/>
+        </error>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;dev&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;dev&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Sensor.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.cpp" line="31"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;msg&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;msg&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="51"/>
+        </error>
+        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;roomProps&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;roomProps&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="260"/>
+        </error>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/UnitTestServer/UnitTestServer.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\UnitTestServer\UnitTestServer.cpp" line="40"/>
+        </error>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="23.05.2020">
+            <location file0="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/UnitTestClient/UnitTestClient.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41"/>
+        </error>
+        <error id="preprocessorErrorDirective" severity="error" msg="#error Multithreaded RTL must be selected." verbose="#error Multithreaded RTL must be selected." sinceDate="23.05.2020">
+            <location file="..\..\..\Program Files (x86)\boost_1_72_0\boost\asio\detail\push_options.hpp" line="169"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;echo&amp;#039; is never used." verbose="The function &amp;#039;echo&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.cpp" line="51"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setBooleanValue&amp;#039; is never used." verbose="The function &amp;#039;setBooleanValue&amp;#039; is never used." cwe="561" sinceDate="23.05.2020">
+            <location file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.cpp" line="3"/>
+        </error>
+    </errors>
+</results>
