@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="3536596234">
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;numRooms&apos; can be reduced." verbose="The scope of the variable &apos;numRooms&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="28" column="9"/>
+            <symbol>numRooms</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;numRooms&apos; is assigned a value that is never used." verbose="Variable &apos;numRooms&apos; is assigned a value that is never used." cwe="563">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="28" column="18"/>
+            <symbol>numRooms</symbol>
+        </error>
+        <error id="unusedVariable" severity="style" msg="Unused variable: choice" verbose="Unused variable: choice" cwe="563">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="27" column="10"/>
+            <symbol>choice</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;choice&apos; is assigned a value that is never used." verbose="Variable &apos;choice&apos; is assigned a value that is never used." cwe="563">
+            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="321" column="14"/>
+            <symbol>choice</symbol>
+        </error>
+  <FileInfo check="ctu">
+<function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="45" col="16" call-argexpr="req" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="46" col="16" call-argexpr="ans" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:22:6" call-funcname="selectSensor" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="62" col="27" call-argexpr="roomNumber" call-argvaluetype="0" call-argvalue="0" warning="true">
+  <path file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\main.cpp" line="54" col="26" info="Assuming that condition 'roomNumber<0' is not redundant"/>
+</function-call><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:22:6" call-funcname="selectSensor" call-argnr="2" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="62" col="27" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" call-funcname="selectAction" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="69" col="38" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:17:5" call-funcname="askForValue" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="79" col="35" call-argexpr="sens" call-argvaluetype="7" call-argvalue="255"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="110" col="20" call-argexpr="req" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:24:5" call-funcname="writeLog" call-argnr="2" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="111" col="20" call-argexpr="ans" call-argvaluetype="7" call-argvalue="1024"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="144" col="26" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="165" col="15" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="165" col="15" call-argexpr="choice" call-argvaluetype="4" call-argvalue="0"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="189" col="23" call-argexpr="NULL" call-argvaluetype="0" call-argvalue="0"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="214" col="16" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/><function-call call-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:25:5" call-funcname="getKBEntry" call-argnr="1" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="257" col="16" call-argexpr="&choice" call-argvaluetype="7" call-argvalue="1"/>  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" my-argnr="1" my-argname="descr" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="249" col="42" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.h:19:6" my-argnr="1" my-argname="descr" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Client/main.cpp" line="249" col="42" value="0"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="main" lineNumber="22"/>
+    <functiondecl functionName="askForValue" lineNumber="123"/>
+    <functiondecl functionName="lockOrUnlock" lineNumber="155"/>
+    <functiondecl functionName="selectRoom" lineNumber="174"/>
+    <functiondecl functionName="selectSensor" lineNumber="196"/>
+    <functiondecl functionName="selectAction" lineNumber="242"/>
+    <functiondecl functionName="writeLog" lineNumber="276"/>
+    <functiondecl functionName="getKBEntry" lineNumber="319"/>
+    <functiondecl functionName="splitString" lineNumber="344"/>
+    <functioncall functionName="NULL"/>
+    <functioncall functionName="action"/>
+    <functioncall functionName="ans"/>
+    <functioncall functionName="app"/>
+    <functioncall functionName="askForValue"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="c"/>
+    <functioncall functionName="c_str"/>
+    <functioncall functionName="ch"/>
+    <functioncall functionName="choice"/>
+    <functioncall functionName="clear"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="decided"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="descr"/>
+    <functioncall functionName="false"/>
+    <functioncall functionName="filename"/>
+    <functioncall functionName="find"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="getKBEntry"/>
+    <functioncall functionName="good"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="initialPos"/>
+    <functioncall functionName="is_open"/>
+    <functioncall functionName="kbRetValCh"/>
+    <functioncall functionName="kbentry"/>
+    <functioncall functionName="localtime"/>
+    <functioncall functionName="lockOrUnlock"/>
+    <functioncall functionName="logfile"/>
+    <functioncall functionName="min"/>
+    <functioncall functionName="now"/>
+    <functioncall functionName="open"/>
+    <functioncall functionName="pos"/>
+    <functioncall functionName="push_back"/>
+    <functioncall functionName="req"/>
+    <functioncall functionName="room"/>
+    <functioncall functionName="roomDescriptors"/>
+    <functioncall functionName="roomID"/>
+    <functioncall functionName="roomNumber"/>
+    <functioncall functionName="selectAction"/>
+    <functioncall functionName="selectRoom"/>
+    <functioncall functionName="selectSensor"/>
+    <functioncall functionName="sendRequest"/>
+    <functioncall functionName="sens"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="splitString"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="strValue"/>
+    <functioncall functionName="strcat"/>
+    <functioncall functionName="strcmp"/>
+    <functioncall functionName="strcpy"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="substr"/>
+    <functioncall functionName="switch"/>
+    <functioncall functionName="time"/>
+    <functioncall functionName="tm_mday"/>
+    <functioncall functionName="tm_sec"/>
+    <functioncall functionName="true"/>
+    <functioncall functionName="trunc"/>
+    <functioncall functionName="validChoice"/>
+    <functioncall functionName="value"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="writeLog"/>
+  </FileInfo>
+</analyzerinfo>

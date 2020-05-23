@@ -24,7 +24,6 @@ int main(int argc, char* argv[])
     BasicClient c(argv[1], argv[2]);
     char req[1024];
     char ans[1024];
-    char choice;
     int numRooms = 0; // number of configured rooms
 
     int roomNumber = -1;
@@ -58,7 +57,7 @@ int main(int argc, char* argv[])
       // -----------------------------------------------------------------------
       // return here unless user choses to go 'back' to root (select room)
       char sens[255] = ""; // sensor/actuator type ( temp, door, toilet/wc )
-      char strValue[255];
+      char strValue[255] = "";
       while ( selectSensor(roomNumber,sens) != 'b' ) // select sensor ( (t)emp, (d)oor, (w)c )
       {
 
@@ -175,7 +174,7 @@ int selectRoom ( void )
 { 
   int 
     choice, 
-    roomCount = roomDescriptors.size();
+    roomCount = (int)roomDescriptors.size();
 
   cout << "----------------------------------------------------" << endl;
   std::cout << "\nSelect room \n";
@@ -341,7 +340,7 @@ int getKBEntry ( char * kbentry )
 
 
 // third party code (stackoverflow.com)
-size_t splitString ( const std::string &txt, std::vector<std::string> &strs, char ch )
+int splitString ( const std::string &txt, std::vector<std::string> &strs, char ch )
 {
     size_t pos = txt.find( ch );
     size_t initialPos = 0;
@@ -358,6 +357,6 @@ size_t splitString ( const std::string &txt, std::vector<std::string> &strs, cha
     // Add the last one
     strs.push_back( txt.substr( initialPos, std::min( pos, txt.size() ) - initialPos + 1 ) );
 
-    return strs.size();
+    return (int)strs.size();
 }
 

@@ -35,7 +35,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( askForValue (descr, roomId ), 42 ); // expecting default kb entry for UNITTEST
+      Assert::AreEqual( 42, askForValue (descr, roomId ) ); // expecting default kb entry for UNITTEST
     }
 
     TEST_METHOD( descrIsEmpty )
@@ -45,7 +45,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( askForValue (descr, roomId ), -1 ); // expecting -1 for ERROR
+      Assert::AreEqual( -1, askForValue (descr, roomId ) ); // expecting -1 for ERROR
     }
 
     /* does not even compile...
@@ -68,7 +68,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( askForValue (descr, roomId ), -1 ); // expecting -1 for ERROR
+      Assert::AreEqual( -1, askForValue (descr, roomId ) ); // expecting -1 for ERROR
     }
   };
 
@@ -87,7 +87,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( lockOrUnlock (descr, roomId ), -1 ); // expecting -1 for ERROR
+      Assert::AreEqual( -1, lockOrUnlock (descr, roomId ) ); // expecting -1 for ERROR
     }
     
     TEST_METHOD( roomIdInRange )
@@ -97,7 +97,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( askForValue (descr, roomId ), -1 ); // expecting -1 for ERROR
+      Assert::AreEqual( -1, askForValue (descr, roomId ) ); // expecting -1 for ERROR
     }
 
   };
@@ -116,7 +116,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( selectRoom (), -1 ); // expecting -1 for ERROR
+      Assert::AreEqual( -1, selectRoom () ); // expecting -1 for ERROR
     }
     
     TEST_METHOD( returnsRoomID )
@@ -126,7 +126,7 @@ namespace UnitTestClient
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
       roomDescriptors.push_back ("living1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( selectRoom (), kbRetVal );
+      Assert::AreEqual( kbRetVal, selectRoom () );
     }
 
   };
@@ -147,7 +147,7 @@ namespace UnitTestClient
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
       char sens[5];
 
-      Assert::AreEqual( selectSensor (room, sens), kbRetValCh ); // expecting -1 for ERROR
+      Assert::AreEqual( kbRetValCh, selectSensor (room, sens) ); 
     }
     
   };
@@ -167,7 +167,7 @@ namespace UnitTestClient
       roomDescriptors.clear(); // clear list
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
 
-      Assert::AreEqual( selectAction (descr), 'g' ); // expecting keyboard input 
+      Assert::AreEqual( 'g', selectAction (descr) ); // expecting keyboard input 
     }
 
   };
@@ -190,7 +190,7 @@ namespace UnitTestClient
 
       int ret = stat (filename, &info);
 
-      Assert::AreEqual( ret, 0); // should return 0 if file exists
+      Assert::AreEqual( 0, ret ); // should return 0 if file exists
 
       if (!ret) remove(filename); // delete testfile
     }
@@ -209,7 +209,8 @@ namespace UnitTestClient
       in.close();
       // ---
 
-      Assert::AreEqual( message, line.c_str() ); // expecting keyboard input 
+      size_t pos = line.find (message); // looking for the position of the test message in line
+      Assert::AreNotSame ( 0, (int)pos ); // position is no null
       
       // delete file if it was created
       struct stat info;

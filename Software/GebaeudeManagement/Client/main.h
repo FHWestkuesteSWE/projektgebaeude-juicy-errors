@@ -23,7 +23,7 @@ char selectSensor   ( int room, char * sens );
 
 int writeLog        ( const char * filename, const char * message );
 int getKBEntry      ( char * kbentry );
-size_t splitString  (const std::string &txt, std::vector<std::string> &strs, char ch);
+int splitString  (const std::string &txt, std::vector<std::string> &strs, char ch);
 
 #endif /* INC_MAIN_H */
 
