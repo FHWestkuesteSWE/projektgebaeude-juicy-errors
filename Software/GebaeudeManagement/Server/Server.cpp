@@ -30,6 +30,8 @@ string getNthWord(string s, size_t n) {
 //
 // start the server
 void Server::start(char port[]) {
+	std::string str = string("Launching Server at 127.0.0.1 on Port ");
+	str.append(port);
 	
 	if (build() != EXIT_SUCCESS) {
 		this->print("Failed to initialize building");
@@ -37,7 +39,7 @@ void Server::start(char port[]) {
 		return;
 	}
 	this->print("Building initialized");
-	this->print("Launching Server at 127.0.0.1 on Port ");
+	this->print(str);
 
 	BasicServer::start(port);
 }
@@ -199,7 +201,7 @@ int Server::readCFG() {
 	char const* filename = CONFIG_NAME;
 
 	roomCFG.clear();
-	if (txt_read(filename, roomCFG) == EXIT_FAILURE) {
+	if (!txt_read(filename, roomCFG)) {
 		this->print("Could not access config file");
 		return EXIT_FAILURE;
 	}
