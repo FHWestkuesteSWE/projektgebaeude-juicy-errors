@@ -171,7 +171,7 @@ void Server::processRequest(char req[], char ans[]) {
 	}
 
 	// copy response to server answer
-	strncpy(ans, response, min<int>(max_length, strlen(ans) + 1));
+	strncpy(ans, response, std::min(max_length, (const int)strlen(ans) + 1));
 	cout << timestamp << " - A - " << response << endl;
 }
 
@@ -188,7 +188,7 @@ void Server::properties(char* out) {
 		temp1.append(" ");
 		temp2.append(temp1);	
 	}
-	strncpy(out, temp2.c_str(), min<int>(max_length, strlen(out) + 1));
+	strncpy(out, temp2.c_str(), std::min(max_length, (const int)strlen(out) + 1));
 	temp1.erase();
 	temp2.erase();
 }

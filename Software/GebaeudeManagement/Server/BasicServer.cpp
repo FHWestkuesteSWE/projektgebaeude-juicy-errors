@@ -49,7 +49,7 @@ void BasicServer::start(char port[]) {
 }
 
 void BasicServer::echo(char req[], char ans[]) {
-	strncpy(ans, req, std::min<int>(max_length,strlen(ans)+1));
+	strncpy(ans, req, std::min(max_length, (const int)strlen(ans) + 1));
 	std::cout << req;
 }
 
