@@ -7,8 +7,7 @@
 
 //TEST: no
 //
-// default Constructor
-Room::Room() {}
+
 
 //TEST: no
 //
@@ -146,22 +145,22 @@ int Room::getNumTempSensors() { return _numTempSensors; }
 
 int Room::getSizeDoorActuators()
 {
-	return this->_doorActuators.size();
+	return (int) this->_doorActuators.size();
 }
 
 int Room::getSizeTempSensors()
 {
-	return this->_temperatureSensors.size();
+	return (int) this->_temperatureSensors.size();
 }
 
 int Room::getSizeToiletSensors()
 {
-	return this->_toiletSensors.size();
+	return (int) this->_toiletSensors.size();
 }
 
 int Room::getSizeDoorLockingSensors()
 {
-	return this->_doorLockingSensors[0].size() + this->_doorLockingSensors[1].size();
+	return (int) this->_doorLockingSensors[0].size() + this->_doorLockingSensors[1].size();
 }
 
 bool Room::getHasWindows()
