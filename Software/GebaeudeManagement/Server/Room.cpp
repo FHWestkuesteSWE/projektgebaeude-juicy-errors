@@ -19,7 +19,7 @@ Room::Room(const std::string descr, int numToilets, int numDoors, int numTempSen
 	_numDoors = numDoors;
 	_numTempSensors = numTempSensors;
 	_hasWindows = hasWindows;
-	_curTemp = 0;
+	_curTemp = 0; // initialize because of RAII principle
 	designRoom();
 }
 
