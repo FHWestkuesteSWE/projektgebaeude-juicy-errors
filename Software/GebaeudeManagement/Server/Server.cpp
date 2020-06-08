@@ -182,7 +182,7 @@ void Server::processRequest(char req[], char ans[]) {
 void Server::properties(char* out) {
 	string temp1, temp2;
 
-	for (auto i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {
+	for (std::vector<std::string>::const_iterator i = roomCFG.cbegin(); i != roomCFG.cend(); i++) { //Entwurfsmuster: Iterator-Pattern
 		temp1 = *i;
 		temp1 = getNthWord(temp1, 1);
 		temp1.append(" ");
@@ -246,8 +246,8 @@ int Server::build() {
 	}
 	
 	// create rooms according to config
-	for (int i = 0; i < roomCFG.size(); i++) {
-		createRoom(roomCFG[i]);
+	for (std::vector<std::string>::const_iterator i = roomCFG.cbegin(); i != roomCFG.cend(); i++) {  //Entwurfsmuster: Iterator-Pattern
+		createRoom(*i);
 	}
 
 	return EXIT_SUCCESS;
