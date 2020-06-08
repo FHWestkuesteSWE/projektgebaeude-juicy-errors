@@ -12,14 +12,14 @@
 //TEST: no
 //
 // Constructor
-Room::Room(std::string descr, int numToilets, int numDoors, int numTempSensors, bool hasWindows)
+Room::Room(const std::string descr, int numToilets, int numDoors, int numTempSensors, bool hasWindows)
 {
 	_descr = descr;
 	_numToilets = numToilets;
 	_numDoors = numDoors;
 	_numTempSensors = numTempSensors;
 	_hasWindows = hasWindows;
-	
+	_curTemp = 0;
 	designRoom();
 }
 
@@ -73,7 +73,7 @@ void Room::setTemperature(double temp)
 }
 
 // TEST: no
-//
+
 double Room::getTemperature()
 {
 	//return average of both temp sensors
@@ -81,7 +81,7 @@ double Room::getTemperature()
 }
 
 // TEST: no
-//
+
 //set isOpen val to door with index idx
 void Room::openCloseDoor(int idx, bool isOpen)
 {
@@ -92,7 +92,7 @@ void Room::openCloseDoor(int idx, bool isOpen)
 }
 
 // TEST: no
-//
+
 bool Room::getDoorStatus(int idx)
 {
 	//only use one sensor (other for checker)
@@ -176,7 +176,7 @@ bool Room::getWindowStatus()
 // TEST: no
 //
 // Setter 
-void Room::setDescriptor(std::string descr) { _descr = descr; }
+void Room::setDescriptor(const std::string descr) { _descr = descr; }
 void Room::setNumToilets(int numToilets) { _numToilets = numToilets; }
 void Room::setNumDoors(int numDoors) { _numDoors = numDoors; }
 void Room::setNumTempSensors(int numTempSensors) { _numTempSensors = numTempSensors; }

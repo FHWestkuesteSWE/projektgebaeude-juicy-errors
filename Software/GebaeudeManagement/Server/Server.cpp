@@ -48,7 +48,7 @@ void Server::start(char port[]) {
 // TEST: no
 //
 // print system message on server console
-void Server::print(std::string msg) {
+void Server::print(const std::string msg) {
 	time_t mytime = time(nullptr);
 	string timestamp(ctime(&mytime));
 	timestamp = timestamp.substr(0, timestamp.length() - 1);
@@ -257,7 +257,7 @@ int Server::build() {
 // TEST: formatting of roomProps correct and false, or roomProps NULL or empty
 //
 // add a room to the server configuration
-int Server::createRoom(std::string roomProps) {
+int Server::createRoom(const std::string roomProps) {
 	std::string descr;
 	int numToilets, numDoors, numTempSensors;
 	Room* rp;

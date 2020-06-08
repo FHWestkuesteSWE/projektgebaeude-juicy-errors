@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include<time.h> 
 
+
+
+Sensor::Sensor()
+{	
+}
+
+Sensor::~Sensor()
+{
+}
+
 // TEST: no
 //
 bool Sensor::getBooleanValue()
@@ -28,12 +38,13 @@ double Sensor::getDoubleValue(double fMin, double fMax, double lastValue)
 		return fMax;
 
 	srand(time(0));
-	double dev;
+	
 	int r = rand() % 100; // random integer between 0..100
 	double f = (double)rand() / RAND_MAX; // random value between 0..1
 
 	if(lastValue > 0.0)
 	{
+		double dev;
 		dev = 0.1 * lastValue * f; // deviation between 0..10%
 
 		if (r > 50) 

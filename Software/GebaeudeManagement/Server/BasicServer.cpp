@@ -48,10 +48,10 @@ void BasicServer::start(char port[]) {
 	}
 }
 
-void BasicServer::echo(char req[], char ans[]) {
-	strncpy(ans, req, std::min(max_length, (const int)strlen(ans) + 1));
-	std::cout << req;
-}
+//void BasicServer::echo(char req[], char ans[]) {
+//	strncpy(ans, req, std::min(max_length, (const int)strlen(ans) + 1));
+//	std::cout << req;
+//}
 
 void BasicServer::processRequest(char req[], char ans[]) {
 }

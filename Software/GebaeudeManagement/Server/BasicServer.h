@@ -16,7 +16,7 @@ public:
 
 private:
 	void session(socket_ptr sock);
-	void echo(char request[], char answer[]);
+	//void echo(char request[], char answer[]);
 	virtual void processRequest(char request[], char answer[]);
 };
 
