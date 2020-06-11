@@ -2,6 +2,7 @@
 
 
 // constructor
+BasicClient::BasicClient() {}
 BasicClient::BasicClient(char _server[], char _port[]) {
   server = _server;
   port = _port;

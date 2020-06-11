@@ -147,7 +147,7 @@ namespace UnitTestClient
       roomDescriptors.push_back ("kitchen1"); // fill roomDescriptors list with item
       char sens[5];
 
-      Assert::AreEqual( kbRetValCh, selectSensor (room, sens) ); 
+      Assert::AreEqual( (char)-1, selectSensor (room, sens) ); 
     }
     
   };

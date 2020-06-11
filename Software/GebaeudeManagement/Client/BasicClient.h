@@ -9,6 +9,7 @@ using boost::asio::ip::tcp;
 class BasicClient
 {
 public:
+	BasicClient();
 	BasicClient(char server[], char port[]);
 	void sendRequest(const char request[], char answer[]);
 	~BasicClient();

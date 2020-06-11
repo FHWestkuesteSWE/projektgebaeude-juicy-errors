@@ -1,12 +1,12 @@
 // main.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms :).
 
-#define UNITTEST
+//#define UNITTEST
 
 #include <signal.h>
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "BasicClient.h"
+#include "Client.h"
 #include "main.h"
 #include <ctime>
 /* #include "../Server/FileHandling.h" */
@@ -21,7 +21,7 @@ std::vector<std::string> roomDescriptors; // list of room descriptors from serve
 using namespace std;
 int main(int argc, char* argv[]) 
 {
-    BasicClient c(argv[1], argv[2]);
+    Client c(argv[1], argv[2]);
     char req[1024];
     char ans[1024];
     // int numRooms = 0; // number of configured rooms
@@ -213,7 +213,7 @@ char selectSensor ( int room, char * sens )
     cout << "----------------------------------------------------" << endl; 
     cout << "Choice: ";
     getKBEntry (&choice);
-    cout << "Choice: " << choice << endl;
+    /* cout << "Choice: " << choice << endl; */
     cout << "\n\n";
 
     switch (choice) {
@@ -233,9 +233,10 @@ char selectSensor ( int room, char * sens )
         decided = true;
         break;
     } 
-  } while (!decided);
+  } while (!decided); 
 
   cout << "\n\n";
+
   return choice; 
 }
 
@@ -335,6 +336,7 @@ int getKBEntry ( char * kbentry )
   }
   else {
     std::cin >> kbentry;
+    return 0;
   }
 #endif 
   return -1;
