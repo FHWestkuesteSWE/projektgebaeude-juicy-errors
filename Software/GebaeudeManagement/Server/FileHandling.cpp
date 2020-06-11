@@ -62,30 +62,30 @@ bool txt_truncate(const char* filename, vector<string>& data) {
 
 
 
-// append string to file
-bool txt_putLine(const char* filename, string &line) {
-	fstream file(filename);								// opens file if file exists, does not create new file if file doesn't exist
-
-	// Check if a config file exists
-	if (!txt_exists(filename)) {
-		file.clear();
-		return false;
-	}
-	file.close();
-	
-	// write to existing config file
-	file.open(filename, ios::out | ios::app);
-	if (file.is_open()) {
-		file << line << '\n';
-		file.close();
-	}
-	else {
-		file.clear();
-		return false;
-	}
-	
-	return true;
-}
+//// append string to file
+//bool txt_putLine(const char* filename, const string &line) {
+//	fstream file(filename);								// opens file if file exists, does not create new file if file doesn't exist
+//
+//	// Check if a config file exists
+//	if (!txt_exists(filename)) {
+//		file.clear();
+//		return false;
+//	}
+//	file.close();
+//	
+//	// write to existing config file
+//	file.open(filename, ios::out | ios::app);
+//	if (file.is_open()) {
+//		file << line << '\n';
+//		file.close();
+//	}
+//	else {
+//		file.clear();
+//		return false;
+//	}
+//	
+//	return true;
+//}
 
 
 // check if a file exists, returns TRUE if exists and FALSE if does not exist
