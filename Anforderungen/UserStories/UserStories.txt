@@ -260,3 +260,40 @@ Fehlermöglichkeiten:
 1 Logfile kann nicht geschrieben werden
 2 Logfile kann nicht gefunden werden 
 --------------------------------------------------------------------------------
+
+
+================================================================================
+User Story H (WindowSensor)
+================================================================================
+
+Kurzbeschreibung:
+Der User kann den Zustand der Fenster eines Raums abfragen (offen/geschlossen).
+Der Einfachheithalber wird davon ausgegangen, dass entweder alle Fenster offen
+oder alle Fenster geschlossen sind.
+
+Priorität: ( ) must | ( ) should | (X) could | ( ) won't
+
+Abschätzung:
+2 Tage
+
+--------------------------------------------------------------------------------
+Details
+--------------------------------------------------------------------------------
+Auf der Konsole des Clients besteht die Möglichkeit, den Status der Fenster
+eines Raums abzufragen. Der Raum muss ausgewählt sein und die entsprechende
+Anfrage wird dann an den Server geschickt. Dieser dieser fragt dann den
+entsprechenden Fenstersensor ab. Der Status wird dem Client als Antwort
+zurückgeschickt. 
+
+Fehlermöglichkeiten:
+1 Server nicht erreichbar → Fehlermeldung des Clients
+2 Keine Fenster für den Raum vorhanden / zuzuordnen → Fehlermeldung des Servers
+3 keine Antwort von dem Fenstersensor → Fehlermeldung des Servers
+Timeouts setzen !
+
+Protokoll:
+vom Client an Server gesendeter String: „get Window <Raumbezeichner>“
+von Server an Client gesendeter String: „get Window <Raumbezeichner> 0 <boolean>“ (kein Fehler) 
+bzw. „Window <Raumbezeichner> <Fehlernummer> <Fehlermeldung(optional)>“ (Fehler 1-3) 
+bzw. „Window <Raumbezeichner> 4 <boolean>“
+--------------------------------------------------------------------------------
