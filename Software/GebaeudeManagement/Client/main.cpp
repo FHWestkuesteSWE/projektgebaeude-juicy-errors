@@ -51,16 +51,17 @@ int main(int argc, char* argv[])
       // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
       // ---
 
-      // BUG - roomNumber is never changed -> INFINITE LOOP
-      while ( roomNumber < 0 ) roomNumber = selectRoom (); 
+      while ( roomNumber < 0 ) {
+        roomNumber = selectRoom (); 
+      }
       
       // -----------------------------------------------------------------------
       // MENU: select sensor/actuator
       // -----------------------------------------------------------------------
       // return here unless user choses to go 'back' to root (select room)
-      char sens[255] = ""; // sensor/actuator type ( temp, door, toilet/wc )
+      char sens[255] = ""; // sensor/actuator type ( temp, door, toilet/wc, window )
       char strValue[255] = "";
-      while ( selectSensor(roomNumber,sens) != 'b' ) // select sensor ( (t)emp, (d)oor, (w)c )
+      while ( selectSensor(roomNumber,sens) != 'b' ) // select sensor ( (t)emp, (d)oor, (w)c, wi(n)dow )
       {
 
       // -----------------------------------------------------------------------
@@ -116,7 +117,7 @@ int main(int argc, char* argv[])
       roomNumber = -1; // reset room selection
     } while (1);
 
-    cout << "Closing program" << endl;
+    cout << "Closing program." << endl;
     return 0;
 }
 
@@ -177,6 +178,7 @@ int selectRoom ( void )
   int 
     choice, 
     roomCount = (int)roomDescriptors.size();
+  cout << "Number of rooms: " << roomDescriptors.size() << endl;
 
   cout << "----------------------------------------------------" << endl;
   std::cout << "\nSelect room \n";
@@ -186,9 +188,13 @@ int selectRoom ( void )
   }
   //cout << "\n\n(q)uit program" << endl;
   cout << "----------------------------------------------------" << endl; 
-  std::cout << "Choice: (0 - " << roomCount << "): ";
+  std::cout << "Choice: (0 - " << roomCount-1 << "): ";
   choice = getKBEntry (NULL); 
   cout << "\n\n";
+  // clear cin buffer
+  std::cin.ignore(INT_MAX);
+  std::cin.clear(); 
+
   if ( ( choice >= 0 ) && ( choice < roomCount ) ) return choice;
   else return -1; // wrong entry
 }
@@ -209,6 +215,7 @@ char selectSensor ( int room, char * sens )
     cout << "(t)emperature sensor" << endl;
     cout << "(d)oor sensor/actuator" << endl;
     cout << "(w)c/toilet sensor" << endl;
+    cout << "wi(n)dow sensor" << endl;
     cout << "\n\n(b)ack" << endl;
     cout << "----------------------------------------------------" << endl; 
     cout << "Choice: ";
@@ -227,6 +234,10 @@ char selectSensor ( int room, char * sens )
         break;
       case 'w':
         strcpy ( sens, "toilet" );
+        decided = true;
+        break; 
+      case 'n':
+        strcpy ( sens, "window" );
         decided = true;
         break; 
       case 'b':
@@ -287,9 +298,9 @@ int writeLog ( const char * filename, const char * message )
     // if file does not exist, create new file
     logfile.open(filename, ios::out | ios::trunc);    // this is what creates the new file
     if (logfile.is_open()) {
-      cout << "Created new config file";
+      cout << "Created new config file!\n";
     } else {
-      cout << "Could not create config file";
+      cout << "Could not create config file!\n";
       return -1;
     }
   } 
@@ -310,7 +321,7 @@ int writeLog ( const char * filename, const char * message )
     logfile << " " << message;
     logfile.close();
   } else {
-    cout << "Could not write on existing config file";
+    cout << "Could not write to existing config file!\n";
     return -1;
   }
 
@@ -332,10 +343,16 @@ int getKBEntry ( char * kbentry )
   if ( !kbentry ) {
     int choice; // = 0;
     std::cin >> choice; 
+    // clear cin buffer
+    std::cin.ignore(INT_MAX);
+    std::cin.clear(); 
     return choice;
   }
   else {
-    std::cin >> kbentry;
+    std::cin >> kbentry[0];
+    // clear cin buffer
+    std::cin.ignore(INT_MAX);
+    std::cin.clear(); 
     return 0;
   }
 #endif 
@@ -359,7 +376,8 @@ int splitString ( const std::string &txt, std::vector<std::string> &strs, char c
     }
 
     // Add the last one
-    strs.push_back( txt.substr( initialPos, std::min( pos, txt.size() ) - initialPos + 1 ) );
+    /* strs.push_back( txt.substr( initialPos, std::min( pos, txt.size() ) - initialPos + 1 ) ); */
+    /*   cout << "Pushing string to list: " << txt.substr ( initialPos, std::min (pos, txt.size() ) - initialPos + 1 ) << endl; */
 
     return (int)strs.size();
 }
