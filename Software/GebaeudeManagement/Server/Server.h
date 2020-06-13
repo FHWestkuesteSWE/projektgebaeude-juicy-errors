@@ -40,7 +40,7 @@ public:
 	void start(char port[]);
 	
 protected:
-	void processRequest(char request[], char answer[]);
+	void processRequest(char request[], char answer[]) override;
 	
 private:
 	int build();
