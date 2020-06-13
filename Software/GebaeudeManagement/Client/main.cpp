@@ -339,7 +339,10 @@ int getKBEntry ( char * kbentry )
 #else
   if ( !kbentry ) {
     int choice; // = 0;
-    std::cin >> choice; 
+    string s_choice;
+    std::cin >> s_choice; 
+    try { choice = stoi (s_choice); }
+    catch (std::invalid_argument e) { choice = -1; }
     // clear cin buffer
     std::cin.ignore(INT_MAX, '\n');
     std::cin.clear(); 
