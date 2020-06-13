@@ -49,9 +49,8 @@ void Server::start(char port[]) {
 //
 // print system message on server console
 void Server::print(const std::string msg) {
-	time_t mytime = time(nullptr);
-	string timestamp(ctime(&mytime));
-	timestamp = timestamp.substr(0, timestamp.length() - 1);
+	std::string timestamp;
+	this->get_timestamp(&timestamp);
 
 	cout << timestamp << " - SYS - " << msg << endl;
 }
@@ -61,14 +60,14 @@ void Server::print(const std::string msg) {
 //
 // process incoming Server Request
 void Server::processRequest(char req[], char ans[]) {
-	string request(req);
-	string query, sensor, roomDescr, opt;
+	std::string request(req);
+	std::string query, sensor, roomDescr, opt;
 	char response[max_length];
 	Room* requested_room = NULL;
-	string timestamp;	
+	std::string timestamp;	
 
 	// build timestamp string	
-	this->get_timestamp(timestamp);
+	this->get_timestamp(&timestamp);
 
 	// retrieve information from the request string
 	query = getNthWord(request, 1);
@@ -112,10 +111,12 @@ void Server::processRequest(char req[], char ans[]) {
 }
 
 
-void Server::get_timestamp(std::string timestamp_string) {
+void Server::get_timestamp(std::string *in) {
 	time_t mytime = time(nullptr);
-	timestamp_string = string(ctime(&mytime));
+	std::string timestamp_string(ctime(&mytime));
 	timestamp_string = timestamp_string.substr(0, timestamp_string.length() - 1);
+	
+	in->assign(timestamp_string);
 }
 
 
@@ -124,7 +125,8 @@ void Server::get_timestamp(std::string timestamp_string) {
 Room* Server::get_room_pointer(std::string roomDescr) {
 	for (int i = 0; i < _rooms.size(); i++) {
 		if (_rooms[i]->getDescriptor().compare(roomDescr) == 0) {
-			&_rooms[i];
+			_rooms[i]->getDescriptor();
+			return _rooms[i];
 		}
 	}
 
@@ -133,9 +135,10 @@ Room* Server::get_room_pointer(std::string roomDescr) {
 
 
 int Server::get_sensor_type(std::string sensor) {
-	if (!sensor.compare("Temp")) return SENSOR_TEMP;
-	else if (!sensor.compare("Door")) return SENSOR_DOOR;
-	else if (!sensor.compare("Toilet")) return SENSOR_TOILET;
+	if (!sensor.compare("temp")) return SENSOR_TEMP;
+	else if (!sensor.compare("door")) return SENSOR_DOOR;
+	else if (!sensor.compare("toilet")) return SENSOR_TOILET;
+	else if (!sensor.compare("window")) return SENSOR_WINDOW;
 	else return -1;
 }
 

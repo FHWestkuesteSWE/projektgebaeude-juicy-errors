@@ -21,6 +21,7 @@ typedef enum {
 	SENSOR_TEMP,
 	SENSOR_DOOR,
 	SENSOR_TOILET,
+	SENSOR_WINDOW,
 } SENSOR_TYPES;
 
 const std::string ERR_MSG[] = {
@@ -62,7 +63,7 @@ private:
 	int deleteRoom(std::string roomDescr);
 
 	void print(std::string msg);
-	void get_timestamp(std::string timestamp_string);
+	void get_timestamp(std::string *in);
 
 	std::vector<Room*> _rooms;
 	std::vector<std::string> roomCFG;
