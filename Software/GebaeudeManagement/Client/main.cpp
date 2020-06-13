@@ -39,8 +39,7 @@ int main(int argc, char* argv[])
       // -----------------------------------------------------------------------
       // get building configuration (room descriptors) from server
       strcpy(req, "cfg -g");
-      cout << "DEBUG: Request string: " << req << endl;
-      
+      // cout << "DEBUG: Request string: " << req << endl;
       int success = 0; 
       while ( (success = c.sendRequest(req, ans)) == 1 );
       if ( success == -1 ) exit(1);

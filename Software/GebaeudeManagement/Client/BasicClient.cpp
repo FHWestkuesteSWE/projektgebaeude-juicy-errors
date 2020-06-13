@@ -2,7 +2,6 @@
 #include <boost/exception/all.hpp>
 #include <exception>
 
-
 // constructor
 BasicClient::BasicClient() {}
 BasicClient::BasicClient(char _server[], char _port[]) {
@@ -32,8 +31,8 @@ int BasicClient::sendRequest(const char request[], char answer[]) {
       std::cin >> choice;
       std::cin.ignore(INT_MAX, '\n');
       std::cin.clear(); 
-      if ( choice == 'r' ) return 1; // retry
-      else return -1; // error, abort!
+      if ( choice == 'r' ) return ERR_RETRY; // retry
+      else return ERR_ABORT; // error, abort!
   }
 
   size_t request_length = strlen(request)+1;
@@ -47,7 +46,7 @@ int BasicClient::sendRequest(const char request[], char answer[]) {
       std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
   }
   
-  return 0; // all good
+  return ERR_NONE; // all good
 }
 
 // destructor
