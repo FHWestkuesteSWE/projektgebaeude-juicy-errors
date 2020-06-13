@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="2159355127">
-        <error id="unreadVariable" severity="style" msg="Variable &apos;reply_length&apos; is assigned a value that is never used." verbose="Variable &apos;reply_length&apos; is assigned a value that is never used." cwe="563">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\BasicClient.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Client\BasicClient.cpp" line="24" column="23"/>
-            <symbol>reply_length</symbol>
-        </error>
+<analyzerinfo checksum="3140639246">
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="sendRequest" lineNumber="11"/>
+    <functiondecl functionName="sendRequest" lineNumber="13"/>
     <functioncall functionName="BasicClient"/>
+    <functioncall functionName="ERR_NONE"/>
+    <functioncall functionName="ERR_RETRY"/>
+    <functioncall functionName="INT_MAX"/>
     <functioncall functionName="_port"/>
     <functioncall functionName="_server"/>
     <functioncall functionName="answer"/>
     <functioncall functionName="buffer"/>
+    <functioncall functionName="catch"/>
+    <functioncall functionName="clear"/>
     <functioncall functionName="connect"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="ignore"/>
     <functioncall functionName="io_service"/>
     <functioncall functionName="iterator"/>
     <functioncall functionName="max_length"/>
@@ -26,6 +29,7 @@
     <functioncall functionName="server"/>
     <functioncall functionName="strlen"/>
     <functioncall functionName="v4"/>
+    <functioncall functionName="what"/>
     <functioncall functionName="write"/>
   </FileInfo>
 </analyzerinfo>

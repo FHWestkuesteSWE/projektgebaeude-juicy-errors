@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="334370057">
+<analyzerinfo checksum="2436089160">
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="sendRequest" lineNumber="8"/>
+    <functioncall functionName="BasicClient"/>
     <functioncall functionName="Client"/>
+    <functioncall functionName="ERR_NONE"/>
+    <functioncall functionName="ERR_RETRY"/>
+    <functioncall functionName="_port"/>
+    <functioncall functionName="_server"/>
     <functioncall functionName="protected:"/>
   </FileInfo>
 </analyzerinfo>

@@ -1,127 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <results version="2">
-    <cppcheck version="1.90"/>
+    <cppcheck version="2.0"/>
     <errors>
-        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;reply_length&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;reply_length&amp;#039; is assigned a value that is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Client\BasicClient.cpp" line="24"/>
+        <error id="missingOverride" severity="style" msg="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/main.cpp" file="GebaeudeManagement\Server\Server.h" line="43" info="Function in derived class"/>
+            <location file0="GebaeudeManagement/Server/main.cpp" file="GebaeudeManagement\Server\BasicServer.h" line="20" info="Virtual function in base class"/>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;numRooms&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;numRooms&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Client\main.cpp" line="28"/>
+        <error id="catchExceptionByValue" severity="style" msg="Exception should be caught by reference." verbose="The exception is caught by value. It could be caught as a (const) reference which is usually recommended in C++." cwe="398" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="350"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;numRooms&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;numRooms&amp;#039; is assigned a value that is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Client\main.cpp" line="28"/>
+        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;success&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;success&amp;#039; shadows outer variable" cwe="398" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="110" info="Shadow variable"/>
+            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="43" info="Shadowed declaration"/>
         </error>
-        <error id="unusedVariable" severity="style" msg="Unused variable: choice" verbose="Unused variable: choice" sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Client\main.cpp" line="27"/>
+        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;temperature&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;temperature&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." cwe="398" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/Room.cpp" file="GebaeudeManagement\Server\Room.cpp" line="79"/>
         </error>
-        <error id="unreadVariable" severity="style" msg="Variable &amp;#039;choice&amp;#039; is assigned a value that is never used." verbose="Variable &amp;#039;choice&amp;#039; is assigned a value that is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Client\main.cpp" line="321"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getHasWindows&amp;#039; is never used." verbose="The function &amp;#039;getHasWindows&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="179"/>
         </error>
-        <error id="noConstructor" severity="style" msg="The class &amp;#039;Actuator&amp;#039; does not have a constructor although it has private member variables." verbose="The class &amp;#039;Actuator&amp;#039; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Actuator.h" line="3"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumDoors&amp;#039; is never used." verbose="The function &amp;#039;getNumDoors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="156"/>
         </error>
-        <error id="unusedPrivateFunction" severity="style" msg="Unused private function: &amp;#039;BasicServer::echo&amp;#039;" verbose="Unused private function: &amp;#039;BasicServer::echo&amp;#039;" sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\BasicServer.h" line="19"/>
-        </error>
-        <error id="noConstructor" severity="style" msg="The class &amp;#039;Sensor&amp;#039; does not have a constructor although it has private member variables." verbose="The class &amp;#039;Sensor&amp;#039; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Sensor.h" line="3"/>
-        </error>
-        <error id="missingOverride" severity="style" msg="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." verbose="The function &amp;#039;processRequest&amp;#039; overrides a function in a base class but is not marked with a &amp;#039;override&amp;#039; specifier." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Server.h" line="34" info="Function in derived class"/>
-            <location file="GebaeudeManagement\Server\BasicServer.h" line="20" info="Virtual function in base class"/>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &amp;#039;Room::_curTemp&amp;#039; is not initialized in the constructor." verbose="Member variable &amp;#039;Room::_curTemp&amp;#039; is not initialized in the constructor." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="16"/>
-        </error>
-        <error id="useInitializationList" severity="performance" msg="Variable &amp;#039;_descr&amp;#039; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&amp;#039;t explicitly write them to the initialization list. You could avoid assigning &amp;#039;_descr&amp;#039; a value by passing the value to the constructor in the initialization list." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="18"/>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;descr&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;descr&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="16"/>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;descr&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;descr&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="180"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getDescriptor&amp;#039; is never used." verbose="The function &amp;#039;getDescriptor&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="142"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getHasWindows&amp;#039; is never used." verbose="The function &amp;#039;getHasWindows&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="167"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumDoors&amp;#039; is never used." verbose="The function &amp;#039;getNumDoors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="144"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getNumTempSensors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="145"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumToilets&amp;#039; is never used." verbose="The function &amp;#039;getNumToilets&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="143"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="147"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="162"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="152"/>
-        </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." sinceDate="18/05/2020">
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getNumTempSensors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
             <location file="GebaeudeManagement\Server\Room.cpp" line="157"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getTemperature&amp;#039; is never used." verbose="The function &amp;#039;getTemperature&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="78"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getNumToilets&amp;#039; is never used." verbose="The function &amp;#039;getNumToilets&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="155"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getWindowStatus&amp;#039; is never used." verbose="The function &amp;#039;getWindowStatus&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="172"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorActuators&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="159"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;openCloseDoor&amp;#039; is never used." verbose="The function &amp;#039;openCloseDoor&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="87"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeDoorLockingSensors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="174"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;openCloseWindow&amp;#039; is never used." verbose="The function &amp;#039;openCloseWindow&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="118"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeTempSensors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="164"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setDescriptor&amp;#039; is never used." verbose="The function &amp;#039;setDescriptor&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="180"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." verbose="The function &amp;#039;getSizeToiletSensors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="169"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setHasWindows&amp;#039; is never used." verbose="The function &amp;#039;setHasWindows&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="184"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getTemperature&amp;#039; is never used." verbose="The function &amp;#039;getTemperature&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="77"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumDoors&amp;#039; is never used." verbose="The function &amp;#039;setNumDoors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="182"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;openCloseWindow&amp;#039; is never used." verbose="The function &amp;#039;openCloseWindow&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="130"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;setNumTempSensors&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="183"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setHasWindows&amp;#039; is never used." verbose="The function &amp;#039;setHasWindows&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="196"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumToilets&amp;#039; is never used." verbose="The function &amp;#039;setNumToilets&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="181"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumDoors&amp;#039; is never used." verbose="The function &amp;#039;setNumDoors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="194"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setTemperature&amp;#039; is never used." verbose="The function &amp;#039;setTemperature&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Room.cpp" line="70"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumTempSensors&amp;#039; is never used." verbose="The function &amp;#039;setNumTempSensors&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="195"/>
         </error>
-        <error id="variableScope" severity="style" msg="The scope of the variable &amp;#039;dev&amp;#039; can be reduced." verbose="The scope of the variable &amp;#039;dev&amp;#039; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &amp;#039;i&amp;#039; can be reduced:&#10;void f(int x)&#10;{&#10;    int i = 0;&#10;    if (x) {&#10;        // it&amp;#039;s safe to move &amp;#039;int i = 0;&amp;#039; here&#10;        for (int n = 0; n &amp;lt; 10; ++n) {&#10;            // it is possible but not safe to move &amp;#039;int i = 0;&amp;#039; here&#10;            do_something(&amp;amp;i);&#10;        }&#10;    }&#10;}&#10;When you see this message it is always safe to reduce the variable scope 1 level." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Sensor.cpp" line="31"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setNumToilets&amp;#039; is never used." verbose="The function &amp;#039;setNumToilets&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Room.cpp" line="193"/>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;msg&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;msg&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Server.cpp" line="49"/>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/UnitTestClient/UnitTestClient.cpp" file="GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41"/>
         </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &amp;#039;roomProps&amp;#039; should be passed by const reference." verbose="Parameter &amp;#039;roomProps&amp;#039; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Server.cpp" line="277"/>
+        <error id="assignBoolToFloat" severity="style" msg="Boolean value assigned to floating point variable." verbose="Boolean value assigned to floating point variable." cwe="704" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="178"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\UnitTestServer\UnitTestServer.cpp" line="40"/>
+        <error id="assignBoolToFloat" severity="style" msg="Boolean value assigned to floating point variable." verbose="Boolean value assigned to floating point variable." cwe="704" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="183"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41"/>
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="289"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;echo&amp;#039; is never used." verbose="The function &amp;#039;echo&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\BasicServer.cpp" line="51"/>
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="353"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setBooleanValue&amp;#039; is never used." verbose="The function &amp;#039;setBooleanValue&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\Actuator.cpp" line="3"/>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="13.06.2020">
+            <location file0="GebaeudeManagement/UnitTestServer/UnitTestServer.cpp" file="GebaeudeManagement\UnitTestServer\UnitTestServer.cpp" line="40"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;writeCSV&amp;#039; is never used." verbose="The function &amp;#039;writeCSV&amp;#039; is never used." sinceDate="18/05/2020">
-            <location file="GebaeudeManagement\Server\FileHandling.cpp" line="32"/>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getTemp&amp;#039; is never used." verbose="The function &amp;#039;getTemp&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\TemperatureSensor.cpp" line="7"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getWindowStatus&amp;#039; is never used." verbose="The function &amp;#039;getWindowStatus&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\WindowSensor.cpp" line="6"/>
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &amp;#039;setBooleanValue&amp;#039; is never used." verbose="The function &amp;#039;setBooleanValue&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
+            <location file="GebaeudeManagement\Server\Actuator.cpp" line="11"/>
         </error>
     </errors>
 </results>

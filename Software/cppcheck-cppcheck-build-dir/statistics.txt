@@ -1,7 +1,7 @@
-[18.05.2020]
-1589786386547
+[13.06.2020]
+1592073551745
 cppcheck-error:1
 cppcheck-warning:0
-cppcheck-style:31
-cppcheck-performance:4
+cppcheck-style:22
+cppcheck-performance:1
 cppcheck-portability:0

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1433899467">
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="getWindowStatus" lineNumber="6"/>
+    <functioncall functionName="WindowSensor"/>
+    <functioncall functionName="getBooleanValue"/>
+  </FileInfo>
+</analyzerinfo>

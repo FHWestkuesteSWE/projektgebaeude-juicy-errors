@@ -1,59 +1,37 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="2840644951">
-        <error id="noConstructor" severity="style" msg="The class &apos;Actuator&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Actuator&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.h" line="3" column="2"/>
-            <symbol>Actuator</symbol>
-        </error>
-        <error id="noConstructor" severity="style" msg="The class &apos;Sensor&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Sensor&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3" column="1"/>
-            <symbol>Sensor</symbol>
-        </error>
-        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Room::_curTemp&apos; is not initialized in the constructor." verbose="Member variable &apos;Room::_curTemp&apos; is not initialized in the constructor." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="16" column="7"/>
-            <symbol>Room::_curTemp</symbol>
-        </error>
-        <error id="useInitializationList" severity="performance" msg="Variable &apos;_descr&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_descr&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="18" column="2"/>
-            <symbol>_descr</symbol>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;descr&apos; should be passed by const reference." verbose="Parameter &apos;descr&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="16" column="24"/>
-            <symbol>descr</symbol>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;descr&apos; should be passed by const reference." verbose="Parameter &apos;descr&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="180" column="38"/>
-            <symbol>descr</symbol>
+<analyzerinfo checksum="613880298">
+        <error id="variableScope" severity="style" msg="The scope of the variable &apos;temperature&apos; can be reduced." verbose="The scope of the variable &apos;temperature&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="79" column="9"/>
+            <symbol>temperature</symbol>
         </error>
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="designRoom" lineNumber="31"/>
-    <functiondecl functionName="setTemperature" lineNumber="70"/>
-    <functiondecl functionName="getTemperature" lineNumber="78"/>
-    <functiondecl functionName="openCloseDoor" lineNumber="87"/>
-    <functiondecl functionName="getDoorStatus" lineNumber="97"/>
-    <functiondecl functionName="getToiletStatus" lineNumber="109"/>
-    <functiondecl functionName="openCloseWindow" lineNumber="118"/>
-    <functiondecl functionName="getDescriptor" lineNumber="142"/>
-    <functiondecl functionName="getNumToilets" lineNumber="143"/>
-    <functiondecl functionName="getNumDoors" lineNumber="144"/>
-    <functiondecl functionName="getNumTempSensors" lineNumber="145"/>
-    <functiondecl functionName="getSizeDoorActuators" lineNumber="147"/>
-    <functiondecl functionName="getSizeTempSensors" lineNumber="152"/>
-    <functiondecl functionName="getSizeToiletSensors" lineNumber="157"/>
-    <functiondecl functionName="getSizeDoorLockingSensors" lineNumber="162"/>
-    <functiondecl functionName="getHasWindows" lineNumber="167"/>
-    <functiondecl functionName="getWindowStatus" lineNumber="172"/>
-    <functiondecl functionName="setDescriptor" lineNumber="180"/>
-    <functiondecl functionName="setNumToilets" lineNumber="181"/>
-    <functiondecl functionName="setNumDoors" lineNumber="182"/>
-    <functiondecl functionName="setNumTempSensors" lineNumber="183"/>
-    <functiondecl functionName="setHasWindows" lineNumber="184"/>
+    <functiondecl functionName="designRoom" lineNumber="30"/>
+    <functiondecl functionName="setTemperature" lineNumber="69"/>
+    <functiondecl functionName="getTemperature" lineNumber="77"/>
+    <functiondecl functionName="openCloseDoor" lineNumber="99"/>
+    <functiondecl functionName="getDoorStatus" lineNumber="109"/>
+    <functiondecl functionName="getToiletStatus" lineNumber="121"/>
+    <functiondecl functionName="openCloseWindow" lineNumber="130"/>
+    <functiondecl functionName="getDescriptor" lineNumber="154"/>
+    <functiondecl functionName="getNumToilets" lineNumber="155"/>
+    <functiondecl functionName="getNumDoors" lineNumber="156"/>
+    <functiondecl functionName="getNumTempSensors" lineNumber="157"/>
+    <functiondecl functionName="getSizeDoorActuators" lineNumber="159"/>
+    <functiondecl functionName="getSizeTempSensors" lineNumber="164"/>
+    <functiondecl functionName="getSizeToiletSensors" lineNumber="169"/>
+    <functiondecl functionName="getSizeDoorLockingSensors" lineNumber="174"/>
+    <functiondecl functionName="getHasWindows" lineNumber="179"/>
+    <functiondecl functionName="getWindowStatus" lineNumber="184"/>
+    <functiondecl functionName="setNumToilets" lineNumber="193"/>
+    <functiondecl functionName="setNumDoors" lineNumber="194"/>
+    <functiondecl functionName="setNumTempSensors" lineNumber="195"/>
+    <functiondecl functionName="setHasWindows" lineNumber="196"/>
     <functioncall functionName="DoorActuator"/>
     <functioncall functionName="DoorLockingSensor"/>
     <functioncall functionName="Room"/>
     <functioncall functionName="TemperatureSensor"/>
     <functioncall functionName="Thermostat"/>
     <functioncall functionName="ToiletSensor"/>
-    <functioncall functionName="_curTemp"/>
     <functioncall functionName="_curWindowStatus"/>
     <functioncall functionName="_hasWindows"/>
     <functioncall functionName="_numDoors"/>
@@ -65,12 +43,12 @@
     <functioncall functionName="false"/>
     <functioncall functionName="for"/>
     <functioncall functionName="getDoorStatus"/>
-    <functioncall functionName="getTemp"/>
     <functioncall functionName="getToiletStatus"/>
     <functioncall functionName="hasWindows"/>
     <functioncall functionName="i"/>
     <functioncall functionName="idx"/>
     <functioncall functionName="if"/>
+    <functioncall functionName="int"/>
     <functioncall functionName="isOpen"/>
     <functioncall functionName="numDoors"/>
     <functioncall functionName="numTempSensors"/>
