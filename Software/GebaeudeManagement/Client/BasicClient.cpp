@@ -1,5 +1,6 @@
 #include "BasicClient.h"
-
+#include <boost/exception/all.hpp>
+#include <exception>
 
 // constructor
 BasicClient::BasicClient() {}
@@ -9,7 +10,7 @@ BasicClient::BasicClient(char _server[], char _port[]) {
 }
 
 // send request to server
-void BasicClient::sendRequest(const char request[], char answer[]) {
+int BasicClient::sendRequest(const char request[], char answer[]) {
   boost::asio::io_service io_service;
 
   tcp::resolver resolver(io_service);
@@ -22,14 +23,30 @@ void BasicClient::sendRequest(const char request[], char answer[]) {
     boost::asio::connect(s, iterator);
   }
   catch (const std::exception& e) { // reference to the base of a polymorphic object      
-      //std::cout << e << endl;
-      std::cout << e.what(); // information from length_error printed
+      std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
+      std::cout << "Server could not be reached.\n\n";
+      std::cout << "(r)etry\n";
+      std::cout << "(a)bort\n\n";
+      char choice;
+      std::cin >> choice;
+      std::cin.ignore(INT_MAX, '\n');
+      std::cin.clear(); 
+      if ( choice == 'r' ) return ERR_RETRY; // retry
+      else return ERR_ABORT; // error, abort!
   }
+
   size_t request_length = strlen(request)+1;
   boost::asio::write(s, boost::asio::buffer(request, request_length));
 
-  // size_t reply_length = 
-  boost::asio::read(s, boost::asio::buffer(answer, max_length));
+  // size_t reply_length =   
+  try {
+      boost::asio::read(s, boost::asio::buffer(answer, max_length));
+  }
+  catch (const std::exception& e) { // reference to the base of a polymorphic object
+      std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
+  }
+  
+  return ERR_NONE; // all good
 }
 
 // destructor

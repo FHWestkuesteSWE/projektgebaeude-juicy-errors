@@ -39,8 +39,11 @@ int main(int argc, char* argv[])
       // -----------------------------------------------------------------------
       // get building configuration (room descriptors) from server
       strcpy(req, "cfg -g");
-      cout << "DEBUG: Request string: " << req << endl;
-      c.sendRequest(req, ans);
+      // cout << "DEBUG: Request string: " << req << endl;
+      int success = 0; 
+      while ( (success = c.sendRequest(req, ans)) == 1 );
+      if ( success == -1 ) exit(1);
+
       writeLog ( FILENAME, req ); // log request
       writeLog ( FILENAME, ans ); // log answer
 
@@ -104,7 +107,9 @@ int main(int argc, char* argv[])
           // send request to server and output reply
           cout << "\n====================================================" << endl; 
           cout << "Request string: " << req << endl;
-          c.sendRequest(req, ans);
+          int success = 0; 
+          while ( (success = c.sendRequest(req, ans)) == 1 );
+          if ( success == -1 ) exit(1);
           cout << "Answer from server: " << ans << endl; 
           cout << "====================================================" << endl; 
           cout << "\n\n";
@@ -339,7 +344,10 @@ int getKBEntry ( char * kbentry )
 #else
   if ( !kbentry ) {
     int choice; // = 0;
-    std::cin >> choice; 
+    string s_choice;
+    std::cin >> s_choice; 
+    try { choice = stoi (s_choice); }
+    catch (std::invalid_argument e) { choice = -1; }
     // clear cin buffer
     std::cin.ignore(INT_MAX, '\n');
     std::cin.clear(); 
@@ -355,7 +363,6 @@ int getKBEntry ( char * kbentry )
 #endif 
   return -1;
 }
-
 
 // third party code (stackoverflow.com)
 int splitString ( const std::string &txt, std::vector<std::string> &strs, char ch )

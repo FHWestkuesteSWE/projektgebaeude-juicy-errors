@@ -33,6 +33,7 @@ private:
 	std::vector<DoorLockingSensor*> _doorLockingSensors[2]; //vector of array
 
 public:
+	~Room();
 	Room(std::string descr, int numToilets, int numDoors, int numTempSensors, bool hasWindows);
 	
 

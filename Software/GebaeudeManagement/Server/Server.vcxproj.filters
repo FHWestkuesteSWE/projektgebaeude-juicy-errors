@@ -23,6 +23,9 @@
     </ClCompile>
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="FileHandling.cpp" />
+    <ClCompile Include="WindowSensor.cpp">
+      <Filter>RoomClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h" />
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="Room.h" />
     <ClInclude Include="FileHandling.h" />
+    <ClInclude Include="WindowSensor.h">
+      <Filter>RoomClasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RoomClasses">
