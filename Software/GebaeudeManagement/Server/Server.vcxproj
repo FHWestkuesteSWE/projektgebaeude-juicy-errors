@@ -162,6 +162,7 @@
     <ClCompile Include="TemperatureSensor.cpp" />
     <ClCompile Include="Thermostat.cpp" />
     <ClCompile Include="ToiletSensor.cpp" />
+    <ClCompile Include="WindowSensor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actuator.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="TemperatureSensor.h" />
     <ClInclude Include="Thermostat.h" />
     <ClInclude Include="ToiletSensor.h" />
+    <ClInclude Include="WindowSensor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
