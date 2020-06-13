@@ -89,7 +89,7 @@ void Server::processRequest(char req[], char ans[]) {
 
 	// choose desired action based on query
 	requested_room = this->get_room_pointer(roomDescr);
-	if (requested_room == NULL) {
+	if (requested_room == NULL && query.compare("cfg")) {
 		this->print("Room does not exist");
 		sprintf(response, "%s %s %s %s", query.c_str(), sensor.c_str(), roomDescr.c_str(), ERR_MSG[ERR_BAD_ROOM_ID].c_str());
 	}

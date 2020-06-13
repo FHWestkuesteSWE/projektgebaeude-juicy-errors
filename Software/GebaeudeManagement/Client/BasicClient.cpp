@@ -1,4 +1,6 @@
 #include "BasicClient.h"
+#include <boost/exception/all.hpp>
+#include <exception>
 
 
 // constructor
@@ -22,8 +24,9 @@ void BasicClient::sendRequest(const char request[], char answer[]) {
     boost::asio::connect(s, iterator);
   }
   catch (const std::exception& e) { // reference to the base of a polymorphic object      
-      //std::cout << e << endl;
-      std::cout << e.what(); // information from length_error printed
+  //catch (const boost::exception &e) { // reference to the base of a polymorphic object      
+      std::cout << e.what() << "\n"; // information from length_error printed
+      //std::cout << boost::diagnostic_information(e);
   }
   size_t request_length = strlen(request)+1;
   boost::asio::write(s, boost::asio::buffer(request, request_length));
