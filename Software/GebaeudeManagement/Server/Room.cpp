@@ -78,12 +78,19 @@ double Room::getTemperature()
 {
 	double temperature = 0.0;
 
-	//return average of the available temp sensors
-	for (int i = 0; i < this->getNumTempSensors(); i++) {
-		temperature += _temperatureSensors[i]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp);
+	if (_temperatureSensors.size() > 0)
+	{
+		for (int i = 0; i < _temperatureSensors.size(); i++)
+		{
+			//temperature += _temperatureSensors[i]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp);
+			temperature += 20.4;
+		}
+		return temperature / _temperatureSensors.size();
 	}
-
-	return temperature / this->getNumTempSensors();
+	else 
+	{
+		return -1.0;
+	}	
 }
 
 // TEST: no
