@@ -19,7 +19,7 @@ Room::Room(const std::string descr, int numToilets, int numDoors, int numTempSen
 	_numDoors = numDoors;
 	_numTempSensors = numTempSensors;
 	_hasWindows = hasWindows;
-	_curTemp = 0.0; // initialize because of RAII principle
+	_curTemp = 20.0; // initialize because of RAII principle
 	designRoom();
 }
 
@@ -76,21 +76,11 @@ void Room::setTemperature(double temp)
 
 double Room::getTemperature()
 {
-	double temperature = 0.0;
-
 	if (_temperatureSensors.size() > 0)
 	{
-		for (int i = 0; i < _temperatureSensors.size(); i++)
-		{
-			//temperature += _temperatureSensors[i]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp);
-			temperature += 20.4;
-		}
-		return temperature / _temperatureSensors.size();
+		return _temperatureSensors[0]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp);
 	}
-	else 
-	{
-		return -1.0;
-	}	
+	return -1.0;
 }
 
 // TEST: no
@@ -194,4 +184,3 @@ void Room::setNumToilets(int numToilets) { _numToilets = numToilets; }
 void Room::setNumDoors(int numDoors) { _numDoors = numDoors; }
 void Room::setNumTempSensors(int numTempSensors) { _numTempSensors = numTempSensors; }
 void Room::setHasWindows(bool hasWindows) { _hasWindows = hasWindows; }
-

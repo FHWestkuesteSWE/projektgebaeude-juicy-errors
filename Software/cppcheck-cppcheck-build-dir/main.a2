@@ -1,10 +1,5 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="1838220126">
-        <error id="missingOverride" severity="style" msg="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier.">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.h" line="43" column="7" info="Function in derived class"/>
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\main.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="20" column="15" info="Virtual function in base class"/>
-            <symbol>processRequest</symbol>
-        </error>
+<analyzerinfo checksum="2814120347">
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="main" lineNumber="5"/>
     <functioncall functionName="BasicServer"/>
@@ -18,6 +13,7 @@
     <functioncall functionName="SENSOR_TEMP"/>
     <functioncall functionName="SENSOR_TOILET"/>
     <functioncall functionName="SENSOR_WINDOW"/>
+    <functioncall functionName="override"/>
     <functioncall functionName="start"/>
   </FileInfo>
 </analyzerinfo>

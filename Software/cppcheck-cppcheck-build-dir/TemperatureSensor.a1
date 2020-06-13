@@ -1,11 +1,7 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="2167427078">
+<analyzerinfo checksum="3137336931">
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="getTemp" lineNumber="7"/>
     <functioncall functionName="TemperatureSensor"/>
-    <functioncall functionName="fMax"/>
-    <functioncall functionName="fMin"/>
-    <functioncall functionName="getDoubleValue"/>
-    <functioncall functionName="lastValue"/>
   </FileInfo>
 </analyzerinfo>

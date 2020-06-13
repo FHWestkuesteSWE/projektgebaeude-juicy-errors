@@ -1,37 +1,34 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="613880298">
-        <error id="variableScope" severity="style" msg="The scope of the variable &apos;temperature&apos; can be reduced." verbose="The scope of the variable &apos;temperature&apos; can be reduced. Warning: Be careful when fixing this message, especially when there are inner loops. Here is an example where cppcheck will write that the scope for &apos;i&apos; can be reduced:\012void f(int x)\012{\012    int i = 0;\012    if (x) {\012        // it&apos;s safe to move &apos;int i = 0;&apos; here\012        for (int n = 0; n &lt; 10; ++n) {\012            // it is possible but not safe to move &apos;int i = 0;&apos; here\012            do_something(&amp;i);\012        }\012    }\012}\012When you see this message it is always safe to reduce the variable scope 1 level." cwe="398">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Room.cpp" line="79" column="9"/>
-            <symbol>temperature</symbol>
-        </error>
+<analyzerinfo checksum="719206500">
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="designRoom" lineNumber="30"/>
     <functiondecl functionName="setTemperature" lineNumber="69"/>
     <functiondecl functionName="getTemperature" lineNumber="77"/>
-    <functiondecl functionName="openCloseDoor" lineNumber="99"/>
-    <functiondecl functionName="getDoorStatus" lineNumber="109"/>
-    <functiondecl functionName="getToiletStatus" lineNumber="121"/>
-    <functiondecl functionName="openCloseWindow" lineNumber="130"/>
-    <functiondecl functionName="getDescriptor" lineNumber="154"/>
-    <functiondecl functionName="getNumToilets" lineNumber="155"/>
-    <functiondecl functionName="getNumDoors" lineNumber="156"/>
-    <functiondecl functionName="getNumTempSensors" lineNumber="157"/>
-    <functiondecl functionName="getSizeDoorActuators" lineNumber="159"/>
-    <functiondecl functionName="getSizeTempSensors" lineNumber="164"/>
-    <functiondecl functionName="getSizeToiletSensors" lineNumber="169"/>
-    <functiondecl functionName="getSizeDoorLockingSensors" lineNumber="174"/>
-    <functiondecl functionName="getHasWindows" lineNumber="179"/>
-    <functiondecl functionName="getWindowStatus" lineNumber="184"/>
-    <functiondecl functionName="setNumToilets" lineNumber="193"/>
-    <functiondecl functionName="setNumDoors" lineNumber="194"/>
-    <functiondecl functionName="setNumTempSensors" lineNumber="195"/>
-    <functiondecl functionName="setHasWindows" lineNumber="196"/>
+    <functiondecl functionName="openCloseDoor" lineNumber="89"/>
+    <functiondecl functionName="getDoorStatus" lineNumber="99"/>
+    <functiondecl functionName="getToiletStatus" lineNumber="111"/>
+    <functiondecl functionName="openCloseWindow" lineNumber="120"/>
+    <functiondecl functionName="getDescriptor" lineNumber="144"/>
+    <functiondecl functionName="getNumToilets" lineNumber="145"/>
+    <functiondecl functionName="getNumDoors" lineNumber="146"/>
+    <functiondecl functionName="getNumTempSensors" lineNumber="147"/>
+    <functiondecl functionName="getSizeDoorActuators" lineNumber="149"/>
+    <functiondecl functionName="getSizeTempSensors" lineNumber="154"/>
+    <functiondecl functionName="getSizeToiletSensors" lineNumber="159"/>
+    <functiondecl functionName="getSizeDoorLockingSensors" lineNumber="164"/>
+    <functiondecl functionName="getHasWindows" lineNumber="169"/>
+    <functiondecl functionName="getWindowStatus" lineNumber="174"/>
+    <functiondecl functionName="setNumToilets" lineNumber="183"/>
+    <functiondecl functionName="setNumDoors" lineNumber="184"/>
+    <functiondecl functionName="setNumTempSensors" lineNumber="185"/>
+    <functiondecl functionName="setHasWindows" lineNumber="186"/>
     <functioncall functionName="DoorActuator"/>
     <functioncall functionName="DoorLockingSensor"/>
     <functioncall functionName="Room"/>
     <functioncall functionName="TemperatureSensor"/>
     <functioncall functionName="Thermostat"/>
     <functioncall functionName="ToiletSensor"/>
+    <functioncall functionName="_curTemp"/>
     <functioncall functionName="_curWindowStatus"/>
     <functioncall functionName="_hasWindows"/>
     <functioncall functionName="_numDoors"/>
@@ -43,6 +40,7 @@
     <functioncall functionName="false"/>
     <functioncall functionName="for"/>
     <functioncall functionName="getDoorStatus"/>
+    <functioncall functionName="getTemp"/>
     <functioncall functionName="getToiletStatus"/>
     <functioncall functionName="hasWindows"/>
     <functioncall functionName="i"/>

@@ -1,25 +1,14 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="3859744922">
-        <error id="assignBoolToFloat" severity="style" msg="Boolean value assigned to floating point variable." verbose="Boolean value assigned to floating point variable." cwe="704">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="178" column="13"/>
-        </error>
-        <error id="assignBoolToFloat" severity="style" msg="Boolean value assigned to floating point variable." verbose="Boolean value assigned to floating point variable." cwe="704">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="183" column="13"/>
-        </error>
-        <error id="missingOverride" severity="style" msg="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier.">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.h" line="43" column="7" info="Function in derived class"/>
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="20" column="15" info="Virtual function in base class"/>
-            <symbol>processRequest</symbol>
+<analyzerinfo checksum="2235833570">
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="292" column="91"/>
         </error>
         <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="289" column="91"/>
-        </error>
-        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398">
-            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="353" column="91"/>
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="356" column="91"/>
         </error>
   <FileInfo check="Null pointer">
     <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="1" my-argname="request" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="118" col="28" value="0"/>
-    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:59:7" my-argnr="1" my-argname="out" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="295" col="10" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:59:7" my-argnr="1" my-argname="out" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="298" col="10" value="0"/>
   </FileInfo>
   <FileInfo check="Uninitialized variables">
     <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="1" my-argname="request" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="118" col="28" value="0"/>
@@ -28,8 +17,8 @@
     <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="4" my-argname="room_descriptor" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="120" col="2" value="0"/>
     <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="5" my-argname="optional" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="121" col="2" value="0"/>
     <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:68:7" my-argnr="1" my-argname="in" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="140" col="2" value="0"/>
-    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:56:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="254" col="20" value="0"/>
-    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:57:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="269" col="23" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:56:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="257" col="20" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:57:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="272" col="23" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="getNthWord" lineNumber="22"/>
@@ -40,17 +29,17 @@
     <functiondecl functionName="get_room_pointer" lineNumber="146"/>
     <functiondecl functionName="get_sensor_type" lineNumber="158"/>
     <functiondecl functionName="process_get_request" lineNumber="167"/>
-    <functiondecl functionName="process_set_request" lineNumber="196"/>
-    <functiondecl functionName="process_cfg_request" lineNumber="216"/>
-    <functiondecl functionName="process_cfg_update" lineNumber="238"/>
-    <functiondecl functionName="process_cfg_add_room" lineNumber="253"/>
-    <functiondecl functionName="process_cfg_delete_room" lineNumber="268"/>
-    <functiondecl functionName="properties" lineNumber="286"/>
-    <functiondecl functionName="readCFG" lineNumber="304"/>
-    <functiondecl functionName="writeCFG" lineNumber="322"/>
-    <functiondecl functionName="build" lineNumber="345"/>
-    <functiondecl functionName="addRoom" lineNumber="385"/>
-    <functiondecl functionName="deleteRoom" lineNumber="397"/>
+    <functiondecl functionName="process_set_request" lineNumber="199"/>
+    <functiondecl functionName="process_cfg_request" lineNumber="219"/>
+    <functiondecl functionName="process_cfg_update" lineNumber="241"/>
+    <functiondecl functionName="process_cfg_add_room" lineNumber="256"/>
+    <functiondecl functionName="process_cfg_delete_room" lineNumber="271"/>
+    <functiondecl functionName="properties" lineNumber="289"/>
+    <functiondecl functionName="readCFG" lineNumber="307"/>
+    <functiondecl functionName="writeCFG" lineNumber="325"/>
+    <functiondecl functionName="build" lineNumber="348"/>
+    <functiondecl functionName="addRoom" lineNumber="388"/>
+    <functiondecl functionName="deleteRoom" lineNumber="400"/>
     <functioncall functionName="BasicServer"/>
     <functioncall functionName="CONFIG_NAME"/>
     <functioncall functionName="CSV_HEADLINE"/>
@@ -90,11 +79,14 @@
     <functioncall functionName="false"/>
     <functioncall functionName="filename"/>
     <functioncall functionName="find"/>
+    <functioncall functionName="float"/>
     <functioncall functionName="for"/>
     <functioncall functionName="getDescriptor"/>
     <functioncall functionName="getDoorStatus"/>
     <functioncall functionName="getNthWord"/>
+    <functioncall functionName="getTemperature"/>
     <functioncall functionName="getToiletStatus"/>
+    <functioncall functionName="getWindowStatus"/>
     <functioncall functionName="get_room_pointer"/>
     <functioncall functionName="get_sensor_type"/>
     <functioncall functionName="get_timestamp"/>
@@ -114,6 +106,7 @@
     <functioncall functionName="openCloseDoor"/>
     <functioncall functionName="optional"/>
     <functioncall functionName="out"/>
+    <functioncall functionName="override"/>
     <functioncall functionName="port"/>
     <functioncall functionName="print"/>
     <functioncall functionName="process_cfg_add_room"/>
