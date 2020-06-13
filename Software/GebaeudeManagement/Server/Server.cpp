@@ -61,53 +61,74 @@ void Server::print(const std::string msg) {
 // process incoming Server Request
 void Server::processRequest(char req[], char ans[]) {
 	std::string request(req);
-	std::string query, sensor, roomDescr, opt;
-	char response[max_length];
+	std::string query, sensor, room_descriptor, optional;
 	Room* requested_room = NULL;
 	std::string timestamp;	
+	char response[max_length];
+
 
 	// build timestamp string	
 	this->get_timestamp(&timestamp);
 
 	// retrieve information from the request string
-	query = getNthWord(request, 1);
-	sensor = getNthWord(request, 2);
-	roomDescr = getNthWord(request, 3);
-	opt = getNthWord(request, 4);
-	if (opt.compare(roomDescr) == 0) opt.clear();
-	else opt = request.substr(request.find(opt));		// if there are optional arguments available write them to optopt.clear();
+	//this->divide_request_into_substrings(request, query, sensor, room_descriptor, optional);
+	this->divide_request_into_substrings(&request, &query, &sensor, &room_descriptor, &optional);
 
 	// DEBUG OUTPUT
+	//cout << "request <" << request << ">" << endl;
 	//cout << "query <" << query << ">" << endl;
 	//cout << "sensor <" << sensor << ">" << endl;
-	//cout << "roomDescr <" << roomDescr << ">" << endl;
-	//cout << "opt <" << opt << ">" << endl;
+	//cout << "room_descriptor <" << room_descriptor << ">" << endl;
+	//cout << "optional <" << optional << ">" << endl;
 
 	// print request on server terminal
-	cout << timestamp << " - Q - " << req << endl;
+	cout << timestamp << " - Req - " << req << endl;
+
 
 	// choose desired action based on query
-	requested_room = this->get_room_pointer(roomDescr);
+	requested_room = this->get_room_pointer(room_descriptor);
 	if (requested_room == NULL && query.compare("cfg")) {
 		this->print("Room does not exist");
-		sprintf(response, "%s %s %s %s", query.c_str(), sensor.c_str(), roomDescr.c_str(), ERR_MSG[ERR_BAD_ROOM_ID].c_str());
+		sprintf(response, "%s %s %s %s", query.c_str(), sensor.c_str(), room_descriptor.c_str(), ERR_MSG[ERR_BAD_ROOM_ID].c_str());
 	}
 	else if (!query.compare("get")) {
 		this->process_get_request(sensor, requested_room, response);
 	}
 	else if (!query.compare("set")) {
-		this->process_set_request(sensor, requested_room, opt, response);
+		this->process_set_request(sensor, requested_room, optional, response);
 	}
 	else if (!query.compare("cfg")) {
 		this->process_cfg_request(sensor, requested_room, response);
 	}
 	else {
-		sprintf(response, "%s %s %s %s", query.c_str(), sensor.c_str(), roomDescr.c_str(), ERR_MSG[ERR_BAD_QUERY].c_str());
+		sprintf(response, "%s %s %s %s", query.c_str(), sensor.c_str(), room_descriptor.c_str(), ERR_MSG[ERR_BAD_QUERY].c_str());
 	}
 
 	// copy response to server answer
 	strncpy(ans, response, std::min(max_length, (const int)strlen(ans) + 1));
-	cout << timestamp << " - A - " << response << endl;
+
+	// print response on server terminal
+	cout << timestamp << " - Ans - " << response << endl;
+}
+
+
+//oid Server::divide_request_into_substrings(std::string request, std::string query, std::string sensor, std::string room_descriptor, std::string optional) {
+void Server::divide_request_into_substrings(std::string *request, std::string *query, std::string *sensor, std::string *room_descriptor, std::string *optional) {
+	// copy the words from the request string into the substrings accordingly
+	query->assign(getNthWord(*request, 1));
+	sensor->assign(getNthWord(*request, 2));
+	room_descriptor->assign(getNthWord(*request, 3));
+	optional->assign(getNthWord(*request, 4));
+
+	// check if the request had an optional argument,
+	// if yes, copy the remaining characters of the request into the optional string,
+	// if not clear the optional string	
+	if (optional->compare(*room_descriptor) == 0) optional->clear();
+	else optional->assign(request->substr(request->find(*optional)));
+
+	// check if the request string had a room_descriptor, 
+	// if not clear the room_descriptor string	
+	if (room_descriptor->compare(*sensor) == 0) room_descriptor->clear();
 }
 
 
@@ -143,12 +164,13 @@ int Server::get_sensor_type(std::string sensor) {
 }
 
 
-int Server::process_get_request(std::string sensor_type, Room* requested_room, char response[]) {
+int Server::process_get_request(std::string sensor_type, Room *requested_room, char response[]) {
 	double get_value = 0.0;
 
 	switch (this->get_sensor_type(sensor_type)) {
 	case SENSOR_TEMP:
-		get_value = requested_room->getTemperature();
+		//get_value = requested_room->getTemperature();
+		get_value = 20.0;
 		sprintf(response, "%s %s %s %.2lf", "get", sensor_type.c_str(), requested_room->getDescriptor().c_str(), get_value);
 		break;
 

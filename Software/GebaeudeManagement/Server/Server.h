@@ -47,6 +47,8 @@ private:
 	int readCFG();
 	int writeCFG();
 
+	//void divide_request_into_substrings(std::string request, std::string query, std::string sensor, std::string room_descriptor, std::string optional);
+	void divide_request_into_substrings(std::string* request, std::string* query, std::string* sensor, std::string* room_descriptor, std::string* optional);
 	int process_get_request(std::string sensor_type, Room* requested_room, char response[]);
 	int process_set_request(std::string sensor_type, Room* requested_room, std::string set_value, char response[]);
 	int process_cfg_request(std::string cfg_query, Room* requested_room, char response[]);
