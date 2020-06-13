@@ -136,8 +136,8 @@ int askForValue ( const char * descr, int roomID )
   else 
   { 
     int choice;
-    bool validChoice = false;
-    do {
+    // bool validChoice = false;
+    // do {
       cout << "----------------------------------------------------" << endl;
       cout << "Set " << descr << " for room '" << roomDescriptors[roomID] << "'" << endl;
       cout << "----------------------------------------------------" << endl;
@@ -145,9 +145,9 @@ int askForValue ( const char * descr, int roomID )
       cout << "Value: ";
       choice = getKBEntry(NULL);
       // if ( !strcmp (choice, "c") ) return 0;
-      validChoice = true;
+      // validChoice = true;
       cout << "\n\n";
-    } while ( !validChoice ); 
+    // } while ( !validChoice ); 
     return choice;
   }
 }
