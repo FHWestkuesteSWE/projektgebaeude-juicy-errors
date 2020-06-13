@@ -108,7 +108,9 @@ int main(int argc, char* argv[])
           // send request to server and output reply
           cout << "\n====================================================" << endl; 
           cout << "Request string: " << req << endl;
-          c.sendRequest(req, ans);
+          int success = 0; 
+          while ( (success = c.sendRequest(req, ans)) == 1 );
+          if ( success == -1 ) exit(1);
           cout << "Answer from server: " << ans << endl; 
           cout << "====================================================" << endl; 
           cout << "\n\n";

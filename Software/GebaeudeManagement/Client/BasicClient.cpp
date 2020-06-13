@@ -27,7 +27,7 @@ int BasicClient::sendRequest(const char request[], char answer[]) {
       std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
       std::cout << "Server could not be reached.\n\n";
       std::cout << "(r)etry\n";
-      std::cout << "(any other key) abort\n\n";
+      std::cout << "(a)bort\n\n";
       char choice;
       std::cin >> choice;
       std::cin.ignore(INT_MAX, '\n');
@@ -35,12 +35,18 @@ int BasicClient::sendRequest(const char request[], char answer[]) {
       if ( choice == 'r' ) return 1; // retry
       else return -1; // error, abort!
   }
+
   size_t request_length = strlen(request)+1;
   boost::asio::write(s, boost::asio::buffer(request, request_length));
 
-  // size_t reply_length = 
-  boost::asio::read(s, boost::asio::buffer(answer, max_length));
-
+  // size_t reply_length =   
+  try {
+      boost::asio::read(s, boost::asio::buffer(answer, max_length));
+  }
+  catch (const std::exception& e) { // reference to the base of a polymorphic object
+      std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
+  }
+  
   return 0; // all good
 }
 
