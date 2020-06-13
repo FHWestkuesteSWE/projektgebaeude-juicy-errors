@@ -11,7 +11,7 @@ BasicClient::BasicClient(char _server[], char _port[]) {
 }
 
 // send request to server
-void BasicClient::sendRequest(const char request[], char answer[]) {
+int BasicClient::sendRequest(const char request[], char answer[]) {
   boost::asio::io_service io_service;
 
   tcp::resolver resolver(io_service);
@@ -24,15 +24,24 @@ void BasicClient::sendRequest(const char request[], char answer[]) {
     boost::asio::connect(s, iterator);
   }
   catch (const std::exception& e) { // reference to the base of a polymorphic object      
-  //catch (const boost::exception &e) { // reference to the base of a polymorphic object      
-      std::cout << e.what() << "\n"; // information from length_error printed
-      //std::cout << boost::diagnostic_information(e);
+      std::cout << "ERROR: " << e.what() << "\n\n"; // information from length_error printed
+      std::cout << "Server could not be reached.\n\n";
+      std::cout << "(r)etry\n";
+      std::cout << "(any other key) abort\n\n";
+      char choice;
+      std::cin >> choice;
+      std::cin.ignore(INT_MAX, '\n');
+      std::cin.clear(); 
+      if ( choice == 'r' ) return 1; // retry
+      else return -1; // error, abort!
   }
   size_t request_length = strlen(request)+1;
   boost::asio::write(s, boost::asio::buffer(request, request_length));
 
   // size_t reply_length = 
   boost::asio::read(s, boost::asio::buffer(answer, max_length));
+
+  return 0; // all good
 }
 
 // destructor

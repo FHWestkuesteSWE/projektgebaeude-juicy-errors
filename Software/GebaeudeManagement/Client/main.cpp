@@ -40,7 +40,11 @@ int main(int argc, char* argv[])
       // get building configuration (room descriptors) from server
       strcpy(req, "cfg -g");
       cout << "DEBUG: Request string: " << req << endl;
-      c.sendRequest(req, ans);
+      
+      int success = 0; 
+      while ( (success = c.sendRequest(req, ans)) == 1 );
+      if ( success == -1 ) exit(1);
+
       writeLog ( FILENAME, req ); // log request
       writeLog ( FILENAME, ans ); // log answer
 
@@ -358,7 +362,6 @@ int getKBEntry ( char * kbentry )
 #endif 
   return -1;
 }
-
 
 // third party code (stackoverflow.com)
 int splitString ( const std::string &txt, std::vector<std::string> &strs, char ch )
