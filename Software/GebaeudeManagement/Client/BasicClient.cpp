@@ -17,8 +17,14 @@ void BasicClient::sendRequest(const char request[], char answer[]) {
   tcp::resolver::iterator iterator = resolver.resolve(query);
 
   tcp::socket s(io_service);
-  boost::asio::connect(s, iterator);
-
+  
+  try {
+    boost::asio::connect(s, iterator);
+  }
+  catch (const std::exception& e) { // reference to the base of a polymorphic object      
+      //std::cout << e << endl;
+      std::cout << e.what(); // information from length_error printed
+  }
   size_t request_length = strlen(request)+1;
   boost::asio::write(s, boost::asio::buffer(request, request_length));
 
