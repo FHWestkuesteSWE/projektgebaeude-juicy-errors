@@ -25,5 +25,8 @@ int writeLog        ( const char * filename, const char * message );
 int getKBEntry      ( char * kbentry );
 int splitString  (const std::string &txt, std::vector<std::string> &strs, char ch);
 
+void menu_select_sensor_or_actuator(int roomNumber, char req[], char ans[]);
+void client_send_request(Client* client, char* request, char* answer);
+
 #endif /* INC_MAIN_H */
 

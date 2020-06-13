@@ -17,8 +17,10 @@
 #endif
 
 std::vector<std::string> roomDescriptors; // list of room descriptors from server
-
 using namespace std;
+
+
+
 int main(int argc, char* argv[]) 
 {
     Client c(argv[1], argv[2]);
@@ -33,30 +35,29 @@ int main(int argc, char* argv[])
     std::cout << "\n\n-=[ BuildingMaster FHW 3000 ]=-\n\n";
     std::cout << "(Ctrl-c to quit)\n\n" << endl;
 
+    int res = 0;
+
     do {
-      // -----------------------------------------------------------------------
-      // MENU: select room (root)
-      // -----------------------------------------------------------------------
-      // get building configuration (room descriptors) from server
-      strcpy(req, "cfg -g");
-      // cout << "DEBUG: Request string: " << req << endl;
-      int success = 0; 
-      while ( (success = c.sendRequest(req, ans)) == 1 );
-      if ( success == -1 ) exit(1);
+    // -----------------------------------------------------------------------
+    // MENU: select room (root)
+    // -----------------------------------------------------------------------
 
-      writeLog ( FILENAME, req ); // log request
-      writeLog ( FILENAME, ans ); // log answer
+    // get initial building configuration from server
+    strcpy(req, "cfg -g");
+    client_send_request(&c, req, ans);
 
-      //strcpy ( ans, "living1 living2 kitchen1 lavatory1 garden1 garage1 patio1" ); // because server doesn't use delimiters yet
-      cout << "DEBUG: Answer from server: " << ans << endl; 
-      // numRooms = 
-      splitString ( (string)ans, roomDescriptors, ' ' ); // split string into vector of strings
-      // for ( int i = 0; i < numRooms; i ++ ) cout << roomDescriptors[i] << endl;
-      // ---
+    writeLog(FILENAME, req); // log request
+    writeLog(FILENAME, ans); // log answer
+    cout << "DEBUG: Answer from server: " << ans << endl; 
 
-      while ( roomNumber < 0 ) {
-        roomNumber = selectRoom (); 
-      }
+    // retrieve room descriptors from the answer and save them in the vector roomDescriptors
+    splitString((string)ans, roomDescriptors, ' '); 
+
+
+    // select the room
+    while (roomNumber < 0) {
+        roomNumber = selectRoom(); 
+    }
       
       // -----------------------------------------------------------------------
       // MENU: select sensor/actuator
@@ -107,9 +108,7 @@ int main(int argc, char* argv[])
           // send request to server and output reply
           cout << "\n====================================================" << endl; 
           cout << "Request string: " << req << endl;
-          int success = 0; 
-          while ( (success = c.sendRequest(req, ans)) == 1 );
-          if ( success == -1 ) exit(1);
+          client_send_request(&c, req, ans);
           cout << "Answer from server: " << ans << endl; 
           cout << "====================================================" << endl; 
           cout << "\n\n";
@@ -125,6 +124,88 @@ int main(int argc, char* argv[])
     cout << "Closing program." << endl;
     return 0;
 }
+
+
+void client_send_request(Client* client, char* request, char *answer) {
+    int res = 0;
+    do {
+        res = client->sendRequest(request, answer);
+        if (res == ERR_ABORT) {
+            std::cout << "Could not reach server. Aborting program..." << std::endl;
+            exit(-1);
+        }
+    } while (res == ERR_RETRY);
+}
+
+
+void menu_select_sensor_or_actuator(int roomNumber, char req[], char ans[]) {
+// -----------------------------------------------------------------------
+// MENU: select sensor/actuator
+// -----------------------------------------------------------------------
+// return here unless user choses to go 'back' to root (select room)
+    char sens[255] = ""; // sensor/actuator type ( temp, door, toilet/wc, window )
+    char strValue[255] = "";
+    int value = 0; // set value 
+
+    while (selectSensor(roomNumber, sens) != 'b') // select sensor ( (t)emp, (d)oor, (w)c, wi(n)dow )
+    {
+
+        // -----------------------------------------------------------------------
+        // MENU: select action (get, set)
+        // -----------------------------------------------------------------------
+        char action;
+        while ((action = selectAction(sens)) != 'b') // get, set or configure sensor
+        {
+
+            switch (action) {
+            case 'g': // get sensor data
+                strcpy(req, "get");
+                strcpy(strValue, ""); // reset strValue
+                break;
+
+            case 's': // set actuator value
+                strcpy(req, "set");
+                value = askForValue(sens, roomNumber);
+                sprintf(strValue, "%d", value);
+                break;
+
+                //case 'c': // configure sensor/actuator
+                //  strcpy ( req, "conf " );
+                //  break;
+
+            default:
+                break;
+            }
+
+            // -----------------------------------------------------------------------
+            // SEND: compose server query
+            // -----------------------------------------------------------------------
+            strcat(req, " ");                                  // append space 
+            strcat(req, sens);                                 // append sensor type
+            strcat(req, " ");                                  // append space 
+            strcat(req, roomDescriptors[roomNumber].c_str());  // append descriptor 
+            if (strValue[0] != '\0') { // only append space when strValue is set
+                strcat(req, " ");
+                strcat(req, strValue);
+            }
+
+            //// send request to server and output reply
+            //cout << "\n====================================================" << endl;
+            //cout << "Request string: " << req << endl;
+            //client_send_request(&c, req, ans);
+            //cout << "Answer from server: " << ans << endl;
+            //cout << "====================================================" << endl;
+            //cout << "\n\n";
+
+            //writeLog(FILENAME, req); // log request
+            //writeLog(FILENAME, ans); // log answer
+        }
+    }
+}
+
+
+
+
 
 // TEST: check user valid input, empty string and zero-termination, roomID range
 int askForValue ( const char * descr, int roomID )
