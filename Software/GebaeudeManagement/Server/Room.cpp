@@ -8,7 +8,7 @@
 //TEST: no
 //
 
-
+Room::~Room() {}
 //TEST: no
 //
 // Constructor
