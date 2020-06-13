@@ -136,8 +136,8 @@ int askForValue ( const char * descr, int roomID )
   else 
   { 
     int choice;
-    bool validChoice = false;
-    do {
+    // bool validChoice = false;
+    // do {
       cout << "----------------------------------------------------" << endl;
       cout << "Set " << descr << " for room '" << roomDescriptors[roomID] << "'" << endl;
       cout << "----------------------------------------------------" << endl;
@@ -145,9 +145,9 @@ int askForValue ( const char * descr, int roomID )
       cout << "Value: ";
       choice = getKBEntry(NULL);
       // if ( !strcmp (choice, "c") ) return 0;
-      validChoice = true;
+      // validChoice = true;
       cout << "\n\n";
-    } while ( !validChoice ); 
+    // } while ( !validChoice ); 
     return choice;
   }
 }
@@ -191,9 +191,6 @@ int selectRoom ( void )
   std::cout << "Choice: (0 - " << roomCount-1 << "): ";
   choice = getKBEntry (NULL); 
   cout << "\n\n";
-  // clear cin buffer
-  std::cin.ignore(INT_MAX);
-  std::cin.clear(); 
 
   if ( ( choice >= 0 ) && ( choice < roomCount ) ) return choice;
   else return -1; // wrong entry
@@ -344,14 +341,14 @@ int getKBEntry ( char * kbentry )
     int choice; // = 0;
     std::cin >> choice; 
     // clear cin buffer
-    std::cin.ignore(INT_MAX);
+    std::cin.ignore(INT_MAX, '\n');
     std::cin.clear(); 
     return choice;
   }
   else {
     std::cin >> kbentry[0];
     // clear cin buffer
-    std::cin.ignore(INT_MAX);
+    std::cin.ignore(INT_MAX, '\n');
     std::cin.clear(); 
     return 0;
   }
