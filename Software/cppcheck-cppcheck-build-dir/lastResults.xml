@@ -2,27 +2,20 @@
 <results version="2">
     <cppcheck version="2.0"/>
     <errors>
-        <error id="catchExceptionByValue" severity="style" msg="Exception should be caught by reference." verbose="The exception is caught by value. It could be caught as a (const) reference which is usually recommended in C++." cwe="398" sinceDate="13.06.2020">
-            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="350"/>
+        <error id="catchExceptionByValue" severity="style" msg="Exception should be caught by reference." verbose="The exception is caught by value. It could be caught as a (const) reference which is usually recommended in C++." cwe="398" sinceDate="14.06.2020">
+            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="592"/>
         </error>
-        <error id="shadowVariable" severity="style" msg="Local variable &amp;#039;success&amp;#039; shadows outer variable" verbose="Local variable &amp;#039;success&amp;#039; shadows outer variable" cwe="398" sinceDate="13.06.2020">
-            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="110" info="Shadow variable"/>
-            <location file0="GebaeudeManagement/Client/main.cpp" file="GebaeudeManagement\Client\main.cpp" line="43" info="Shadowed declaration"/>
-        </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="13.06.2020">
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="14.06.2020">
             <location file0="GebaeudeManagement/UnitTestServer/UnitTestServer.cpp" file="GebaeudeManagement\UnitTestServer\UnitTestServer.cpp" line="40"/>
         </error>
-        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="13.06.2020">
-            <location file0="GebaeudeManagement/UnitTestClient/UnitTestClient.cpp" file="GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41"/>
-        </error>
-        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="13.06.2020">
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="14.06.2020">
             <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="292"/>
         </error>
-        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="13.06.2020">
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398" sinceDate="14.06.2020">
             <location file0="GebaeudeManagement/Server/Server.cpp" file="GebaeudeManagement\Server\Server.cpp" line="356"/>
         </error>
-        <error id="unusedFunction" severity="style" msg="The function &amp;#039;getDoubleValue&amp;#039; is never used." verbose="The function &amp;#039;getDoubleValue&amp;#039; is never used." cwe="561" sinceDate="13.06.2020">
-            <location file="GebaeudeManagement\Server\Sensor.cpp" line="31"/>
+        <error id="syntaxError" severity="error" msg="syntax error" verbose="syntax error" sinceDate="14.06.2020">
+            <location file0="GebaeudeManagement/UnitTestClient/UnitTestClient.cpp" file="GebaeudeManagement\UnitTestClient\UnitTestClient.cpp" line="41"/>
         </error>
     </errors>
 </results>
