@@ -201,11 +201,20 @@ int selectRoom ( void )
   else return -1; // wrong entry
 }
 
+// SIMPLIFY!!!
 // TEST: range of room ID
 char selectSensor ( int room, char * sens )
 {
+# define NUM_OPTIONS 4
   char choice;
-  bool decided = false;
+  bool decided = false; 
+
+  const std::string choiceRet[NUM_OPTIONS][3] = {
+    {"(t)emperature sensor",    "t", "temp"},
+    {"(d)oor sensor/actuator",  "d", "door"},
+    {"(w)c/toilet sensor",      "w", "toilet"},
+    {"wi(n)dow sensor",         "n", "window"}
+  }; 
   
   // roomID out of range:
   if ( (room >= roomDescriptors.size()) || (room < 0) ) return -1; 
@@ -214,10 +223,9 @@ char selectSensor ( int room, char * sens )
     cout << "----------------------------------------------------" << endl;
     cout << "Select sensor/actuator in room '" << roomDescriptors[room] << "'\n";
     cout << "----------------------------------------------------" << endl; 
-    cout << "(t)emperature sensor" << endl;
-    cout << "(d)oor sensor/actuator" << endl;
-    cout << "(w)c/toilet sensor" << endl;
-    cout << "wi(n)dow sensor" << endl;
+    for (int i = 0; i < NUM_OPTIONS; i++) {
+      cout << choiceRet[i][0] << endl;
+    }
     cout << "\n\n(b)ack" << endl;
     cout << "----------------------------------------------------" << endl; 
     cout << "Choice: ";
@@ -225,27 +233,16 @@ char selectSensor ( int room, char * sens )
     /* cout << "Choice: " << choice << endl; */
     cout << "\n\n";
 
-    switch (choice) {
-      case 't': 
-        strcpy ( sens, "temp" );
-        decided = true;
-        break;
-      case 'd':
-        strcpy ( sens, "door" );
-        decided = true;
-        break;
-      case 'w':
-        strcpy ( sens, "toilet" );
-        decided = true;
-        break; 
-      case 'n':
-        strcpy ( sens, "window" );
-        decided = true;
-        break; 
-      case 'b':
-        decided = true;
-        break;
-    } 
+    if ( choice == 'b' ) return choice; // 'back' was selected
+    else 
+    { 
+      for (int i = 0; i < NUM_OPTIONS; i ++) {
+        if ( choiceRet[i][1].c_str()[0] == choice ) {
+          strcpy ( sens, choiceRet[i][2].c_str() );
+          decided = true;
+        } 
+      } 
+    }
   } while (!decided); 
 
   cout << "\n\n";
@@ -253,6 +250,7 @@ char selectSensor ( int room, char * sens )
   return choice; 
 }
 
+// SIMPLIFY!!!
 // TEST: empty string
 char selectAction ( const char * descr )
 {
