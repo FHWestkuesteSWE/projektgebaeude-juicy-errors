@@ -1,6 +1,6 @@
 #include "Client.h"
 
-Client::Client (char _server[], char _port[]): BasicClient(_server, _port) 
+Client::Client (char _server[], char _port[]): SSLClient(_server, _port)
 {
   
 }
@@ -22,14 +22,16 @@ char * Client::getStrAns ( void )
 
 void Client::client_send_request () 
 {
-    int res = 0;
-    do {
-        res = sendRequest(request, answer);
-        if (res == ERR_ABORT) {
-            std::cout << "Could not reach server. Aborting program..." << std::endl;
-            exit(-1);
-        }
-    } while (res == ERR_RETRY);
+    //int res = 0;
+    //do {
+    //    res = sendRequest(request, answer);
+    //    if (res == ERR_ABORT) {
+    //        std::cout << "Could not reach server. Aborting program..." << std::endl;
+    //        exit(-1);
+    //    }
+    //} while (res == ERR_RETRY);
+
+    sendRequest(request, answer);
 }
 
 

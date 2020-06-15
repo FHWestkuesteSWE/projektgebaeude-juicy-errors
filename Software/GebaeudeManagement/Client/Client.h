@@ -1,8 +1,9 @@
 #pragma once
 #include "BasicClient.h"
+#include "SSLClient.h"
 #include <string>
     
-class Client : public BasicClient
+class Client : public SSLClient
 {
 public: 
    //Client();
