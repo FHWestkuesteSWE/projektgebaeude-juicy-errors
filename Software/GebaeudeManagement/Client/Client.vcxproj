@@ -152,12 +152,14 @@
     <ClCompile Include="BasicClient.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SSLClient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AESCryptor.h" />
     <ClInclude Include="BasicClient.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="SSLClient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -160,6 +160,8 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Sensor.cpp" />
     <ClCompile Include="Server.cpp" />
+    <ClCompile Include="Session.cpp" />
+    <ClCompile Include="SSLServer.cpp" />
     <ClCompile Include="TemperatureSensor.cpp" />
     <ClCompile Include="Thermostat.cpp" />
     <ClCompile Include="ToiletSensor.cpp" />
@@ -175,6 +177,8 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="Session.h" />
+    <ClInclude Include="SSLServer.h" />
     <ClInclude Include="TemperatureSensor.h" />
     <ClInclude Include="Thermostat.h" />
     <ClInclude Include="ToiletSensor.h" />
