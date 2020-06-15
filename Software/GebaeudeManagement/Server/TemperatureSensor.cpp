@@ -1,10 +1,8 @@
 #include "TemperatureSensor.h"
-#include <iostream>
 
 //default Constructor
 TemperatureSensor::TemperatureSensor() {
-	this->setDoubleValue(TEMP_DEFAULT);
-	std::cout << this->getDoubleValue() << std::endl;
+	this->set_sensor_value_double(TEMP_DEFAULT);
 }
 
 
@@ -14,18 +12,14 @@ TemperatureSensor::~TemperatureSensor() {
 
 double TemperatureSensor::getTemp()
 {
-	//this->set_random_temp();
-	//std::cout << "read value " << this->getDoubleValue() << std::endl;
-	//return this->getDoubleValue();
-	return 21.5;
+	this->set_random_temp();
+	return this->get_sensor_value_double();
 }
 
 
 void TemperatureSensor::set_random_temp() {
-	double current_value = this->getDoubleValue();
+	double current_value = this->get_sensor_value_double();
 	double new_value = 0.0;
-
-	std::cout << "current value " << current_value << std::endl;
 
 	if (current_value < TEMP_MIN) {
 		new_value = TEMP_DEFAULT;
@@ -54,16 +48,5 @@ void TemperatureSensor::set_random_temp() {
 		}
 	}
 
-	std::cout << "new value " << new_value << std::endl;
-	this->setDoubleValue(new_value);
+	this->set_sensor_value_double(new_value);
 }
-
-
-
-
-//srand(time(0));
-//int r = rand() % 100;
-//if (r > 80)
-//_bVal = true;
-//else
-//_bVal = false;

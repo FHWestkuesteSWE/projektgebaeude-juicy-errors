@@ -5,7 +5,10 @@ class ToiletSensor :
 {
 public:
 	ToiletSensor();
+	~ToiletSensor();
 
 	bool getToiletStatus();
-};
 
+private:
+	void set_random_toilet_status(void);
+};

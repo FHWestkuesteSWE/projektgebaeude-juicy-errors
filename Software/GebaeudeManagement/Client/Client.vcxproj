@@ -103,12 +103,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\boost_1_72_0;C:\Program Files (x86)\boost_1_72_0;C:\Boost\boost_1_72_0;C:\Program Files\cryptopp820</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\boost_1_72_0;C:\Program Files (x86)\boost_1_72_0;C:\Boost\boost_1_72_0;C:\Program Files\cryptopp820;C:\Program Files (x86)\cryptopp_8_2_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\boost_1_72_0\stage\x64\lib;C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;C:\Boost\boost_1_72_0\stage\x64\lib;C:\Program Files\cryptopp820\Win32\Output\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\boost_1_72_0\stage\x64\lib;C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;C:\Boost\boost_1_72_0\stage\x64\lib;C:\Program Files\cryptopp820\Win32\Output\Debug;C:\Program Files (x86)\cryptopp_8_2_0\x64\Output\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

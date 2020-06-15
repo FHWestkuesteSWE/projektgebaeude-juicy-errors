@@ -15,5 +15,5 @@ void Actuator::setBooleanValue(bool val)
 
 void Actuator::setDoubleValue(double val)
 {
-	_fVal = val;
+	_dVal = val;
 }
