@@ -20,14 +20,14 @@ Schluessel wird von Datei keypath
 */
 AESCryptor::AESCryptor(const char* keypath)
 {
-    FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) );
-
+    FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) ); 
 }
 
 /*
 Erzeugt Schluessel und speichert ihn in Datei keypath
 */
-void AESCryptor::GenerateSaveKeys(const char* keypath){
+void AESCryptor::GenerateSaveKeys(const char* keypath)
+{
     // Erzeuge zufälligen Schlüssel
     AutoSeededRandomPool prng;
     SecByteBlock key(AES::DEFAULT_KEYLENGTH);
@@ -36,8 +36,7 @@ void AESCryptor::GenerateSaveKeys(const char* keypath){
     HexEncoder encoder;
     encoder.Attach( new CryptoPP::FileSink( keypath ) );
     encoder.Put( key, key.size());
-    encoder.MessageEnd();
-
+    encoder.MessageEnd(); 
 }
 
 /*
