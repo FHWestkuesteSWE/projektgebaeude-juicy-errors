@@ -26,6 +26,7 @@
     <ClCompile Include="WindowSensor.cpp">
       <Filter>RoomClasses</Filter>
     </ClCompile>
+    <ClCompile Include="AESCryptor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="WindowSensor.h">
       <Filter>RoomClasses</Filter>
     </ClInclude>
+    <ClInclude Include="AESCryptor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RoomClasses">
