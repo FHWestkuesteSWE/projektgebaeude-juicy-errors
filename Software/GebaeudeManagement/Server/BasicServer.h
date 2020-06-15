@@ -14,9 +14,11 @@ public:
 	~BasicServer();
 	const static int max_length=1024;
 
+	virtual void processRequest(char request[], char answer[]);
+
+
 private:
 	void session(socket_ptr sock);
-	//void echo(char request[], char answer[]);
-	virtual void processRequest(char request[], char answer[]);
+	//void echo(char request[], char answer[]);	
 };
 
