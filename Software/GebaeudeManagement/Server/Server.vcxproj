@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actuator.cpp" />
+    <ClCompile Include="AESCryptor.cpp" />
     <ClCompile Include="BasicServer.cpp" />
     <ClCompile Include="DoorActuator.cpp" />
     <ClCompile Include="DoorLockingSensor.cpp" />
@@ -166,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actuator.h" />
+    <ClInclude Include="AESCryptor.h" />
     <ClInclude Include="BasicServer.h" />
     <ClInclude Include="DoorActuator.h" />
     <ClInclude Include="DoorLockingSensor.h" />

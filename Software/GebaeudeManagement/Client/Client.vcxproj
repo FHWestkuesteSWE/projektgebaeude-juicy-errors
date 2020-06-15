@@ -103,12 +103,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\boost_1_72_0;C:\Program Files (x86)\boost_1_72_0;C:\Boost\boost_1_72_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\boost_1_72_0;C:\Program Files (x86)\boost_1_72_0;C:\Boost\boost_1_72_0;C:\Program Files\cryptopp820</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\boost_1_72_0\stage\x64\lib;C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;C:\Boost\boost_1_72_0\stage\x64\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\boost_1_72_0\stage\x64\lib;C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;C:\Boost\boost_1_72_0\stage\x64\lib;C:\Program Files\cryptopp820\Win32\Output\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -148,11 +148,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AESCryptor.cpp" />
     <ClCompile Include="BasicClient.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AESCryptor.h" />
     <ClInclude Include="BasicClient.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="main.h" />
