@@ -11,6 +11,8 @@ extended by juicy errors 2020
 #ifndef AESCRYPTOR_H
 #define AESCRYPTOR_H
 
+#define TEMPFILE "clearlog.log"
+
 #include <string>
 #include <aes.h>
 #include <ccm.h>
@@ -19,6 +21,7 @@ extended by juicy errors 2020
 #include <fstream>
 #include <sys/stat.h>
 #include <string>
+#include <cstdio>
 
 class AESCryptor
 {
@@ -29,7 +32,7 @@ class AESCryptor
         std::string Decode(std::string);
 
         // added helper functions
-        int decryptFile ( const char * filename );
+        int decryptFile ( const char * filename, char * logfile );
         int encryptFile ( const char * filename );
 
     protected:

@@ -61,7 +61,9 @@ int main(int argc, char* argv[])
 
 // write client-server communication to logfile
 int writeLog ( const char * filename, const char * message )
-{
+{ 
+  char tmpLogfile[1024]; // temporary decrypted version of the file for new entry
+
   // decrypt log file
   AESCryptor * cryptor = new AESCryptor(KEYFILE);
   
@@ -81,10 +83,14 @@ int writeLog ( const char * filename, const char * message )
       return -1;
     }
   } 
+  else { // log file exists
+    // decrypt log file
+    cryptor->decryptFile (filename, &tmpLogfile[0]); 
+  }
   logfile.close();
 
   // write to existing logfile 
-  logfile.open(filename, std::ios_base::app);
+  logfile.open(&tmpLogfile[0], std::ios_base::app);
   if (logfile.is_open()) {
     
     time_t now = time(0); // current date/time based on current system
@@ -100,6 +106,9 @@ int writeLog ( const char * filename, const char * message )
     cout << "Could not write to existing config file!\n";
     return -1;
   }
+
+  // encrypt log file
+  cryptor->encryptFile (filename);
 
   return 0;
 }

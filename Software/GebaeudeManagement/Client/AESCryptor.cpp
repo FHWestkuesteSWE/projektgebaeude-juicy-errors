@@ -40,8 +40,42 @@ AESCryptor::AESCryptor(const char* keypath)
         std::cout << "Choice: ";
         std::cin >> choice;
       } while (choice < 1 || choice > 2);
-    } 
-    exit(0);
+
+      if (choice == 1) {
+        // generate key
+        GenerateSaveKeys (keypath); 
+        // load new key
+        FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) ); 
+      }
+      else if (choice == 2) {
+        char newkeypath[1024];
+        std::cout << "\n----------------------------------------------------\n";
+        std::cout << "Enter full path and file name of key:\n";
+        std::cout << "----------------------------------------------------\n";
+        std::cout << "> ";
+        std::cin >> newkeypath; 
+
+        ret = stat(keypath, &info);
+        if (!ret) {
+          // file exists
+          std::cout << "\n----------------------------------------------------\n";
+          std::cout << "Loading key file '" << newkeypath << "'...\n";
+          std::cout << "----------------------------------------------------\n";
+          // load key
+          FileSource( newkeypath, true, new HexDecoder( new StringSink( keys ) ) ); 
+        }
+        else {
+          // file does not exist
+          std::cout << "\n----------------------------------------------------\n";
+          std::cout << "Generating new key file '" << newkeypath << "'...\n";
+          std::cout << "----------------------------------------------------\n";
+          // generate key
+          GenerateSaveKeys (newkeypath); 
+          // load key 
+          FileSource( newkeypath, true, new HexDecoder( new StringSink( keys ) ) ); 
+        }
+      } // end: choice == 2
+    } // end: file doesn't exist
 }
 
 /*
@@ -120,13 +154,43 @@ std::string AESCryptor::Decode(std::string hex)
 }
 
 
-int AESCryptor::decryptFile ( const char * filename )
+int AESCryptor::decryptFile ( const char * filename, char * logfile )
 {
+  std::ifstream encrFile ( filename ); // original encrypted log file
+  std::stringstream encrLog; // encrypted file contents
+  encrLog << encrFile.rdbuf();
+  encrFile.close();
+
+  std::stringstream clearLog; // clear file contents
+  std::ofstream clearFile; // temporary clear text file
+  clearFile.open( (TEMPFILE) ); 
+  clearLog << Decode (encrLog.str()).c_str();
+  clearFile << clearLog.rdbuf();
+  clearFile.close();
+
+  strcpy (logfile, TEMPFILE); // return file that can be written to
+
   return 0; 
 }
 
 int AESCryptor::encryptFile ( const char * filename )
 {
+  std::ifstream clearFile (TEMPFILE); // temporary clear text file
+  std::stringstream clearLog; // clear file contents
+  clearLog << clearFile.rdbuf();
+  clearFile.close();
+
+  std::stringstream encrLog; // encrypted file contents
+  std::ofstream encrFile;
+  encrFile.open ( filename ); // encrypted log file
+
+  encrLog << Encode (clearLog.str()).c_str();
+  encrFile << encrLog.rdbuf();
+  encrFile.close(); 
+
+  // delete clear log file
+  remove (TEMPFILE);
+
   return 0; 
 }
 
