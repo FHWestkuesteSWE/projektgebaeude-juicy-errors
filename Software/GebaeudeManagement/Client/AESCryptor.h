@@ -5,6 +5,7 @@ Klasse zum AES-Kodieren und Dekodieren von std::string
 Schluessel wird auf Datei gespeichert und von Datei gelesen
 
 (c) Kristina Schädler 2017, 2019
+extended by juicy errors 2020
 ****/
 
 #ifndef AESCRYPTOR_H
@@ -14,6 +15,11 @@ Schluessel wird auf Datei gespeichert und von Datei gelesen
 #include <aes.h>
 #include <ccm.h>
 
+#include <iostream>
+#include <fstream>
+#include <sys/stat.h>
+#include <string>
+
 class AESCryptor
 {
     public:
@@ -21,6 +27,11 @@ class AESCryptor
         static void GenerateSaveKeys(const char* keypath);
         std::string Encode(std::string);
         std::string Decode(std::string);
+
+        // added helper functions
+        int decryptFile ( const char * filename );
+        int encryptFile ( const char * filename );
+
     protected:
         std::string keys;
     private:

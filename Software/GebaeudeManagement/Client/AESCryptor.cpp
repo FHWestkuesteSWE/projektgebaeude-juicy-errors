@@ -20,7 +20,28 @@ Schluessel wird von Datei keypath
 */
 AESCryptor::AESCryptor(const char* keypath)
 {
-    FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) ); 
+    struct stat info; 
+    int ret = stat(keypath, &info);
+
+    if (!ret) {
+      // file exists
+      FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) ); 
+    }
+    else {
+      // file doesn't exist
+      //CreateOrUseOther ()
+      int choice = 0;
+      do {
+        std::cout << "\n----------------------------------------------------\n";
+        std::cout << "Keyfile for encrypting log file does not exist.\n\n";
+        std::cout << "(1)\tCreate '" << keypath << "'\n";
+        std::cout << "(2)\tUse other key file\n";
+        std::cout << "----------------------------------------------------\n";
+        std::cout << "Choice: ";
+        std::cin >> choice;
+      } while (choice < 1 || choice > 2);
+    } 
+    exit(0);
 }
 
 /*
@@ -42,29 +63,30 @@ void AESCryptor::GenerateSaveKeys(const char* keypath)
 /*
 Gibt AES-kodierten string zurück
 */
-std::string AESCryptor::Encode(std::string s){
-	AutoSeededRandomPool prng;
+std::string AESCryptor::Encode(std::string s)
+{
+  AutoSeededRandomPool prng;
 
-	// Generate IV
-	byte iv[AES::BLOCKSIZE];
-	prng.GenerateBlock(iv, sizeof(iv));
+  // Generate IV
+  byte iv[AES::BLOCKSIZE];
+  prng.GenerateBlock(iv, sizeof(iv));
     CryptoPP::CBC_Mode< CryptoPP::AES >::Encryption e;
-	e.SetKeyWithIV((const byte*)keys.data(), AES::DEFAULT_KEYLENGTH, iv);
+  e.SetKeyWithIV((const byte*)keys.data(), AES::DEFAULT_KEYLENGTH, iv);
     // Verschluesseln: "Filtere" s durch Verschlüsseler e und speichere Ergebnis in
     // encoded
     std::string encoded;
     StringSource source(s, true,
-			new StreamTransformationFilter(e, // Behandle Block-Chiffre wie Stream
-				new StringSink(encoded)
-			)
+      new StreamTransformationFilter(e, // Behandle Block-Chiffre wie Stream
+        new StringSink(encoded)
+      )
     );
 
     // Speichere iv und verschüsselten String hexcodiert in hex
     std::string hex;
     HexEncoder encoder;
     encoder.Attach(new StringSink(hex));
-	encoder.Put(iv, sizeof(iv));
-	encoder.Put((const byte*)encoded.data(), encoded.size());
+  encoder.Put(iv, sizeof(iv));
+  encoder.Put((const byte*)encoded.data(), encoded.size());
     encoder.MessageEnd();
     return hex;
 }
@@ -72,7 +94,8 @@ std::string AESCryptor::Encode(std::string s){
 /*
 Gibt AES-dekodierten string zurück
 */
-std::string AESCryptor::Decode(std::string hex){
+std::string AESCryptor::Decode(std::string hex)
+{
 
     // Hex-decode
     std::string s;
@@ -83,15 +106,27 @@ std::string AESCryptor::Decode(std::string hex){
 
     // IV abtrennen
     std::string ivs=s.substr(0,AES::BLOCKSIZE);
-	CryptoPP::CBC_Mode< CryptoPP::AES >::Decryption d;
-	d.SetKeyWithIV((const byte*)keys.data(), AES::DEFAULT_KEYLENGTH, (const byte*)ivs.data(), AES::BLOCKSIZE);
+  CryptoPP::CBC_Mode< CryptoPP::AES >::Decryption d;
+  d.SetKeyWithIV((const byte*)keys.data(), AES::DEFAULT_KEYLENGTH, (const byte*)ivs.data(), AES::BLOCKSIZE);
 
     // Entschluesseln
     std::string decoded;
     StringSource source(s.substr(AES::BLOCKSIZE), true,
-			new StreamTransformationFilter(d, // Behandle Block-Chiffre wie Stream
-				new StringSink(decoded)
-			)
+      new StreamTransformationFilter(d, // Behandle Block-Chiffre wie Stream
+        new StringSink(decoded)
+      )
     );
-	return decoded;
+  return decoded;
 }
+
+
+int AESCryptor::decryptFile ( const char * filename )
+{
+  return 0; 
+}
+
+int AESCryptor::encryptFile ( const char * filename )
+{
+  return 0; 
+}
+
