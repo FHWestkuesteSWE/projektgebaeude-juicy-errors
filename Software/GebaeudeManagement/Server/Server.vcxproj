@@ -106,12 +106,13 @@
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
       <AdditionalIncludeDirectories>C:\OpenSSL-Win64\include;C:\Program Files (x86)\boost_1_72_0;C:\Boost\boost_1_72_0;C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\Studium\FHW\MzEzS\Labor\cryptopp820;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\soere\OneDrive - haw-hamburg.de\Dokumente\Studium\FHW\MzEzS\Labor\cryptopp820\x64\cryptlib;C:\OpenSSL-Win64\lib;C:\Program Files (x86)\boost_1_72_0\stage\x64\lib;C:\Boost\boost_1_72_0\stage\x64\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
