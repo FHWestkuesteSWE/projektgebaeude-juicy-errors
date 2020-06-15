@@ -1,84 +1,101 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="2461856120">
-        <error id="noConstructor" severity="style" msg="The class &apos;Actuator&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Actuator&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Actuator.h" line="3" column="2"/>
-            <symbol>Actuator</symbol>
+<analyzerinfo checksum="2235833570">
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="292" column="91"/>
         </error>
-        <error id="noConstructor" severity="style" msg="The class &apos;Sensor&apos; does not have a constructor although it has private member variables." verbose="The class &apos;Sensor&apos; does not have a constructor although it has private member variables. Member variables of builtin types are left uninitialized when the class is instantiated. That may cause bugs or undefined behavior." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Sensor.h" line="3" column="1"/>
-            <symbol>Sensor</symbol>
-        </error>
-        <error id="missingOverride" severity="style" msg="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier." verbose="The function &apos;processRequest&apos; overrides a function in a base class but is not marked with a &apos;override&apos; specifier.">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.h" line="34" column="7" info="Function in derived class"/>
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\BasicServer.h" line="20" column="15" info="Virtual function in base class"/>
-            <symbol>processRequest</symbol>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;msg&apos; should be passed by const reference." verbose="Parameter &apos;msg&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="49" column="32"/>
-            <symbol>msg</symbol>
-        </error>
-        <error id="passedByValue" severity="performance" msg="Function parameter &apos;roomProps&apos; should be passed by const reference." verbose="Parameter &apos;roomProps&apos; is passed by value. It could be passed as a const reference which is usually faster and recommended in C++." cwe="398">
-            <location file0="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="C:\Users\fab\Documents\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="277" column="36"/>
-            <symbol>roomProps</symbol>
+        <error id="postfixOperator" severity="performance" msg="Prefer prefix ++/-- operators for non-primitive types." verbose="Prefix ++/-- operators should be preferred for non-primitive types. Pre-increment/decrement can be more efficient than post-increment/decrement. Post-increment/decrement usually involves keeping a copy of the previous value around and adds a little extra code." cwe="398">
+            <location file0="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" file="Q:\GitHub\projektgebaeude-juicy-errors\Software\GebaeudeManagement\Server\Server.cpp" line="356" column="91"/>
         </error>
   <FileInfo check="Null pointer">
-    <unsafe-usage my-id="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:41:7" my-argnr="1" my-argname="out" file="C:/Users/fab/Documents/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="189" col="11" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="1" my-argname="request" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="118" col="28" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:59:7" my-argnr="1" my-argname="out" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="298" col="10" value="0"/>
+  </FileInfo>
+  <FileInfo check="Uninitialized variables">
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="1" my-argname="request" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="118" col="28" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="2" my-argname="query" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="118" col="2" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="3" my-argname="sensor" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="119" col="2" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="4" my-argname="room_descriptor" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="120" col="2" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:51:7" my-argnr="5" my-argname="optional" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="121" col="2" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:68:7" my-argnr="1" my-argname="in" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="140" col="2" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:56:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="257" col="20" value="0"/>
+    <unsafe-usage my-id="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.h:57:6" my-argnr="2" my-argname="requested_room" file="Q:/GitHub/projektgebaeude-juicy-errors/Software/GebaeudeManagement/Server/Server.cpp" line="272" col="23" value="0"/>
   </FileInfo>
   <FileInfo check="CheckUnusedFunctions">
     <functiondecl functionName="getNthWord" lineNumber="22"/>
     <functiondecl functionName="start" lineNumber="32"/>
-    <functiondecl functionName="print" lineNumber="49"/>
-    <functiondecl functionName="processRequest" lineNumber="61"/>
-    <functiondecl functionName="properties" lineNumber="180"/>
-    <functiondecl functionName="readCFG" lineNumber="198"/>
-    <functiondecl functionName="writeCFG" lineNumber="217"/>
-    <functiondecl functionName="build" lineNumber="258"/>
-    <functiondecl functionName="createRoom" lineNumber="277"/>
-    <functiondecl functionName="addRoom" lineNumber="298"/>
-    <functiondecl functionName="deleteRoom" lineNumber="310"/>
+    <functiondecl functionName="processRequest" lineNumber="62"/>
+    <functiondecl functionName="divide_request_into_substrings" lineNumber="116"/>
+    <functiondecl functionName="get_timestamp" lineNumber="135"/>
+    <functiondecl functionName="get_room_pointer" lineNumber="146"/>
+    <functiondecl functionName="get_sensor_type" lineNumber="158"/>
+    <functiondecl functionName="process_get_request" lineNumber="167"/>
+    <functiondecl functionName="process_set_request" lineNumber="199"/>
+    <functiondecl functionName="process_cfg_request" lineNumber="219"/>
+    <functiondecl functionName="process_cfg_update" lineNumber="241"/>
+    <functiondecl functionName="process_cfg_add_room" lineNumber="256"/>
+    <functiondecl functionName="process_cfg_delete_room" lineNumber="271"/>
+    <functiondecl functionName="properties" lineNumber="289"/>
+    <functiondecl functionName="readCFG" lineNumber="307"/>
+    <functiondecl functionName="writeCFG" lineNumber="325"/>
+    <functiondecl functionName="build" lineNumber="348"/>
+    <functiondecl functionName="addRoom" lineNumber="388"/>
+    <functiondecl functionName="deleteRoom" lineNumber="400"/>
     <functioncall functionName="BasicServer"/>
     <functioncall functionName="CONFIG_NAME"/>
+    <functioncall functionName="CSV_HEADLINE"/>
     <functioncall functionName="ERR_BAD_QUERY"/>
     <functioncall functionName="ERR_BAD_ROOM_ID"/>
     <functioncall functionName="ERR_BAD_SENSOR_ID"/>
     <functioncall functionName="ERR_BAD_SENSOR_TYPE"/>
     <functioncall functionName="ERR_BAD_SENSOR_VAL"/>
+    <functioncall functionName="NULL"/>
     <functioncall functionName="Room"/>
     <functioncall functionName="SENSOR_DOOR"/>
     <functioncall functionName="SENSOR_TEMP"/>
     <functioncall functionName="SENSOR_TOILET"/>
+    <functioncall functionName="SENSOR_WINDOW"/>
     <functioncall functionName="Server"/>
     <functioncall functionName="addRoom"/>
     <functioncall functionName="ans"/>
     <functioncall functionName="append"/>
+    <functioncall functionName="assign"/>
+    <functioncall functionName="atoi"/>
+    <functioncall functionName="begin"/>
     <functioncall functionName="break"/>
     <functioncall functionName="build"/>
     <functioncall functionName="c_str"/>
     <functioncall functionName="cbegin"/>
     <functioncall functionName="cend"/>
-    <functioncall functionName="cfg"/>
     <functioncall functionName="clear"/>
-    <functioncall functionName="close"/>
     <functioncall functionName="compare"/>
     <functioncall functionName="createRoom"/>
     <functioncall functionName="ctime"/>
     <functioncall functionName="default"/>
     <functioncall functionName="deleteRoom"/>
     <functioncall functionName="descr"/>
+    <functioncall functionName="divide_request_into_substrings"/>
+    <functioncall functionName="end"/>
     <functioncall functionName="erase"/>
-    <functioncall functionName="err"/>
     <functioncall functionName="false"/>
     <functioncall functionName="filename"/>
     <functioncall functionName="find"/>
+    <functioncall functionName="float"/>
     <functioncall functionName="for"/>
+    <functioncall functionName="getDescriptor"/>
+    <functioncall functionName="getDoorStatus"/>
     <functioncall functionName="getNthWord"/>
-    <functioncall functionName="good"/>
+    <functioncall functionName="getTemperature"/>
+    <functioncall functionName="getToiletStatus"/>
+    <functioncall functionName="getWindowStatus"/>
+    <functioncall functionName="get_room_pointer"/>
+    <functioncall functionName="get_sensor_type"/>
+    <functioncall functionName="get_timestamp"/>
+    <functioncall functionName="get_value"/>
     <functioncall functionName="i"/>
     <functioncall functionName="if"/>
-    <functioncall functionName="is_open"/>
+    <functioncall functionName="int"/>
     <functioncall functionName="iss"/>
     <functioncall functionName="length"/>
-    <functioncall functionName="loadCSV"/>
     <functioncall functionName="max_length"/>
     <functioncall functionName="min"/>
     <functioncall functionName="mytime"/>
@@ -86,28 +103,43 @@
     <functioncall functionName="numDoors"/>
     <functioncall functionName="numTempSensors"/>
     <functioncall functionName="numToilets"/>
-    <functioncall functionName="open"/>
-    <functioncall functionName="opt"/>
+    <functioncall functionName="openCloseDoor"/>
+    <functioncall functionName="optional"/>
     <functioncall functionName="out"/>
+    <functioncall functionName="override"/>
     <functioncall functionName="port"/>
     <functioncall functionName="print"/>
+    <functioncall functionName="process_cfg_add_room"/>
+    <functioncall functionName="process_cfg_delete_room"/>
+    <functioncall functionName="process_cfg_request"/>
+    <functioncall functionName="process_cfg_update"/>
+    <functioncall functionName="process_get_request"/>
+    <functioncall functionName="process_set_request"/>
     <functioncall functionName="properties"/>
     <functioncall functionName="push_back"/>
+    <functioncall functionName="query"/>
     <functioncall functionName="readCFG"/>
     <functioncall functionName="req"/>
     <functioncall functionName="request"/>
+    <functioncall functionName="requested_room"/>
     <functioncall functionName="response"/>
     <functioncall functionName="return"/>
+    <functioncall functionName="reverse"/>
     <functioncall functionName="roomCFG"/>
     <functioncall functionName="roomDescr"/>
     <functioncall functionName="roomProps"/>
+    <functioncall functionName="room_descriptor"/>
     <functioncall functionName="rp"/>
     <functioncall functionName="s"/>
     <functioncall functionName="sensor"/>
+    <functioncall functionName="sensor_type"/>
+    <functioncall functionName="setTemperature"/>
     <functioncall functionName="size"/>
     <functioncall functionName="sprintf"/>
     <functioncall functionName="start"/>
     <functioncall functionName="stoi"/>
+    <functioncall functionName="str"/>
+    <functioncall functionName="string"/>
     <functioncall functionName="strlen"/>
     <functioncall functionName="strncpy"/>
     <functioncall functionName="substr"/>
@@ -115,8 +147,9 @@
     <functioncall functionName="temp1"/>
     <functioncall functionName="time"/>
     <functioncall functionName="timestamp"/>
-    <functioncall functionName="trunc"/>
-    <functioncall functionName="val"/>
+    <functioncall functionName="timestamp_string"/>
+    <functioncall functionName="txt_read"/>
+    <functioncall functionName="txt_truncate"/>
     <functioncall functionName="while"/>
     <functioncall functionName="writeCFG"/>
   </FileInfo>
