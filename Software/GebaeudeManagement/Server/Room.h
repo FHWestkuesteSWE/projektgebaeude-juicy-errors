@@ -21,7 +21,7 @@ private:
 	int _numTempSensors;
 	bool _hasWindows;
 
-	double _curTemp;
+	//double _curTemp;
 	std::vector<bool> _curDoorStatus;
 	bool _curWindowStatus;
 
@@ -63,5 +63,8 @@ public:
 	void setNumDoors(int numDoors);
 	void setNumTempSensors(int numTempSensors);
 	void setHasWindows(bool hasWindows);
+
+	// DEBUG
+	//void print_temperatures();
 };
 
