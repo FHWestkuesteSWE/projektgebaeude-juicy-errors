@@ -62,6 +62,9 @@ int main(int argc, char* argv[])
 // write client-server communication to logfile
 int writeLog ( const char * filename, const char * message )
 {
+  // decrypt log file
+  AESCryptor * cryptor = new AESCryptor(KEYFILE);
+  
   // FOR FILE HANDLING REFER TO http://www.cplusplus.com/doc/tutorial/files/
   fstream logfile(filename); // opens file if file exists, does not create new file if file doesn't exist
 
@@ -80,8 +83,7 @@ int writeLog ( const char * filename, const char * message )
   } 
   logfile.close();
 
-  // write to existing logfile
-
+  // write to existing logfile 
   logfile.open(filename, std::ios_base::app);
   if (logfile.is_open()) {
     

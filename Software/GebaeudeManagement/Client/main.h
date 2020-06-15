@@ -5,21 +5,21 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Client.h"
 #include <ctime>
+
+#include "Client.h"
+#include "AESCryptor.h"
 
 // room descriptors
 #define NUM_ROOMS 3
 
 #define FILENAME "client.log"
+#define KEYFILE  "aes.key"
 
 #define GET_VALUE 1
 #define SET_VALUE 2
 
 // extern std::vector<std::string> roomDescriptors; // list of room descriptors from server
-
-extern int kbRetVal; // default integer return value for keyboard entry
-extern char kbRetValCh; // default char return value for keyboard entry
 
 
 
