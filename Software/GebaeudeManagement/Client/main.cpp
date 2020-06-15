@@ -90,7 +90,8 @@ int writeLog ( const char * filename, const char * message )
   logfile.close();
 
   // write to existing logfile 
-  logfile.open(&tmpLogfile[0], std::ios_base::app);
+  //logfile.open(&tmpLogfile[0], std::ios_base::app);
+  logfile.open(filename, std::ios_base::app);
   if (logfile.is_open()) {
     
     time_t now = time(0); // current date/time based on current system

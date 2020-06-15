@@ -44,6 +44,7 @@ AESCryptor::AESCryptor(const char* keypath)
       if (choice == 1) {
         // generate key
         GenerateSaveKeys (keypath); 
+        
         // load new key
         FileSource( keypath, true, new HexDecoder( new StringSink( keys ) ) ); 
       }
