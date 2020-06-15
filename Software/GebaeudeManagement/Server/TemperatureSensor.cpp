@@ -6,6 +6,5 @@ TemperatureSensor::TemperatureSensor() {
 
 double TemperatureSensor::getTemp(double fMin, double fMax, double lastValue)
 {
-	//return getDoubleValue(fMin, fMax, lastValue);
-	return 20.4;
+	return getDoubleValue(fMin, fMax, lastValue);
 }

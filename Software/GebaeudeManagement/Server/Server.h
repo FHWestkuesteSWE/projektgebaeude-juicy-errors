@@ -21,7 +21,6 @@ typedef enum {
 	SENSOR_TEMP,
 	SENSOR_DOOR,
 	SENSOR_TOILET,
-	SENSOR_WINDOW,
 } SENSOR_TYPES;
 
 const std::string ERR_MSG[] = {
@@ -40,15 +39,13 @@ public:
 	void start(char port[]);
 	
 protected:
-	void processRequest(char request[], char answer[]) override;
+	void processRequest(char request[], char answer[]);
 	
 private:
 	int build();
 	int readCFG();
 	int writeCFG();
 
-	//void divide_request_into_substrings(std::string request, std::string query, std::string sensor, std::string room_descriptor, std::string optional);
-	void divide_request_into_substrings(std::string* request, std::string* query, std::string* sensor, std::string* room_descriptor, std::string* optional);
 	int process_get_request(std::string sensor_type, Room* requested_room, char response[]);
 	int process_set_request(std::string sensor_type, Room* requested_room, std::string set_value, char response[]);
 	int process_cfg_request(std::string cfg_query, Room* requested_room, char response[]);
@@ -65,7 +62,7 @@ private:
 	int deleteRoom(std::string roomDescr);
 
 	void print(std::string msg);
-	void get_timestamp(std::string *in);
+	void get_timestamp(std::string timestamp_string);
 
 	std::vector<Room*> _rooms;
 	std::vector<std::string> roomCFG;

@@ -1,27 +1,23 @@
 <?xml version="1.0"?>
-<analyzerinfo checksum="419057360">
+<analyzerinfo checksum="798771622">
   <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="txt_read" lineNumber="5"/>
-    <functiondecl functionName="txt_truncate" lineNumber="31"/>
-    <functiondecl functionName="txt_exists" lineNumber="92"/>
-    <functioncall functionName="cbegin"/>
-    <functioncall functionName="cend"/>
+    <functiondecl functionName="loadCSV" lineNumber="5"/>
+    <functiondecl functionName="writeCSV" lineNumber="32"/>
+    <functioncall functionName="c_str"/>
     <functioncall functionName="clear"/>
     <functioncall functionName="close"/>
+    <functioncall functionName="data"/>
     <functioncall functionName="eof"/>
-    <functioncall functionName="file"/>
     <functioncall functionName="filename"/>
-    <functioncall functionName="for"/>
     <functioncall functionName="getline"/>
     <functioncall functionName="good"/>
     <functioncall functionName="if"/>
     <functioncall functionName="in"/>
-    <functioncall functionName="is_open"/>
     <functioncall functionName="open"/>
     <functioncall functionName="push_back"/>
+    <functioncall functionName="size"/>
     <functioncall functionName="temp"/>
-    <functioncall functionName="trunc"/>
-    <functioncall functionName="txt_exists"/>
     <functioncall functionName="while"/>
+    <functioncall functionName="write"/>
   </FileInfo>
 </analyzerinfo>
