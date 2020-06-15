@@ -1,12 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <string.h>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-
 #include "Server.h"
-#include "FileHandling.h"
 
 using namespace std;
 
@@ -41,7 +35,7 @@ void Server::start(char port[]) {
 	this->print("Building initialized");
 	this->print(str);
 
-	BasicServer::start(port);
+	SSLServer::start(port);
 }
 
 

@@ -6,6 +6,7 @@ SSLServer.cpp
 
 #include "SSLServer.h"
 
+
 SSLServer::SSLServer(): context_(boost::asio::ssl::context::sslv23)
 {
 	context_.set_options(
@@ -25,7 +26,6 @@ SSLServer::~SSLServer()
 
 void SSLServer::start(char port[]) {
 	boost::asio::io_service io_service;
-
 	using namespace std; // For atoi.
 	using boost::asio::ip::tcp;
 	tcp::acceptor a(io_service, tcp::endpoint(tcp::v4(), atoi(port)));

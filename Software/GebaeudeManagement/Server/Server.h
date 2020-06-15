@@ -1,7 +1,15 @@
 #pragma once
 
+#include <string.h>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+
+#include "SSLServer.h"
 #include "BasicServer.h"
+
 #include "Room.h"
+#include "FileHandling.h"
 
 
 #define NUM_MAX_ROOMS	255
@@ -33,7 +41,7 @@ const std::string ERR_MSG[] = {
 };
 
 
-class Server : public BasicServer {
+class Server : public SSLServer {
 public:	
 	Server();
 	~Server();
