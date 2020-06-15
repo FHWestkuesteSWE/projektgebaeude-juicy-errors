@@ -19,7 +19,7 @@ Room::Room(const std::string descr, int numToilets, int numDoors, int numTempSen
 	_numDoors = numDoors;
 	_numTempSensors = numTempSensors;
 	_hasWindows = hasWindows;
-	_curTemp = 20.0; // initialize because of RAII principle
+	//_curTemp = 20.0; // initialize because of RAII principle
 	designRoom();
 }
 
@@ -56,6 +56,8 @@ int Room::designRoom()
 		_temperatureSensors.push_back(&TemperatureSensor());
 	}
 
+	//this->print_temperatures();
+
 	_thermostat = Thermostat();
 	_curWindowStatus = false; // windows closed
 
@@ -68,7 +70,7 @@ int Room::designRoom()
 // set temperature to thermostat and save in _curTemp
 void Room::setTemperature(double temp)
 {
-	_curTemp = temp;
+	//_curTemp = temp;
 	this->_thermostat.setDoubleValue(temp);
 }
 
@@ -78,13 +80,21 @@ double Room::getTemperature()
 {
 	if (_temperatureSensors.size() > 0)
 	{
-		return _temperatureSensors[0]->getTemp(TEMP_MIN, TEMP_MAX, _curTemp);
+		std::cout << &_temperatureSensors[0] << std::endl;
+		return _temperatureSensors[0]->getTemp();
 	}
 	return -1.0;
 }
 
-// TEST: no
+//void Room::print_temperatures() {
+//	for (int i = 0; i < _numTempSensors; i++)
+//	{
+//		//std::cout << "sensor object " << &_temperatureSensors[i] << std::endl;
+//		std::cout <<  _temperatureSensors[i]->getTemp() << std::endl;
+//	}
+//}
 
+// TEST: no
 //set isOpen val to door with index idx
 void Room::openCloseDoor(int idx, bool isOpen)
 {
