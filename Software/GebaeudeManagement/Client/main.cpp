@@ -270,16 +270,19 @@ char selectAction ( const char * descr )
     getKBEntry (&choice);
     cout << "\n\n";
 
-    switch ( choice ) {
-      case 'g':
-      case 's':
-      case 'b':
-        decided = true;
-        break; 
-      default: 
-        decided = false;
-        break;
-    }
+    if ( choice == 'g' || choice == 's' || choice == 'b' ) decided = true;
+    else decided = false;
+
+    /* switch ( choice ) { */
+    /*   case 'g': */
+    /*   case 's': */
+    /*   case 'b': */
+    /*     decided = true; */
+    /*     break; */ 
+    /*   default: */ 
+    /*     decided = false; */
+    /*     break; */
+    /* } */
   } while (!decided);
 
   return choice; 
