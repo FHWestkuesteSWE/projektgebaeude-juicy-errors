@@ -169,22 +169,22 @@ int Server::process_get_request(std::string sensor_type, Room *requested_room, c
 
 	switch (this->get_sensor_type(sensor_type)) {
 	case SENSOR_TEMP:
-		get_value = requested_room->getTemperature();
+		get_value = requested_room->get_temperature();
 		sprintf(response, "%s %s %s %.2lf", "get", sensor_type.c_str(), requested_room->getDescriptor().c_str(), get_value);
 		break;
 
 	case SENSOR_DOOR:
-		get_value = (float)requested_room->getDoorStatus(0);
+		get_value = (float)requested_room->get_door_status(0);
 		sprintf(response, "%s %s %s %i", "get", sensor_type.c_str(), requested_room->getDescriptor().c_str(), (int)get_value);
 		break;
 
 	case SENSOR_TOILET:
-		get_value = (float)requested_room->getToiletStatus(0);
+		get_value = (float)requested_room->get_toilet_status(0);
 		sprintf(response, "%s %s %s %i", "get", sensor_type.c_str(), requested_room->getDescriptor().c_str(), (int)get_value);
 		break;
 
 	case SENSOR_WINDOW:
-		get_value = (float)requested_room->getWindowStatus();
+		get_value = (float)requested_room->get_window_status();
 		sprintf(response, "%s %s %s %i", "get", sensor_type.c_str(), requested_room->getDescriptor().c_str(), (int)get_value);
 
 	default:
@@ -199,11 +199,11 @@ int Server::process_get_request(std::string sensor_type, Room *requested_room, c
 int Server::process_set_request(std::string sensor_type, Room* requested_room, std::string set_value, char response[]) {
 	switch (this->get_sensor_type(sensor_type)) {
 	case SENSOR_TEMP:
-		requested_room->setTemperature(atoi(set_value.c_str()));
+		requested_room->set_thermostat(atoi(set_value.c_str()));
 		break;
 
 	case SENSOR_DOOR:
-		requested_room->openCloseDoor(0, atoi(set_value.c_str()));
+		requested_room->operate_door(0, atoi(set_value.c_str()));
 		break;
 
 	default:

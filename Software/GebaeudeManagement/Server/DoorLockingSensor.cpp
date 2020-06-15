@@ -1,9 +1,13 @@
 #include "DoorLockingSensor.h"
 
 //default Constructor
-DoorLockingSensor::DoorLockingSensor() {}
+DoorLockingSensor::DoorLockingSensor() {
+}
+
+DoorLockingSensor::~DoorLockingSensor() {
+}
 
 bool DoorLockingSensor::getDoorStatus()
 {
-	return getBooleanValue();
+	return this->get_sensor_value_bool();
 }

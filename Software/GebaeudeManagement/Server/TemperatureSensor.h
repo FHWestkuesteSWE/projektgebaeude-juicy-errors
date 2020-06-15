@@ -1,6 +1,5 @@
 #pragma once
 #include "Sensor.h"
-#include <stdlib.h>
 
 #define TEMP_MIN		0.0
 #define TEMP_MAX		50.0
@@ -18,4 +17,3 @@ public:
 private:
 	void set_random_temp();
 };
-

@@ -5,5 +5,7 @@ class DoorActuator :
 {
 public:
 	DoorActuator();
-};
+	~DoorActuator();
 
+	void set_door_actuator(bool set_value);
+};

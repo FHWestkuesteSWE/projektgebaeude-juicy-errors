@@ -5,6 +5,7 @@ class DoorLockingSensor :
 {
 public:
 	DoorLockingSensor();
+	~DoorLockingSensor();
 
 	bool getDoorStatus();
 };

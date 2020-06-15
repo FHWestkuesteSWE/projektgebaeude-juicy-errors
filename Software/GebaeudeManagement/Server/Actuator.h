@@ -2,14 +2,15 @@
 
 	class Actuator
 	{
-	public:
+	protected:
 		Actuator();
 		~Actuator();
-	private:
-		// private attributes
-		bool _bVal = 0;
-		double _fVal = 0;
-	public:
+
 		void setBooleanValue(bool val);
 		void setDoubleValue(double val);
+
+	private:
+		bool _bVal = 0;
+		double _dVal = 0;
+
 	};

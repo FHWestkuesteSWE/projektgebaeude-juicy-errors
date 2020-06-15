@@ -5,5 +5,7 @@ class Thermostat :
 {
 public:
 	Thermostat();
-};
+	~Thermostat();
 
+	void set_thermostat(double set_value);
+};
